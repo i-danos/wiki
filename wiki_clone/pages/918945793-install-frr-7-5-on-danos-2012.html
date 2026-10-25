@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Install FRR 7.5 on DANOS 2012 - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details open><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item active'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>Install FRR 7.5 on DANOS 2012</h1><div class="confluence-information-macro confluence-information-macro-information conf-macro output-block" data-hasbody="true" data-macro-id="c6faa0dd-5085-416a-b097-e51c9d527bae" data-macro-name="info"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"> </span><div class="confluence-information-macro-body"><p>DANOS 2012 ships with FRR 7.4 and pre-release testing was performed against 7.4</p></div></div><p>We have prepared a version of FRR 7.5 for use in DANOS which includes a number of <a class="external-link" href="https://github.com/danos/frr/blob/danos/7.5/debian/patches/series" rel="nofollow">backported fixes and enhancements</a>. These patches are upstream and should be included in the FRR 7.6 release, which we hope to include in the next version of DANOS due later in 2021.</p><p>The below guide is intended as an aid for users who wish to build and install FRR 7.5 on DANOS 2012.</p><ol><li><p>Clone danos/vyatta-protocols-frr, checking out version 1.15.0:</p></li></ol><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="9c3d27a1-7d54-4d80-a224-ec90e0b8150d" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ git clone https://github.com/danos/vyatta-protocols-frr.git -b debian/1.15.0</pre>
+</div></div><p>danos/frr, checking out the danos/7.5 branch:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="841cddc5-30e7-4815-833d-9cd62acfc960" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ git clone https://github.com/danos/frr.git -b danos/7.5</pre>
+</div></div><p>danos/vyatta-route-broker, checking out version 1.0.3:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="04f9818d-0834-4839-bac2-891eb893111d" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ git clone https://github.com/danos/vyatta-route-broker.git -b debian/1.0.3</pre>
+</div></div><p>and CESNET/libyang, checking out the debian/master branch:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="b5652881-8c01-488d-8686-8baada305209" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ git clone https://github.com/CESNET/libyang.git -b debian/master</pre>
+</div></div><p>2. Build the new packages, using <a data-linked-resource-id="786516" data-linked-resource-type="page" data-linked-resource-version="15" href="786516-building-a-package-from-source.html">Building a package from source</a> as a reference. The easiest way to build our packages is with the <code>danos-buildpackage</code> tool, particularly if you are not already familiar with building Debian packages.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="eeb41025-da7d-4bee-b978-8c607e88de34" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ cd libyang
+$ danos-buildpackage -version 2012
+$ cd ../frr
+$ danos-buildpackage -version 2012 -pkg ..
+$ cd ../vyatta-protocols-frr
+$ danos-buildpackage -version 2012
+$ cd ../vyatta-route-broker
+$ danos-buildpackage -version 2012
+$ cd ..</pre>
+</div></div><p>Note: depending on your Docker setup, you may need to execute <code>danos-buildpackage</code> as root eg. using <code>sudo</code>.</p><p>After running the above builds, the current directory should now contain a large number of deb packages.</p><p>3. Transfer the required packages to your DANOS instance, eg. using scp.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="fb50e1f5-b301-4b62-9da6-5d6e0e1858ed" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ scp libyang1_1.0.184-2_amd64.deb frr_7.5-0danos1_amd64.deb frr-pythontools_7.5-0danos1_all.deb frr-snmp_7.5-0danos1_amd64.deb vyatta-frr-vci_1.15.0_amd64.deb vyatta-protocols-frr_1.15.0_all.deb vyatta-route-broker-frr_1.0.3_amd64.deb &lt;user&gt;@&lt;instance&gt;:</pre>
+</div></div><p>Note: we don’t need all the packages which were built.</p><p>4. Log in to your DANOS instance, and optionally back up your current “stock” 2012 image</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="0a600bbe-4c13-4b56-89b1-69e45e5e53d6" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ clone system image &lt;current-image&gt; &lt;current-image&gt;.bak</pre>
+</div></div><p>You can choose this backed up image at the bootloader if you wish to return to FRR 7.4.</p><p>5. Install the new packages on your running DANOS image</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="c3948110-2302-42e2-9032-964ab4b05260" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ sudo dpkg -i libyang1_1.0.184-2_amd64.deb frr_7.5-0danos1_amd64.deb frr-pythontools_7.5-0danos1_all.deb frr-snmp_7.5-0danos1_amd64.deb vyatta-frr-vci_1.15.0_amd64.deb vyatta-protocols-frr_1.15.0_all.deb vyatta-route-broker-frr_1.0.3_amd64.deb</pre>
+</div></div><p>6. Reboot - you are now running FRR 7.5!</p><p>The output of <code>show version</code> should now look something like:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="3516c331-c645-4542-8954-91a835a1ddeb" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ show version 
+Version:      2012
+Description:  DANOS 2012 (DANOS:Shipping:2012:20210114)
+&lt;snip&gt;
+Aii libyang1                  1.0.184-2                
+Uii frr                       7.5-0danos1          (baseline: 7.4-0vyatta5)
+Uii frr-pythontools           7.5-0danos1          (baseline: 7.4-0vyatta5)
+Uii frr-snmp                  7.5-0danos1          (baseline: 7.4-0vyatta5)
+Uii vyatta-frr-vci            1.15.0               (baseline: 1.14.6)
+Uii vyatta-protocols-frr      1.15.0               (baseline: 1.14.6)
+Uii vyatta-route-broker-frr   1.0.3                (baseline: 1.0.2)
+Dii frr                       7.5-0danos1          (baseline: 7.4-0vyatta5)
+Dii frr-pythontools           7.5-0danos1          (baseline: 7.4-0vyatta5)
+Dii frr-snmp                  7.5-0danos1          (baseline: 7.4-0vyatta5)
+Dii vyatta-frr-vci            1.15.0               (baseline: 1.14.6)
+Dii vyatta-protocols-frr      1.15.0               (baseline: 1.14.6)
+Dii vyatta-route-broker-frr   1.0.3                (baseline: 1.0.2)</pre>
+</div></div>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

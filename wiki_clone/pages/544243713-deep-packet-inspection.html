@@ -1,0 +1,428 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Deep Packet Inspection - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details open><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item active'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>Deep Packet Inspection</h1><div class="toc-macro client-side-toc-macro conf-macro output-block" data-hasbody="false" data-headerelements="H1,H2,H3,H4,H5,H6,H7" data-layout="default" data-macro-id="d710a5b7-55e1-4aff-8c31-22f28fe2ee61" data-macro-name="toc"> </div><div class="confluence-information-macro confluence-information-macro-information conf-macro output-block" data-hasbody="true" data-macro-id="3115a163-dcb8-46b7-817e-4c294874ed90" data-macro-name="info"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"> </span><div class="confluence-information-macro-body"><p>Available in DANOS 2009</p></div></div><h1 id="DeepPacketInspection-1.Overview">1. Overview</h1><p>Deep Packet Inspection (DPI) uses <a class="external-link" href="https://www.ntop.org/products/deep-packet-inspection/ndpi" rel="nofollow">ntop's nDPI engine</a> to identify layer 7 applications. User-defined applications can also be specified using L3 / L4 rules.</p><p>Firewall rules can be configured to allow or block the identified applications.</p><span class="confluence-embedded-file-wrapper image-left-wrapper"><img class="confluence-embedded-image image-left" data-base-url="https://danosproject.atlassian.net/wiki" data-height="1179" data-image-src="https://danosproject.atlassian.net/wiki/download/attachments/544243713/DPI.png?version=2&amp;modificationDate=1600177508979&amp;cacheVersion=1&amp;api=v2" data-linked-resource-container-id="544243713" data-linked-resource-container-version="7" data-linked-resource-content-type="image/png" data-linked-resource-default-alias="DPI.png" data-linked-resource-id="552665292" data-linked-resource-type="attachment" data-linked-resource-version="2" data-media-id="a65d0d99-684a-47e3-9b4c-95e6dab4937e" data-media-type="file" data-unresolved-comment-count="0" data-width="631" loading="lazy" src="https://danosproject.atlassian.net/wiki/download/attachments/544243713/DPI.png?version=2&amp;modificationDate=1600177508979&amp;cacheVersion=1&amp;api=v2"/></span><h1 id="DeepPacketInspection-2.Configuration">2. Configuration</h1><h2 id="DeepPacketInspection-2.1.Applicationfirewall">2.1. Application firewall</h2><p>Applications are configured in an "application firewall" using the "set security application firewall" command, which is similar to the existing firewall command ("set security firewall name ..."), but is specific to applications:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="2ed0faed-ab2a-43b6-83ee-195d4187ff12" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set security application firewall name SAF1 ?
+Possible Completions:
+   &lt;Enter&gt;         Execute the current command
+   description     Ruleset description
+   no-match-action Action when no match (default is drop)
++&gt; rule            Rule number</pre>
+</div></div><p><br/>Applications are specified by the DPI engine and the application name, protocol, or type. Applications are configured individually, one per rule.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="cb7f7ee9-afde-4224-9258-4eb6927f895e" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set security application firewall name SAF1 rule 10 engine ndpi ?
+Possible Completions:
+   &lt;Enter&gt;  Execute the current command
+   name     Specify an nDPI application name
+   protocol Specify an nDPI application protocol
+   type     Specify an nDPI application type</pre>
+</div></div><p><br/>Each rule can only match one application name or protocol or type in order to prevent conflicting configuration which would never match anything.</p><p>Multiple applications can be added by configuring multiple rules. Rules are evaluated in increasing numerical order.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="28a41316-4275-40fe-8f09-95bbaea9e8c4" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set security application firewall name SAF1 rule 10 engine ndpi name youtube
+user@danos2009# set security application firewall name SAF1 rule 10 action drop
+
+user@danos2009# set security application firewall name SAF1 rule 20 engine ndpi protocol ssh
+user@danos2009# set security application firewall name SAF1 rule 20 action accept
+
+user@danos2009# set security application firewall name SAF1 rule 30 engine ndpi type filesharing
+user@danos2009# set security application firewall name SAF1 rule 30 action drop</pre>
+</div></div><p><br/>The application firewall is referenced from the regular firewall. The application firewall is configured under "session" because a stateful firewall is required for DPI because the DPI engine might have to examine several packets in the session before reaching a determination. Since application matching is only supported for UDP and TCP protocols, application firewalls require that either "protocol tcp" or "protocol udp" be specified in the enclosing firewall:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="f76612ec-ddba-4c99-980c-60d8b0f87ecc" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set security firewall name SF1 rule 10 session application firewall SAF1
+user@danos2009# set security firewall name SF1 rule 10 protocol tcp 
+user@danos2009# set security firewall name SF1 rule 10 action accept</pre>
+</div></div><h2 id="DeepPacketInspection-2.2.Defaultaction">2.2. Default action</h2><p>Initial packets are classified as application "Unknown", protocol "Unknown", until sufficient traffic is seen for a determination to be made. It's important to allow these packets through the firewall so that enough traffic is seen in the session in order for the DPI engine to reach a determination. Therefore the application firewall allows up to ten packets before applying the "no-match-action" if no classification has been made.</p><h3 id="DeepPacketInspection-2.2.1.Firewall">2.2.1. Firewall</h3><p>A default firewall action may be specified either in a high-numbered rule:</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><p><code>set security firewall name FW1 rule 9999 action X</code></p></td></tr></tbody></table></div><p>or using the "default action" command:</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><p><code>set security firewall name FW1 default</code> <code>action X</code></p></td></tr></tbody></table></div><p>Both of these will match all packets, preventing subsequent 'implicit action' or rules in subsequent groups occurring.</p><h3 id="DeepPacketInspection-2.2.2.Applicationfirewall">2.2.2. Application firewall</h3><p>A default application firewall action may be specified either in a high-numbered application firewall rule:</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><p><code>set security application firewall name AF1 rule 9999 action X</code></p></td></tr></tbody></table></div><p>or using the "no-match-action" command:</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><p><code>set security application firewall name AF1 no-match-action X</code></p></td></tr></tbody></table></div><p>Note that up to ten packets will be accepted per session before these rules are applied so that enough traffic is seen in the session in order for the DPI engine to reach a determination.</p><h2 id="DeepPacketInspection-2.3.Applicationgroups">2.3. Application groups</h2><p>Several applications can be combined in an application group. Application names, types, and protocols can be mixed within a group. The group matches any of the specified name, type, or protocol rules - ie the rules are OR'd together.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="9d0ba8fb-8079-4b2f-8f22-a230f932a4bc" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set resources group application-group AG1 engine ndpi type chat
+user@danos2009# set resources group application-group AG1 engine ndpi type shopping
+user@danos2009# set resources group application-group AG1 engine ndpi type game
+
+user@danos2009# set resources group application-group AG1 engine ndpi name ebay
+user@danos2009# set resources group application-group AG1 engine ndpi name facebook
+user@danos2009# set resources group application-group AG1 engine ndpi name youtube</pre>
+</div></div><p><br/>The application group is configured in an application firewall rule, together with the action to be performed on any traffic matching the group:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="29f17d53-4aa3-4fe7-a299-6af2d71807c2" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set security application firewall name SAF1 rule 40 group AG1
+user@danos2009# set security application firewall name SAF1 rule 40 action drop</pre>
+</div></div><p><br/>As above, the application firewall is referenced from the regular firewall. The application firewall is configured under "session" because a stateful firewall is required for DPI.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="31c8e302-917a-4568-8f66-b2b354fe7d41" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set security firewall name SF1 rule 10 session application firewall SAF1
+user@danos2009# set security firewall name SF1 rule 10 protocol tcp 
+user@danos2009# set security firewall name SF1 rule 10 action accept</pre>
+</div></div><h2 id="DeepPacketInspection-2.4.User-definedapplications">2.4. User-defined applications</h2><p>User-defined applications can be defined using L3 / L4 rules using the "set service application... " command:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="dea84865-94e2-48f6-8204-236ded511ba5" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set service application rule 10 ?
+Possible Completions:
+   &lt;Enter&gt;        Execute the current command
+   description    Rule description
+ &gt; destination    Destination parameters
+   disable        Disable rule
+   dscp           DSCP value to match in an incoming IP header
+   dscp-group     Group of DSCP values to match in an incoming IP header
+   ethertype      Ethertype to match (name or hex or decimal)
+ &gt; icmp           ICMP for IPv4
+ &gt; icmpv6         ICMP for IPv6
+ &gt; ipv6-route     IPv6 route
+   log            Enable logging for rule
+   pcp            802.1 priority code point to match (0 to 7)
+   protocol       IP L4 protocol to match (name, number or leave unconfigured for all)
+   protocol-group Group of IP L4 protocols to match
+ &gt; source         Source parameters
+ &gt; tcp            TCP parameters
+ &gt; then           Specify actions</pre>
+</div></div><p><br/>Rules consist of two parts: zero or more match criteria, and one or more "then" actions.</p><p>All of the matching criteria must match - ie the rules are AND'd together.</p><p>The "then" action specifies the application name, protocol, or type to be used for traffic matching the rule:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="e1724adb-eee5-42e7-851f-93e8886c8c51" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set service application rule 30 then ?
+Possible Completions:
+   name     Specify application name
+   protocol Specify application protocol
++&gt; type     Specify application type</pre>
+</div></div><p><br/>For example, if subnet 10.1.1.0/28 only contains webex servers, the traffic coming from those servers can be classified as application name webex and application type video:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="7c9a991f-ff9e-4cc2-8c8b-a753f4b2ac56" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set service application rule 10 source address 10.1.1.0/28 
+user@danos2009# set service application rule 10 then name webex
+user@danos2009# set service application rule 10 then type video</pre>
+</div></div><p><br/>User-defined applications are configured in application firewalls or application groups as shown earlier, except that the "user" engine is used:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="213f4449-88a9-4b79-80e9-8c54f20d8c40" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set resources group application-group AG1 engine user name webex 
+user@danos2009# set resources group application-group AG1 engine user type video
+user@danos2009# set resources group application-group AG1 engine user protocol citrix
+
+user@danos2009# set security application firewall name SAF1 rule 50 engine user name webex
+user@danos2009# set security application firewall name SAF1 rule 50 action accept</pre>
+</div></div><p><br/>Application groups can contain a mixture of nDPI and user-defined applications. The group matches any of the specified engine, name, type, or protocol rules - ie the rules are OR'd together.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="053df23d-679f-4c87-8a64-c2bb2a271281" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set resources group application-group AG1 engine ndpi name ebay
+user@danos2009# set resources group application-group AG1 engine ndpi name facebook
+user@danos2009# set resources group application-group AG1 engine ndpi name youtube
+
+user@danos2009# set resources group application-group AG1 engine user name webex 
+user@danos2009# set resources group application-group AG1 engine user type voice
+user@danos2009# set resources group application-group AG1 engine user protocol citrix</pre>
+</div></div><h1 id="DeepPacketInspection-3.Showcommands">3. Show commands</h1><h2 id="DeepPacketInspection-3.1.showsessiontableapplication">3.1. show session table application</h2><p>Provided at least one DPI rule is configured, the "<strong>show session table application</strong>" command will show application information associated with each session. There is no output if no DPI rules are configured.</p><p>The columns are:</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 138.0px;"/><col style="width: 622.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><p>Conn ID</p></td><td class="confluenceTd"><p>the connection ID as shown in the other "show session table ..." outputs.</p></td></tr><tr><td class="confluenceTd"><p>Engine</p></td><td class="confluenceTd"><p>which engine classified this traffic.</p></td></tr><tr><td class="confluenceTd"><p>App-name</p></td><td class="confluenceTd"><p>the application name according to this DPI engine.</p></td></tr><tr><td class="confluenceTd"><p>L5-proto-name</p></td><td class="confluenceTd"><p>the layer 5 protocol according to this DPI engine.</p></td></tr><tr><td class="confluenceTd"><p>Offloaded</p></td><td class="confluenceTd"><p>"false" if the engine still needs to see more packets.</p><p>"true" if the engine has made a final determination.</p></td></tr><tr><td class="confluenceTd"><p>Error</p></td><td class="confluenceTd"><p>"true" if a DPI error occurred.</p><p>"false" otherwise.</p></td></tr><tr><td class="confluenceTd"><p>Fwd-pkts</p></td><td class="confluenceTd"><p>the number of packets observed by the DPI engine in the forwards direction prior to offloading.</p></td></tr><tr><td class="confluenceTd"><p>Fwd-bytes</p></td><td class="confluenceTd"><p>the number of bytes observed by the DPI engine in the forwards direction prior to offloading.</p></td></tr><tr><td class="confluenceTd"><p>Bwd-pkts</p></td><td class="confluenceTd"><p>the number of packets observed by the DPI engine in the backwards direction prior to offloading.</p></td></tr><tr><td class="confluenceTd"><p>Bwd-bytes</p></td><td class="confluenceTd"><p>the number of bytes observed by the DPI engine in the backwards direction prior to offloading.</p></td></tr><tr><td class="confluenceTd"><p>Type</p></td><td class="confluenceTd"><p>the application type according to this DPI engine.</p></td></tr></tbody></table></div><p><br/>nDPI information will be shown if at least one nDPI rule is configured:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="44a373fd-2e43-47f5-bb60-57310011d6ea" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009:~$ show session table application
+Conn ID   Engine    App-name        L5-proto-name   Offloaded  Error  Fwd-pkts  Fwd-bytes  Bwd-pkts  Bwd-bytes  Type
+-------   ------    --------        -------------   ---------  -----  --------  ---------  --------  ---------  ----
+10        ndpi      Unknown         SSH             true       false  5         1409       4         1081       RemoteAccess
+11        ndpi      Unknown         HTTP            true       false  3         136        2         126        Web
+12        ndpi      Unknown         TLS             true       false  3         517        3         1436       Web
+14        ndpi      LinkedIn        TLS             true       false  3         517        1         0          SocialNetwork
+15        ndpi      YouTube         TLS             true       false  3         517        1         0          Media</pre>
+</div></div><p><br/>User-defined application information will be shown if at least one user-defined application rule is configured:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="d866b168-7e14-40de-bb7c-936cf09602d1" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009:~$ show session table application
+Conn ID   Engine    App-name        L5-proto-name   Offloaded  Error  Fwd-pkts  Fwd-bytes  Bwd-pkts  Bwd-bytes  Type
+-------   ------    --------        -------------   ---------  -----  --------  ---------  --------  ---------  ----
+20        user      UD_NAME1        UD_PROTO1       true       false  1         0          0         0          UD_TYPE1</pre>
+</div></div><p><br/>Both nDPI and user-defined application information will be shown for each session when at least one nDPI and one user-defined application rule are configured:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="f58ea90e-e5b8-430b-9748-3ff0d5bf3b04" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009:~$ show session table application
+Conn ID   Engine    App-name        L5-proto-name   Offloaded  Error  Fwd-pkts  Fwd-bytes  Bwd-pkts  Bwd-bytes  Type
+-------   ------    --------        -------------   ---------  -----  --------  ---------  --------  ---------  ----
+23        user      utube           None            true       false  1         0          0         0          video
+23        ndpi      YouTube         TLS             true       false  3         517        1         0          Media</pre>
+</div></div><h2 id="DeepPacketInspection-3.2.Journallogging">3.2. Journal logging</h2><p>When firewall logging is enabled and DPI information is available for the session, this will be included in the session create, update, and delete logs seen in the system journal:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="227e2269-1e14-426b-bf0e-ac2aa3c82ec1" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009# set system session log creation
+user@danos2009# set system session log deletion
+user@danos2009# set system session log periodic 60
+
+user@danos2009:~$ journalctl | grep SESSION_
+FIREWALL: SESSION_CREATE duration=0.692 ifname=dp0p1s2 session-id=22 proto=tcp(6) dir=out addr=10.0.0.1-&gt;157.240.1.35 port=59652-&gt;443 fw-rule=DPI:200 engine=ndpi app-name=Facebook proto-name=TLS type=SocialNetwork
+FIREWALL: SESSION_CREATE duration=2.002 ifname=dp0p1s2 session-id=7 proto=tcp(6) dir=out addr=10.0.0.1-&gt;212.58.233.253 port=52980-&gt;443 fw-rule=DPI:200 engine=user app-name=BBC proto-name=MYWEB type=MYNEWS</pre>
+</div></div><h1 id="DeepPacketInspection-4.Examples">4. Examples</h1><h2 id="DeepPacketInspection-4.1.Anapplicationfirewallallowsaccesstopermittedwebsiteswhileblockingallotherwebtraffic">4.1. An application firewall allows access to permitted websites while blocking all other web traffic</h2><p>Additional sites would be allowed by adding rules to the "ALLOWED-SITES" application firewall.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="eecfe70d-0f99-44c8-885d-978cfe5ebb60" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Ports for web traffic
+set resources group port-group WEB port 80
+set resources group port-group WEB port 443
+
+# Application firewall
+#   - accept specific applications
+#   - all other applications are dropped by default
+set security application firewall name ALLOWED-SITES rule 100 action accept
+set security application firewall name ALLOWED-SITES rule 100 engine ndpi name google
+set security application firewall name ALLOWED-SITES rule 200 action accept
+set security application firewall name ALLOWED-SITES rule 200 engine ndpi name linkedin
+ 
+# Allow DNS traffic
+set security firewall name DPI rule 100 action accept
+set security firewall name DPI rule 100 destination address 8.8.8.8
+set security firewall name DPI rule 100 session
+ 
+# Send all web traffic through the application firewall
+set security firewall name DPI rule 200 action accept
+set security firewall name DPI rule 200 protocol tcp
+set security firewall name DPI rule 200 destination port WEB
+set security firewall name DPI rule 200 session application firewall ALLOWED-SITES
+ 
+# Default action
+set security firewall name DPI rule 1000 action accept
+set security firewall name DPI rule 1000 session
+ 
+# Apply firewall to interface
+set interfaces dataplane dp0p1s2 firewall out DPI</pre>
+</div></div><h2 id="DeepPacketInspection-4.2.Anapplicationfirewallisusedwithanapplicationgrouptoallowaccesstosomepermittedwebsiteswhileblockingallotherwebtraffic">4.2. An application firewall is used with an application group to allow access to some permitted websites while blocking all other web traffic</h2><p>Additional sites would be allowed by adding rules to the "ALLOWED-SITES-GROUP" application group.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="cfb20294-b6da-485b-84fe-59ae3f41508c" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Ports for web traffic
+set resources group port-group WEB port 80
+set resources group port-group WEB port 443
+ 
+# Application group
+set resources group application-group ALLOWED-SITES-GROUP engine ndpi name linkedin
+set resources group application-group ALLOWED-SITES-GROUP engine ndpi name google
+ 
+# Application firewall
+#   - accept applications in the "WEB-SITES" application group
+#   - drop all other applications
+set security application firewall name WEB-TRAFFIC rule 100 action accept
+set security application firewall name WEB-TRAFFIC rule 100 group ALLOWED-SITES-GROUP
+set security application firewall name WEB-TRAFFIC no-match-action drop
+ 
+# Allow DNS traffic
+set security firewall name DPI rule 100 action accept
+set security firewall name DPI rule 100 destination address 8.8.8.8
+set security firewall name DPI rule 100 session
+ 
+# Send all web traffic through the application firewall
+set security firewall name DPI rule 200 action accept
+set security firewall name DPI rule 200 protocol tcp
+set security firewall name DPI rule 200 destination port WEB
+set security firewall name DPI rule 200 session application firewall WEB-TRAFFIC
+ 
+# Default action
+set security firewall name DPI rule 1000 action accept
+set security firewall name DPI rule 1000 session
+ 
+# Apply firewall to interface
+set interfaces dataplane dp0p1s2 firewall out DPI</pre>
+</div></div><h2 id="DeepPacketInspection-4.3.Anapplicationfirewallisusedwithanapplicationgrouptoblockhttprequestswhileallowinghttpsrequests">4.3. An application firewall is used with an application group to block http requests while allowing https requests</h2><p>HTTP requests would be allowed by adding http to the "WEB-APPS-GROUP" application group.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="f67217da-0917-4d70-a319-99f96b028477" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Ports for web traffic
+set resources group port-group WEB port 80
+set resources group port-group WEB port 443
+ 
+# Application group
+set resources group application-group WEB-APPS-GROUP engine ndpi protocol tls
+ 
+# Application firewall
+#   - accept applications in the "WEB-APPS" application group
+#   - drop all other applications
+set security application firewall name WEB-TRAFFIC rule 100 action accept
+set security application firewall name WEB-TRAFFIC rule 100 group WEB-APPS-GROUP
+set security application firewall name WEB-TRAFFIC no-match-action drop
+ 
+# Allow DNS traffic
+set security firewall name DPI rule 100 action accept
+set security firewall name DPI rule 100 destination address 8.8.8.8
+set security firewall name DPI rule 100 session
+ 
+# Send all web traffic through the application firewall
+set security firewall name DPI rule 200 action accept
+set security firewall name DPI rule 200 protocol tcp
+set security firewall name DPI rule 200 destination port WEB
+set security firewall name DPI rule 200 session application firewall WEB-TRAFFIC
+ 
+# Default action
+set security firewall name DPI rule 1000 action accept
+set security firewall name DPI rule 1000 session
+ 
+# Apply firewall to interface
+set interfaces dataplane dp0p1s2 firewall out DPI</pre>
+</div></div><h2 id="DeepPacketInspection-4.4.TrafficdestinedtotheBBCnewswebsiteisidentifiedwithauser-definedname,protocol,andtype">4.4. Traffic destined to the BBC news web site is identified with a user-defined name, protocol, and type</h2><p>The web site is served by a range of addresses.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="cba9a671-eed1-4671-88f6-8e1f52b0d601" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Ports for web traffic
+set resources group port-group WEB port 80
+set resources group port-group WEB port 443
+ 
+# Address group
+set resources group address-group BBC-SITE address-range 212.0.0.0 to 212.255.255.255
+ 
+# User-defined application
+set service application rule 100 destination address BBC-SITE
+set service application rule 100 then name MYNEWS
+set service application rule 100 then protocol MYWEB
+set service application rule 100 then type MYNEWS
+ 
+# Application firewall
+#   - accept traffic to the BBC
+#   - drop all other applications
+set security application firewall name BBC-TRAFFIC rule 100 action accept
+set security application firewall name BBC-TRAFFIC rule 100 engine user name MYNEWS
+set security application firewall name BBC-TRAFFIC no-match-action drop
+ 
+# Allow DNS traffic
+set security firewall name DPI rule 100 action accept
+set security firewall name DPI rule 100 destination address 8.8.8.8
+set security firewall name DPI rule 100 session
+ 
+# Send all web traffic through the application firewall
+set security firewall name DPI rule 200 action accept
+set security firewall name DPI rule 200 protocol tcp
+set security firewall name DPI rule 200 destination port WEB
+set security firewall name DPI rule 200 session application firewall BBC-TRAFFIC
+ 
+# Default action
+set security firewall name DPI rule 1000 action accept
+set security firewall name DPI rule 1000 session
+ 
+# Apply firewall to interface
+set interfaces dataplane dp0p1s2 firewall out DPI</pre>
+</div></div><h2 id="DeepPacketInspection-4.5AnapplicationfirewallisappliedtotrafficenteringorleavingaGREtunnel">4.5 An application firewall is applied to traffic entering or leaving a GRE tunnel</h2><p>Tunneled telnet and SSH traffic are dropped.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="74622db3-4006-4902-bceb-5efb1d64ea25" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Group of applications to be blocked
+set resources group application-group BLOCKED engine ndpi name telnet
+set resources group application-group BLOCKED engine ndpi name ssh
+
+# Application firewall drops applications in the group
+# while accepting other traffic
+set security application firewall name APPFW no-match-action accept
+set security application firewall name APPFW rule 100 action drop
+set security application firewall name APPFW rule 100 group BLOCKED
+
+# Firewall
+set security firewall name SFW rule 100 action accept
+set security firewall name SFW rule 100 protocol tcp
+set security firewall name SFW rule 100 session application firewall APPFW
+
+# Default action
+set security firewall name SFW rule 1000 action accept
+set security firewall name SFW rule 1000 session
+
+# GRE tunnel configuration
+set interfaces tunnel tun1 encapsulation gre
+set interfaces tunnel tun1 address 15.0.0.1/24
+set interfaces tunnel tun1 local-ip 128.0.0.11
+set interfaces tunnel tun1 remote-ip 128.0.0.13</pre>
+</div></div><p>Traffic entering the vRouter from the tunnel is firewalled by applying the firewall in the “in” direction:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="b7c93d57-de41-43a4-b7bd-275b4fd1c364" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Apply firewall to tunnel
+set interfaces tunnel tun1 firewall in SFW</pre>
+</div></div><p>Traffic leaving the vRouter through the tunnel is firewalled by applying the firewall in the “out” direction:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="9fae89de-384a-46fe-8268-d300050719fd" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Apply firewall to tunnel
+set interfaces tunnel tun1 firewall out SFW</pre>
+</div></div><h2 id="DeepPacketInspection-4.6AnapplicationfirewallisappliedtotrafficenteringorleavingaVFPIPSectunnel">4.6 An application firewall is applied to traffic entering or leaving a VFP IPSec tunnel</h2><p>Tunneled telnet and SSH traffic are dropped.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="c302cc72-1e72-4a19-b1b9-cf782bd43be1" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Group of applications to be blocked
+set resources group application-group BLOCKED engine ndpi name telnet
+set resources group application-group BLOCKED engine ndpi name ssh
+
+# Application firewall drops applications in the group
+# while accepting other traffic
+set security application firewall name APPFW no-match-action accept
+set security application firewall name APPFW rule 100 action drop
+set security application firewall name APPFW rule 100 group BLOCKED
+
+# Firewall
+set security firewall name SFW rule 100 action accept
+set security firewall name SFW rule 100 protocol tcp
+set security firewall name SFW rule 100 session application firewall APPFW
+
+# Default action
+set security firewall name SFW rule 1000 action accept
+set security firewall name SFW rule 1000 session
+
+# VFP configuration
+set interfaces virtual-feature-point vfp1 address 169.254.0.1/32
+
+set security vpn ipsec esp-group group1 lifetime 600
+set security vpn ipsec esp-group group1 proposal 1 encryption aes256
+set security vpn ipsec ike-group group1 lifetime 3000
+set security vpn ipsec ike-group group1 proposal 1 encryption aes256
+set security vpn ipsec site-to-site peer 128.0.0.13 authentication mode pre-shared-secret
+set security vpn ipsec site-to-site peer 128.0.0.13 authentication pre-shared-secret '********'
+set security vpn ipsec site-to-site peer 128.0.0.13 default-esp-group group1
+set security vpn ipsec site-to-site peer 128.0.0.13 ike-group group1
+set security vpn ipsec site-to-site peer 128.0.0.13 local-address 128.0.0.11
+set security vpn ipsec site-to-site peer 128.0.0.13 tunnel 1 local prefix 12.0.0.0/24
+set security vpn ipsec site-to-site peer 128.0.0.13 tunnel 1 remote prefix 13.0.0.0/24
+
+set security vpn ipsec site-to-site peer 128.0.0.13 tunnel 1 uses vfp1</pre>
+</div></div><p>Traffic entering the vRouter from the tunnel is firewalled by applying the firewall in the “in” direction:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="25d5dc02-a96f-4231-b270-37cc810c9bbf" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Apply firewall to tunnel
+set interfaces virtual-feature-point vfp1 firewall in SFW</pre>
+</div></div><p>Traffic leaving the vRouter through the tunnel is firewalled by applying the firewall in the “out” direction:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="e3149878-eab4-49ba-95bb-db1ffa0f977a" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: powershell; gutter: false; theme: Confluence" data-theme="Confluence"># Apply firewall to tunnel
+set interfaces virtual-feature-point vfp1 firewall out SFW</pre>
+</div></div><h1 id="DeepPacketInspection-5.Debugging">5. Debugging</h1><h2 id="DeepPacketInspection-5.1.showsessiontableapplication">5.1. show session table application</h2><p>Enable any DPI rule. Examine the "<strong>show session table application</strong>" output to see how the traffic was classified, then modify the rule accordingly.</p><p>Pay particular attention to whether the application appears in the "App-name" or "L5-proto-name" column. eg as seen below, "LinkedIn" and "YouTube" are application names, while SSH is a protocol:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="896e7934-71be-4064-9c5d-af6e9319e6f5" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">user@danos2009:~$ show session table application
+Conn ID   Engine    App-name        L5-proto-name   Offloaded  Error  Fwd-pkts  Fwd-bytes  Bwd-pkts  Bwd-bytes  Type                
+-------   ------    --------        -------------   ---------  -----  --------  ---------  --------  ---------  ----                
+14        ndpi      LinkedIn        TLS             true       false  3         517        1         0          SocialNetwork       
+15        ndpi      YouTube         TLS             true       false  3         517        1         0          Media               
+18        ndpi      Unknown         SSH             true       false  5         1409       4         1081       RemoteAccess</pre>
+</div></div><p></p>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,486 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Firewall - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details open><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item active'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>Firewall</h1><style type="text/css">/*<![CDATA[*/
+div.rbtoc1790153971560 {padding: 0px;}
+div.rbtoc1790153971560 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1790153971560 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1790153971560">
+<ul class="toc-indentation">
+<li><a href="#Firewall-Overview">Overview</a>
+<ul class="toc-indentation">
+<li><a href="#Firewall-Firewallandfragmentedpackets">Firewall and fragmented packets</a></li>
+<li><a href="#Firewall-Definingfirewallinstances">Defining firewall instances</a>
+<ul class="toc-indentation">
+<li><a href="#Firewall-Firewallrules">Firewall rules</a></li>
+<li><a href="#Firewall-Implicitaction">Implicit action</a></li>
+<li><a href="#Firewall-Exclusionrules">Exclusion rules</a></li>
+</ul>
+</li>
+<li><a href="#Firewall-Statefulfirewallandconnectiontracking">Stateful firewall and connection tracking</a></li>
+<li><a href="#Firewall-TCPstricttracking">TCP strict tracking</a></li>
+<li><a href="#Firewall-Applyingfirewallinstancestointerfaces">Applying firewall instances to interfaces</a></li>
+<li><a href="#Firewall-Interactionbetweenfireall,NATandrouting">Interaction between fireall, NAT and routing</a></li>
+<li><a href="#Firewall-Controlplanepolicing">Control plane policing</a></li>
+<li><a href="#Firewall-Firewalldenialofserviceprotection">Firewall denial of service protection</a>
+<ul class="toc-indentation">
+<li><a href="#Firewall-Maximumhalf-opensessions">Maximum half-open sessions</a></li>
+<li><a href="#Firewall-Sessionratelimiting">Session rate limiting</a></li>
+<li><a href="#Firewall-Example-limitmax-halfopenTCPsessionsinboundondp0p1s1only">Example - limit max-halfopen TCP sessions inbound on dp0p1s1 only</a></li>
+<li><a href="#Firewall-Example-rate-limitTCPsessionsinboundondp0p1s1anddp0p1s2">Example - rate-limit TCP sessions inbound on dp0p1s1 and dp0p1s2</a></li>
+<li><a href="#Firewall-Example-usingtheglobalsessionlimitertorate-limitallsessionscreatedonallinterfaces.">Example - using the global session limiter to rate-limit all sessions created on all interfaces.</a></li>
+<li><a href="#Firewall-Example-rate-limitTCP,UDPandICMPsessionswithasinglerate-limitparameter,whilstmaintainingseparatecountsforeachprotocol">Example - rate-limit TCP, UDP and ICMP sessions with a single rate-limit parameter, whilst maintaining separate counts for each protocol</a></li>
+<li><a href="#Firewall-Example-sessionlimitoutboundSNATsessionsoninterfacedp0p1s2">Example - session limit outbound SNAT sessions on interface dp0p1s2</a></li>
+<li><a href="#Firewall-DoSprotectionconfigurationconsiderations">DoS protection configuration considerations</a></li>
+</ul>
+</li>
+<li><a href="#Firewall-Sessionandpacketlogging">Session and packet logging</a></li>
+</ul>
+</li>
+<li><a href="#Firewall-Configurationexamples">Configuration examples</a></li>
+</ul>
+</div><h1 id="Firewall-Overview">Overview</h1><p>Firewall functionality analyzes and filters IP packets between network interfaces. The most common application of functionality is to protect traffic between an internal network and the Internet. It allows you to filter packets based on their characteristics and perform actions on packets that match the rule. The Brocade vRouter firewall functionality provides the following features:</p><ul><li><p>Packet filtering for traffic that traverses the router by using the <strong>in</strong> and <strong>out</strong> keywords on an interface</p></li><li><p>Definable criteria for packet-matching rules, including source IP address, destination IP address, source port, destination port, IP protocol, and Internet Control Message Protocol (ICMP) type</p></li><li><p>Ability to set the firewall globally for stateful or stateless operation</p></li></ul><p>The vRouter firewall offers both IPv4 and IPv6 stateful packet inspection to intercept and inspect network activity and to allow or deny the attempt.</p><p>Firewall cannot be applied to outbound local traffic. It can only be applied to inbound interface traffic and forwarded outbound traffic.</p><h2 id="Firewall-Firewallandfragmentedpackets">Firewall and fragmented packets</h2><p>An input firewall causes fragments to be reassembled. For both IPv4 and IPv6, if the packets arrive on an interface for which firewall is configured, the fragments are reassembled at the input before passing to the firewall. If all the fragments of a packet are not received, then the packet is dropped. The reassembled packet passes through the remainder of the forwarding path and firewall does not recognize fragments at either input or output. Passing through an output firewall (or DNAT/SNAT) also results in fragment reassembly before processing by the firewall or NAT rules.</p><h2 id="Firewall-Definingfirewallinstances">Defining firewall instances</h2><p>Firewalls filter packets on interfaces. Use of the firewall feature has two steps:</p><ol><li><p>Define a firewall instance and save it under a name. A firewall instance is also called a firewall ruleset, where a rule set is just a series of firewall rules. You define the <strong>firewall</strong> instance and configure the rules in its rule set in the firewall configuration node.</p></li><li><p>Apply the instance to an interface by configuring the <strong>interface</strong> configuration node for the interface. After the instance is applied to the interface, the rules in the instance begin filtering packets on that location.</p></li></ol><h3 id="Firewall-Firewallrules">Firewall rules</h3><p>Firewall rules specify the match conditions for traffic and the action to be taken if the match conditions are satisfied. Traffic can be matched on a number of characteristics, including source IP address, destination IP address, source port, destination port, IP protocol, and ICMP type.</p><p>Rules are executed in numeric sequence, according to the rule number, from lowest to highest. If the traffic matches the characteristics specified by a rule, the action of the rule is executed; if not, the system “falls through” to the next rule.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>You can configure rules to match IPv4 ICMP, IPv6 ICMP, IPv6 routing header, or TCP without specifying the respective protocol, provided that a protocol-specific match option is present. For example TCP flags, ICMP type.</p></div></div><p>The action can be one of the following:</p><ul><li><p><strong>Accept</strong> Traffic is allowed and forwarded.</p></li><li><p><strong>Drop</strong> Traffic is silently discarded.</p></li></ul><p>To avoid having to renumber firewall rules, a good practice is to number rules in increments of 10. This increment allows room for the insertion of new rules within the ruleset.</p><h3 id="Firewall-Implicitaction">Implicit action</h3><p>When one or more named firewall rules (including the hidden rule used for <code>default-action</code><strong> </strong>or <code>default-log</code>) are applied to an interface and a packet does not match any of the rules in a given direction, then the implicit actions occur. The implicit actions are a property of firewall rules having been applied to an interface, not a property of the rules as such.</p><p>When rules are present in one direction, there is an implicit action of drop for that direction. If any of the rules are stateful, there is an implicit drop action in the opposite direction even if no rules are present in the opposite direction. Despite this condition, stateful rules always allow for reverse direction stateful traffic to flow.</p><p>The <code>security firewall name &lt;name&gt; default-action &lt;action&gt;</code> and <code>security firewall name &lt;name&gt; default-log</code> commands use an explicit rule and as such will prevent implicit actions from occurring in the direction that they are applied to.  Hence it is recommended that one not make use of these two commands.</p><h3 id="Firewall-Exclusionrules">Exclusion rules</h3><p>Note that you should take care in employing more than one “exclusion” rule, that is, a rule that uses the negation operator (exclamation mark [!]) to exclude a rule from treatment. Rules are evaluated sequentially, and a sequence of exclusion rules could result in unexpected behaviour.</p><h2 id="Firewall-Statefulfirewallandconnectiontracking">Stateful firewall and connection tracking</h2><p>On the firewall, connection tracking allows for stateful packet inspection.</p><p><strong>Stateless firewalls </strong>filter packets in isolation based on static source and destination information. In contrast, <strong>stateful firewalls </strong>track the state of network connections and traffic flows and allow or restrict traffic based on whether its connection state is known and authorized. For example, when an initiation flow is allowed in one direction, the responder flow is automatically and implicitly allowed in the return direction. While typically slower under heavy load than stateless firewalls, stateful firewalls are better at blocking unauthorized communication.</p><p>By default, the vRouter firewall is stateless. If you want the firewall to operate stateless in general, you can configure state rules within a specific ruleset. Alternatively, you can configure the firewall globally to operate statefully. For more information, refer to <code>security firewall global-state-policy &lt;protocol&gt;</code>.</p><p>For all protocols, the following are tracked for each session: interface, protocol, source address, and destination address. For ICMP, the ICMP identifier is also included. For TCP/UDP/UDP-Lite/DCCP/SCTP, the source and destination ports are also included.</p><h2 id="Firewall-TCPstricttracking">TCP strict tracking</h2><p></p><h2 id="Firewall-Applyingfirewallinstancestointerfaces">Applying firewall instances to interfaces</h2><p></p><h2 id="Firewall-Interactionbetweenfireall,NATandrouting">Interaction between fireall, NAT and routing</h2><p></p><h2 id="Firewall-Controlplanepolicing">Control plane policing</h2><p></p><h2 id="Firewall-Firewalldenialofserviceprotection">Firewall denial of service protection</h2><p>A stateful firewall or NAT creates a session for each traffic flow matching that firewall or NAT provided it is not blocked. This applies to both connection-oriented protocols (for example, TCP) and nonconnection-oriented protocols (for example, UDP and ICMP echo).</p><p>The Firewall Denial-of-Service Protection feature provides commands that perform the following tasks:<br/>• Monitor the number of sessions, rate of session creation, and time last session was created<br/>• Limit the maximum number of half-open sessions<br/>• Rate-limit new sessions</p><h3 id="Firewall-Maximumhalf-opensessions">Maximum half-open sessions</h3><p>The definition of a half-open session depends upon the protocol. For TCP, a session is deemed to be half-open while it is going through the SYN, SYN-ACK, and ACK three-way handshake. For nonconnection-oriented protocols, a session is deemed half-open when traffic has been seen only in the forward direction.</p><p>A half-open session has a default timeout period of 30 seconds. If no further traffic is seen on this session for that time period, the session is "expired". An expired session then exists for a further 5 to 10 seconds before it is deleted and memory released. Once expired, a session is not available to traffic.</p><p>When the maximum half-open limit is reached, a matching packet is prevented from creating a session.</p><h3 id="Firewall-Sessionratelimiting">Session rate limiting</h3><p>Session rate limiting limits the maximum rate at which a session can be created. A "rate" value and a "burst" value may be configured. These values combine to determine the interval over which the rate-limiting is evaluated. For example, if the rate limit is 20 sessions per second, and the burst is 100 sessions, the interval is 5 seconds (100/20). A maximum of 100 new sessions is allowed during that 5-second interval. In the show command output, the interval is shown in milliseconds.</p><p>When the rate-limit rate is reached, a matching packet is prevented from creating a session.</p><p>Rate limiting itself limits the maximum number of half-open sessions. For example, if the rate limit is 20 seconds and the default timeout of 30 seconds applies, the maximum number of half-open sessions is 600 sessions (20 x 30, that is, the number of sessions that can be created before the oldest expires).</p><p>If the rate-limiting and maximum half-open features are combined, with a rate limit of 20 sessions per second and a maximum half-open value of 300, then it takes 15 seconds (300/20) for the maximum half-open limit to be reached.</p><h3 id="Firewall-Example-limitmax-halfopenTCPsessionsinboundondp0p1s1only">Example - limit max-halfopen TCP sessions inbound on dp0p1s1 only</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces {
+        dataplane dp0p1s1 {
+                address 10.10.1.1/24
+                firewall {
+                        in ACCEPT_ALL
+                }
+        }
+        dataplane dp0p1s2 {
+                address 10.10.2.1/24
+        }
+}
+
+security {
+        firewall {
+                name ACCEPT_ALL {
+                        rule 10 {
+                                action accept
+                                session
+                        }
+                }
+        }
+}
+
+system {
+        session {
+                limit {
+                        group {
+                                name PROTOTCP {
+                                        interface dp0p1s1
+                                        rule 10 {
+                                                parameter MAX_HALFOPEN_200
+                                                protocol tcp
+                                        }
+                                }
+                        }
+                        parameter {
+                                name MAX_HALFOPEN_200 {
+                                        max-halfopen 200
+                                }
+                        }
+                }
+        }
+}</pre>
+</div></div><p>The session limiter is configured on interface dp0p1s1, which means it is applied to both inbound and outbound sessions created on that interface.  However because there in only an inbound firewall on dp0p1s1 then that means the session limiter only 'sees' inbound sessions.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">v@vm-rtr-1# run sh session limit
+Session limit parameter "MAX_HALFOPEN_200":
+    Sessions allowed                                                               200
+    Sessions blocked                                                               100
+    Current session counts (estab/half-open/terminating)                     [0:200:0]
+    Max session counts (estab/half-open/terminating)                         [0:200:0]
+    Time since last session created                                              23.0s
+    Sessions per sec avg (1sec/1min/5mins)                                     [0:0:0]
+    Max sessions per sec avg (1sec/1min/5mins)                                 [0:0:0]
+    Time since max sessions per sec (1sec/1min/5mins)              [never:never:never]
+    Time since last session blocked                                              23.0s
+    Max sessions blocked per sec avg (1sec/1min/5mins)                         [0:0:0]
+    Features                                                              max-halfopen
+    Max half-open sessions                                
+        Maximum                                                                    200
+        Sessions blocked                                                           100
+
+Session limit group "PROTOTCP":
+    Active on (dp0p1s1)
+    rule    parameter  proto           allowed         blocked        
+    ----    ---------  -----           -------         -------        
+    10      PARAM1     tcp             200             100            
+    condition - proto tcp </pre>
+</div></div><h3 id="Firewall-Example-rate-limitTCPsessionsinboundondp0p1s1anddp0p1s2">Example - rate-limit TCP sessions inbound on dp0p1s1 and dp0p1s2</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces {
+        dataplane dp0p1s1 {
+                address 10.10.1.1/24
+                firewall {
+                        in FW1
+                }
+        }
+        dataplane dp0p1s2 {
+                address 10.10.2.1/24
+                firewall {
+                        in FW1
+                }
+        }
+}
+
+security {
+        firewall {
+                name FW1 {
+                        rule 10 {
+                                action accept
+                                session
+                        }
+                }
+        }
+}
+
+system {
+        session {
+                limit {
+                        group {
+                                name GROUP1 {
+                                        interface dp0p1s1
+                                        interface dp0p1s2
+                                        rule 10 {
+                                                parameter PARAM1
+                                                protocol tcp
+                                        }
+                                }
+                        }
+                        parameter {
+                                name PARAM1 {
+                                        rate-limit {
+                                                rate 10
+                                                burst 20
+                                }
+                        }
+                }
+        }
+}</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">v@vm-rtr-1# run sh session limit
+Session limit parameter "PARAM1":
+    Sessions allowed                                                              1477
+    Sessions blocked                                                              9751
+    Current session counts (estab/half-open/terminating)                     [0:482:0]
+    Max session counts (estab/half-open/terminating)                         [0:482:0]
+    Time since last session created                                               0.0s
+    Sessions per sec avg (1sec/1min/5mins)                                    [11:7:2]
+    Max sessions per sec avg (1sec/1min/5mins)                                [11:9:2]
+    Time since max sessions per sec (1sec/1min/5mins)                 [0.0s:4.8m:1.2m]
+    Time since last session blocked                                               0.0s
+    Max sessions blocked per sec avg (1sec/1min/5mins)                     [691:156:0]
+    Features                                                                rate-limit
+    Rate limit                                            
+        Rate sessions/second                                                        10
+        Max burst                                                                   20
+        Interval (milliseconds)                                                   2000
+        Sessions blocked                                                          9751
+
+Session limit group "GROUP1":
+    Active on (dp0p1s2)
+    rule    parameter  proto           allowed         blocked        
+    ----    ---------  -----           -------         -------        
+    10      PARAM1     tcp             0               0              
+    condition - proto tcp 
+
+Session limit group "GROUP1":
+    Active on (dp0p1s1)
+    rule    parameter  proto           allowed         blocked        
+    ----    ---------  -----           -------         -------        
+    10      PARAM1     tcp             1477            9751           
+    condition - proto tcp </pre>
+</div></div><h3 id="Firewall-Example-usingtheglobalsessionlimitertorate-limitallsessionscreatedonallinterfaces.">Example - using the global session limiter to rate-limit all sessions created on all interfaces.</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces {
+        dataplane dp0p1s1 {
+                address 10.10.1.1/24
+                firewall {
+                        in FW1
+                }
+        }
+        dataplane dp0p1s2 {
+                address 10.10.2.1/24
+                firewall {
+                        in FW1
+                }
+
+        }
+}
+
+security {
+        firewall {
+                name FW1 {
+                        rule 10 {
+                                action accept
+                                session
+                        }
+                }
+        }
+}
+
+system {
+        session {
+                limit {
+                        global {
+                                rate-limit {
+                                        rate 20
+                                        burst 50
+                                }
+                        }
+                }
+        }
+}</pre>
+</div></div><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">v@vm-rtr-1# run sh session limit
+Session limit parameter "global":
+    Sessions allowed                                                               683
+    Sessions blocked                                                                13
+    Current session counts (estab/half-open/terminating)                     [0:352:0]
+    Max session counts (estab/half-open/terminating)                         [0:392:0]
+    Time since last session created                                               0.0s
+    Sessions per sec avg (1sec/1min/5mins)                                    [11:7:0]
+    Max sessions per sec avg (1sec/1min/5mins)                                [11:7:0]
+    Time since max sessions per sec (1sec/1min/5mins)               [0.0s:25.0s:never]
+    Time since last session blocked                                               3.0s
+    Max sessions blocked per sec avg (1sec/1min/5mins)                         [0:0:0]
+    Features                                                                rate-limit
+    Rate limit                                            
+        Rate sessions/second                                                        10
+        Max burst                                                                   50
+        Interval (milliseconds)                                                   5000
+        Sessions blocked                                                            13
+
+Session limit group "global":
+    rule    parameter  proto           allowed         blocked        
+    ----    ---------  -----           -------         -------        
+    default global     any             683             13             
+    condition - all </pre>
+</div></div><h3 id="Firewall-Example-rate-limitTCP,UDPandICMPsessionswithasinglerate-limitparameter,whilstmaintainingseparatecountsforeachprotocol">Example - rate-limit TCP, UDP and ICMP sessions with a single rate-limit parameter, whilst maintaining separate counts for each protocol</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces {
+        dataplane dp0p1s1 {
+                address 10.10.1.1/24
+                firewall {
+                        in ACCEPT_ALL
+                }
+        }
+}
+
+security {
+        firewall {
+                name ACCEPT_ALL {
+                        rule 10 {
+                                action accept
+                                session
+                        }
+                }
+        }
+}
+
+system {
+        session {
+                limit {
+                        group {
+                                name LIMIT_GROUP1 {
+                                        interface dp0p1s1
+                                        rule 10 {
+                                                parameter MAXRATE4
+                                                protocol udp
+                                        }
+                                        rule 20 {
+                                                parameter MAXRATE4
+                                                protocol tcp
+                                        }
+                                        rule 30 {
+                                                parameter MAXRATE4
+                                                protocol icmp
+                                        }
+                                }
+                        }
+                        parameter {
+                                name MAXRATE4 {
+                                        rate-limit {
+                                                rate 4
+                                        }
+                                }
+                        }
+                }
+        }
+}</pre>
+</div></div><p>After sending 100 packets each of UDP, TCP and ICMP (with different ports and/or source addresses):</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">v@vm-rtr-1# run sh session limit
+Session limit parameter "MAXRATE4":
+    Sessions allowed                                                               111
+    Sessions blocked                                                               189
+    Current session counts (estab/half-open/terminating)                       [0:0:0]
+    Max session counts (estab/half-open/terminating)                          [0:74:0]
+    Time since last session created                                               1.9m
+    Sessions per sec avg (1sec/1min/5mins)                                     [0:0:0]
+    Max sessions per sec avg (1sec/1min/5mins)                                 [4:0:0]
+    Time since max sessions per sec (1sec/1min/5mins)               [1.9m:never:never]
+    Time since last session blocked                                               1.9m
+    Max sessions blocked per sec avg (1sec/1min/5mins)                         [7:0:0]
+    Features                                                                rate-limit
+    Rate limit                                            
+        Rate sessions/second                                                         4
+        Max burst                                                                    4
+        Interval (milliseconds)                                                   1000
+        Sessions blocked                                                           189
+
+Session limit group "LIMIT_GROUP1":
+    Active on (dp0p1s1)
+    rule    parameter  proto           allowed         blocked        
+    ----    ---------  -----           -------         -------        
+    10      PARAM1     udp             37              63             
+    condition - proto udp 
+
+    20      PARAM1     tcp             37              63             
+    condition - proto tcp 
+
+    30      PARAM1     icmp            37              63             
+    condition - proto icmp 
+</pre>
+</div></div><h3 id="Firewall-Example-sessionlimitoutboundSNATsessionsoninterfacedp0p1s2">Example - session limit outbound SNAT sessions on interface dp0p1s2</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces {
+        dataplane dp0p1s1 {
+                address 10.10.1.1/24
+        }
+        dataplane dp0p1s2 {
+                address 10.10.2.1/24
+        }
+        dataplane dp0p1s3 {
+                address 10.10.3.1/24
+        }
+}
+
+service {
+        nat {
+                source {
+                        rule 10 {
+                                outbound-interface dp0p1s2
+                                translation {
+                                        address masquerade
+                                }
+                        }
+                }
+        }
+}
+
+system {
+        session {
+                limit {
+                        group {
+                                name GROUP1 {
+                                        interface dp0p1s2
+                                        rule 10 {
+                                                parameter PARAM1
+                                        }
+                                }
+                        }
+                        parameter {
+                                name PARAM1 {
+                                        rate-limit {
+                                                rate 4
+                                        }
+                                }
+                        }
+                }
+        }
+}</pre>
+</div></div><h3 id="Firewall-DoSprotectionconfigurationconsiderations">DoS protection configuration considerations</h3><p>DoS protection requires that you configure a system session limit parameter and a session limit group. The parameter contains the configuration and state for maximum half-open and rate-limiting. The group contains the match criteria rule set and a list of interfaces to which that rule set is applied. The rule set contains a list of rules, each of which must reference a parameter.</p><p>Multiple interfaces can be configured on the same session limit group. A session limit group's rule set can reference multiple session limit parameters. Multiple session limit groups can reference the same session limit parameter.</p><p>A session limit parameter can be configured with one, both, or neither of the following features:<br/>• Policing of maximum half-open sessions<br/>• Rate-limiting new sessions</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>If not configured with either feature, the session limit parameter just gathers session rate and statistics<br/>information.</p></div></div><p>A session limiter configured on an interface applies to both inbound and outbound sessions created on that interface. There is no direction (in or out) when configuring a session limit interface. The session limiter is applied to sessions that are created for both inbound and outbound if other firewall or NAT rules exist to create those sessions. Therefore, if a session limiter is configured for the dp0p1s1 interface, and there is only an input firewall on dp0p1s1, the session limiter applies only to inbound sessions because outbound sessions<br/>exist.</p><p>A session limiter can limit only sessions that are created after the session limiter is created. For example, if there are 100 half-open sessions and a session limiter is created with max-half open configured</p><h2 id="Firewall-Sessionandpacketlogging">Session and packet logging</h2><p></p><h1 id="Firewall-Configurationexamples">Configuration examples</h1><p>List of configuration examples based on protocol and port numbers</p><p>Block SSH -</p><p><code>name blk-ssh {</code><br/><code>    rule 11 {</code><br/><code>        action drop</code><br/><code>        destination {</code><br/><code>            port 22</code><br/><code>        }</code><br/><code>        protocol tcp</code><br/><code>    }</code><br/><code>}</code></p><p>Block HTTP/HTTPs -</p><p>name blk-http {<br/>rule 16 {<br/>action drop<br/>destination {<br/>port 80<br/>}<br/>protocol tcp<br/>}<br/>}<br/>name blk-https {<br/>rule 17 {<br/>action drop<br/>destination {<br/>port 443<br/>}<br/>protocol tcp<br/>}<br/>}</p><p>Validation -</p><p>Post applying to interface -</p><p>sudo nc -vz -w 1 67.1.1.1 22<br/><a class="external-link" href="http://67-1-1-1.tcso.qwest.net" rel="nofollow">67-1-1-1.tcso.qwest.net</a> [67.1.1.1] 22 (ssh) : Connection timed out</p><p>Before FW rule apply -</p><p>vyatta@danos-vnf1:~$ sudo nc -vz -w 1 67.1.1.1 22<br/><a class="external-link" href="http://67-1-1-1.tcso.qwest.net" rel="nofollow">67-1-1-1.tcso.qwest.net</a> [67.1.1.1] 22 (ssh) open<br/>vyatta@danos-vnf1:~$</p><p></p>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

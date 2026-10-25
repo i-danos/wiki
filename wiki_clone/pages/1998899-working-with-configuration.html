@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Working with configuration - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details open><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details open><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item active'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>Working with configuration</h1><style type="text/css">/*<![CDATA[*/
+div.rbtoc1790153968895 {padding: 0px;}
+div.rbtoc1790153968895 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1790153968895 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1790153968895">
+<ul class="toc-indentation">
+<li><a href="#Workingwithconfiguration-Configurationbasics">Configuration basics</a>
+<ul class="toc-indentation">
+<li><a href="#Workingwithconfiguration-Terminology">Terminology</a></li>
+<li><a href="#Workingwithconfiguration-Configurationhierarchy">Configuration hierarchy</a></li>
+<li><a href="#Workingwithconfiguration-Navigatinginconfigurationmode">Navigating in configuration mode</a></li>
+<li><a href="#Workingwithconfiguration-Viewingconfigurationinconfigurationmode">Viewing configuration in configuration mode</a></li>
+<li><a href="#Workingwithconfiguration-Viewingconfigurationinoperationalmode">Viewing configuration in operational mode</a></li>
+</ul>
+</li>
+<li><a href="#Workingwithconfiguration-Changingconfigurationinformation">Changing configuration information</a>
+<ul class="toc-indentation">
+<li><a href="#Workingwithconfiguration-Addingormodifyingtheconfiguration">Adding or modifying the configuration</a></li>
+<li><a href="#Workingwithconfiguration-Deletingconfiguration">Deleting configuration</a></li>
+<li><a href="#Workingwithconfiguration-Committingconfigurationchanges">Committing configuration changes</a></li>
+<li><a href="#Workingwithconfiguration-Discardingconfigurationchanges">Discarding configuration changes</a></li>
+</ul>
+</li>
+<li><a href="#Workingwithconfiguration-Managingsystemconfiguration">Managing system configuration</a>
+<ul class="toc-indentation">
+<li><a href="#Workingwithconfiguration-Savingtherunningconfiguration">Saving the running configuration</a></li>
+<li><a href="#Workingwithconfiguration-Loadingasavedconfiguration">Loading a saved configuration</a></li>
+<li><a href="#Workingwithconfiguration-Mergingsavedandrunningconfigurations">Merging saved and running configurations</a></li>
+<li><a href="#Workingwithconfiguration-Rollingbacktoapreviousversion">Rolling back to a previous version</a></li>
+<li><a href="#Workingwithconfiguration-Archivingconfigurationversionsoncommit">Archiving configuration versions on commit</a></li>
+<li><a href="#Workingwithconfiguration-Comparingconfigurationversions">Comparing configuration versions</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="Workingwithconfiguration-Configurationbasics">Configuration basics</h1><h2 id="Workingwithconfiguration-Terminology">Terminology</h2><p>Several versions of system configuration information exist on the system at a given time.</p><ul><li><p>Active or “running” configuration</p><ul><li><p>This configuration is the one that is loaded and being used by the system.</p></li></ul></li><li><p>Candidate configuration</p><ul><li><p>When you enter configuration mode and make configuration changes, changes remain in candidate configuration until you commit the changes, at which time the configuration becomes active or running.</p></li></ul></li></ul><h2 id="Workingwithconfiguration-Configurationhierarchy">Configuration hierarchy</h2><p>DANOS vRouter configuration is organized as a hierarchy of configuration statements, with a hierarchical tree of nodes similar to the directory structure on a UNIX file system. Three kinds of statements exist:</p><ul><li><p>Configuration nodes. These nodes can be either</p><ul><li><p>Single-nodes (just one instance can be created; for example, the <code>service ssh timeout</code>)</p></li><li><p> Multi-nodes (more than one instance can be created; for example, <code>service ssh port</code>)</p></li></ul></li><li><p>Attribute statements. These statements set the values or characteristics for parameters within a node.</p></li></ul><h2 id="Workingwithconfiguration-Navigatinginconfigurationmode">Navigating in configuration mode</h2><p>You can tell where you are in the configuration tree by the [edit] prompt, which is context sensitive.</p><p>At the top of the configuration tree, the [edit] prompt looks like this:<br/><code>[edit]</code><br/>When you are in another location, the edit prompt indicates your location by showing the node hierarchy in order, like this:<br/><code>[edit service ssh]</code></p><p>The following commands for navigating in configuration mode are available:</p><ul><li><p>edit config-node</p><ul><li><p>Navigates to the specified configuration node for editing.</p></li><li><p>The node must already be created the configuration committed.</p></li></ul></li><li><p>exit</p><ul><li><p>Jumps to the top of the configuration tree.</p></li><li><p>If you are already at the top of the configuration tree, exit from configuration mode and return to operational mode.</p></li></ul></li><li><p>top</p><ul><li><p>Jumps to the top of the configuration tree.</p></li></ul></li><li><p>up</p><ul><li><p>Moves up one node in the configuration tree.</p></li></ul></li></ul><h2 id="Workingwithconfiguration-Viewingconfigurationinconfigurationmode">Viewing configuration in configuration mode</h2><p>Use the <code>show</code> command in configuration mode to display configuration. You can restrict the display to a particular node by specifying the path to the node.</p><p>The following example shows how to display configuration for all configured interfaces.<br/></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# show interfaces
+ interfaces {
+        dataplane dp0p1s1 {
+                address 10.10.1.1/24
+                mac 00:13:46:e6:f6:87
+        }
+        dataplane dp0s2 {
+                address dhcp
+        }
+        loopback lo
+ }</pre>
+</div></div><p></p><p>The following example shows how to display configuration for only the dp0p1s1 dataplane interface.<br/></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# show interfaces dataplane dp0p1s1
+ dataplane dp0p1s1 {
+        address 10.10.1.1/24
+        mac 00:13:46:e6:f6:87
+ }</pre>
+</div></div><p><br/>When the display is too large for one screen, the display stops after one screen is shown. In this case, press one of the following keys to perform the indicated action.</p><ul><li><p>&lt;Enter&gt; to display the next line</p></li><li><p>&lt;Space&gt; to display the next screen</p></li><li><p>&lt;q&gt; to interrupt the display and return to the command prompt</p></li></ul><h2 id="Workingwithconfiguration-Viewingconfigurationinoperationalmode">Viewing configuration in operational mode</h2><p>You can display configuration information without leaving operational mode by using the <code>show configuration</code> command, as in the following example.<br/></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1:~$ show configuration
+interfaces {
+        dataplane dp0p1s1 {
+                address 10.10.1.1/24
+                hw-id 00:13:46:e6:f6:87
+        }
+        dataplane dp0s2 {
+                address dhcp
+        }
+        loopback lo
+}
+service {
+        netconf
+        ssh {
+                port 22
+                port 830
+        }
+        telnet
+}</pre>
+</div></div><h1 id="Workingwithconfiguration-Changingconfigurationinformation">Changing configuration information</h1><h2 id="Workingwithconfiguration-Addingormodifyingtheconfiguration">Adding or modifying the configuration</h2><p>Add new configuration by creating a configuration node by using the <code>set</code> command in configuration mode. Modify existing configuration by using the <code>set</code> command in configuration mode, as in the following example.</p><p></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# set interfaces dataplane dp0p1s1 address 192.168.1.100/24
+vyatta@R1#</pre>
+</div></div><p></p><p>Then use the <code>show</code> command to see the change.<br/></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# show interfaces dataplane dp0p1s1
++address 192.168.1.100/24
+ mac 00:13:46:e6:f6:87
+vyatta@R1#</pre>
+</div></div><p></p><p>Notice the plus sign (+) in front of the new statement. This + shows that this statement has been added to the configuration, but the change is not yet committed. The change does not take effect until the configuration is committed by using the <code>commit</code> command.</p><p><br/>Another option is to use the <code>compare</code> command to see the change.<br/></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# compare
+[edit interfaces dataplane dp0p1s1]
++address 192.168.1.100/24
+vyatta@R1#</pre>
+</div></div><p></p><p>You can change the configuration from the root of the configuration tree or use the <code>edit</code> command to navigate to the part of the tree where you want to modify or add a configuration.</p><p>The configuration tree is nearly empty when you first startup, except for a few automatically configured nodes. You must create a node for any functionality you want to configure on the system. When a node is created, any default values that exist for its attributes are applied to the node.</p><h2 id="Workingwithconfiguration-Deletingconfiguration">Deleting configuration</h2><p>Use the <code>delete</code> command to delete a configuration statement or a complete configuration node, as in the following example.</p><p><code>vyatta@R1# delete interfaces dataplane dp0p1s1address 192.168.1.100/24</code><br/>Then use the show command to see the change.</p><p></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# show interfaces dataplane dp0p1s1
+-address 192.168.1.100/24
+ mac 00:13:46:e6:f6:87
+vyatta@R1#</pre>
+</div></div><p><br/>Notice the minus sign (-) in front of the deleted statement. This - shows that this statement has been deleted from the configuration, but the change is not yet committed. The change does not take effect until configuration is committed by using the <code>commit</code> command.<br/>Another option is to use the <code>compare</code> command to see the change.</p><p></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# compare
+[edit interfaces dataplane dp0p1s1]
+-address 192.168.1.100/24
+vyatta@R1#</pre>
+</div></div><p></p><p>Some configuration nodes are mandatory; these nodes cannot be deleted. Some configuration nodes are mandatory but have default values; if you delete one of these nodes, the default value is restored.</p><h2 id="Workingwithconfiguration-Committingconfigurationchanges">Committing configuration changes</h2><p>In a DANOS vRouter, configuration changes do not take effect until you commit them by using the commit command.</p><p><code>vyatta@R1# commit</code><br/>A line that contains uncommitted changes is flagged as follows:</p><ul><li><p>&gt; to indicate the line has been modified</p></li><li><p>+ to indicate the line has been added</p></li><li><p>- to indicate the line has been deleted</p></li></ul><p>After you commit the changes, the flag disappears, as in the following example.</p><p></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# show interfaces dataplane dp0p1s1
+-address 192.168.1.100/24
+ mac 00:13:46:e6:f6:87
+vyatta@R1# commit
+vyatta@R1# show interfaces dataplane dp0p1s1
+ mac 00:13:46:e6:f6:87
+vyatta@R1#</pre>
+</div></div><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>When you commit changes in the configuration mode, the changes are saved to the startup configuration. As a result, the changes are preserved even after a reboot.</p></div></div><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>If your login username is not a member of the "secrets" login user group and you either save a configuration through the REST API or use the save command, the encrypted passwords in the configuration file are replaced with the ******** placeholder. If you load this configuration, the replaced password fields trigger validation errors because the placeholder does not match the format for an encrypted password. Do not commit this configuration. If you ignore the error message<br/>and perform a commit with this invalid configuration, the passwords are deleted.</p></div></div><h2 id="Workingwithconfiguration-Discardingconfigurationchanges">Discarding configuration changes</h2><p>You cannot exit from configuration mode with uncommitted configuration changes; you must either commit the changes or discard them. If you do not want to commit the changes, you can discard them by using the <code>exit discard</code> command.</p><p></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# exit
+Cannot exit: configuration modified.
+Use 'exit discard' to discard the changes and exit.
+vyatta@R1# exit discard
+vyatta@R1:~$</pre>
+</div></div><h1 id="Workingwithconfiguration-Managingsystemconfiguration">Managing system configuration</h1><h2 id="Workingwithconfiguration-Savingtherunningconfiguration">Saving the running configuration</h2><p>You can save the configuration to file for your own use; for example copying to another device, by using the <code>save &lt;filename&gt;</code> command in configuration mode.</p><p>The running configuration is saved automatically when you enter commit or commit-confirm. Entering the save command without a filename has no effect.</p><p>You can also save a configuration file to a location path other than the standard configuration directory by specifying a different path. You can save the configuration to a location specivied as ftp, http, scp or tftp.</p><div class="confluence-information-macro confluence-information-macro-information"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>The save command writes only committed changes. If you try to save uncommitted changes, the system warns you that it is saving only the committed changes.</p></div></div><h2 id="Workingwithconfiguration-Loadingasavedconfiguration">Loading a saved configuration</h2><p>To load a previously saved configuration, use the <code>load</code> command in configuration mode. By default, the system reads the file from the /config configuration directory.</p><p>A loaded configuration then needs to be committed to become the active configuration.</p><h2 id="Workingwithconfiguration-Mergingsavedandrunningconfigurations">Merging saved and running configurations</h2><p>You can merge a saved configuration with the active (running) configuration by using the <code>merge</code> command.</p><p>The merger adds new configuration entries and applies any modifications to existing active entries to produce a new working configuration. This merged configuration must be committed before it becomes the active configuration.</p><p>Configuration can be loaded from a hard disk (including a Flash disk or USB device), a TFTP server, an FTP server, an SCP server, or an HTTP server. Note that you cannot load an empty configuration file; the configuration file must contain at least one configuration node.</p><h2 id="Workingwithconfiguration-Rollingbacktoapreviousversion">Rolling back to a previous version</h2><p>You can roll back system configuration to any archived version by using the <code>rollback</code> command.</p><p>To see a list of available configuration file revisions, use the <code>show system commit</code> command in operational mode.</p><h2 id="Workingwithconfiguration-Archivingconfigurationversionsoncommit">Archiving configuration versions on commit</h2><p>The system automatically archives the configuration whenever you commit a configuration change. Previous versions of the configuration are saved in the /config/archive directory, with a file name config.boot.&lt;n&gt;.gz. </p><p>By default, the system maintains 20 versions of configuration in the archive. You can change the number of versions maintained in the archive by using the <code>system config-management commit-revisions</code> command.</p><p>You can also direct the system to save configuration versions to a remote location whenever the configuration is committed by using the <code>system config-management commit-archive archive</code> command. FTP, SCP, and TFTP destinations are supported.</p><h2 id="Workingwithconfiguration-Comparingconfigurationversions">Comparing configuration versions</h2><p>You can compare two versions of configuration by using the <code>show system commit</code> and <code>compare</code> commands. </p><ul><li><p>Configuration Commands</p><ul><li><p><code>compare</code></p><ul><li><p>Difference between the working and active configuration.</p></li></ul></li><li><p><code>compare n</code></p><ul><li><p>Difference between the working configuration and revision n.</p></li></ul></li><li><p><code>compare n m</code></p><ul><li><p>Difference between revision n and revision m.</p></li></ul></li></ul></li><li><p>Operational Commands</p><ul><li><p><code>show system commit</code></p><ul><li><p>Summary of commits.</p></li></ul></li><li><p><code>show system commit file n</code></p><ul><li><p>Full configuration at revision n.</p></li></ul></li><li><p><code>show system commit file n compare m</code></p><ul><li><p>Difference between revision n and revision m.</p></li></ul></li><li><p><code>show system commit diff n</code></p><ul><li><p>What changed in a given commit (between revision n and revision n +1). This command is equivalent to the <code>show system file n compare n +1</code> command.</p></li></ul></li></ul></li></ul>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

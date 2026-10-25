@@ -1,0 +1,489 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>DANOS 2005 Release Notes - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details open><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item active'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>DANOS 2005 Release Notes</h1><style type="text/css">/*<![CDATA[*/
+div.rbtoc1790153963773 {padding: 0px;}
+div.rbtoc1790153963773 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1790153963773 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1790153963773">
+<ul class="toc-indentation">
+<li><a href="#DANOS2005ReleaseNotes-Overview">Overview</a></li>
+<li><a href="#DANOS2005ReleaseNotes-Importantchanges">Important changes</a>
+<ul class="toc-indentation">
+<li><a href="#DANOS2005ReleaseNotes-Defaultusernameandpassword">Default username and password</a></li>
+<li><a href="#DANOS2005ReleaseNotes-AS5916-54XKS">AS5916-54XKS</a></li>
+<li><a href="#DANOS2005ReleaseNotes-DataplanePluggable(vector)architecture">Dataplane Pluggable (vector) architecture</a></li>
+<li><a href="#DANOS2005ReleaseNotes-Commitarchivecredentials">Commit archive credentials</a></li>
+</ul>
+</li>
+<li><a href="#DANOS2005ReleaseNotes-NewFeatures">New Features</a>
+<ul class="toc-indentation">
+<li><a href="#DANOS2005ReleaseNotes-Zone-baseFirewall(ZBF)">Zone-base Firewall (ZBF)</a></li>
+<li><a href="#DANOS2005ReleaseNotes-VRRPstateretrievalviaNETCONF">VRRP state retrieval via NETCONF</a></li>
+<li><a href="#DANOS2005ReleaseNotes-EnhancementstotheconfigurationofQoSBurstSize">Enhancements to the configuration of QoS Burst Size</a></li>
+<li><a href="#DANOS2005ReleaseNotes-HotFixInstallation">Hot Fix Installation</a></li>
+<li><a href='#DANOS2005ReleaseNotes-Displayuptime/lastclearin"showinterfacedataplane"output'>Display uptime/last clear in "show interface dataplane" output</a></li>
+<li><a href='#DANOS2005ReleaseNotes-LinkAggregationfast-periodic("fastrate")support'>Link Aggregation fast-periodic ("fast rate") support</a></li>
+<li><a href="#DANOS2005ReleaseNotes-IPsecRemoteAccessVPNserver:EAP-TLSauthenticationsupport">IPsec Remote Access VPN server: EAP-TLS authentication support</a></li>
+<li><a href="#DANOS2005ReleaseNotes-IPsecRAVPNserver:DNSconfigurationattributes">IPsec RA VPN server: DNS configuration attributes</a></li>
+<li><a href="#DANOS2005ReleaseNotes-IPsecRAVPNserver:Per-profileclientIDauthenticationfilteringandmatching">IPsec RA VPN server: Per-profile client ID authentication filtering and matching</a></li>
+<li><a href="#DANOS2005ReleaseNotes-IncreaseTWAMPServerMaximumControlSessions">Increase TWAMP Server Maximum Control Sessions</a></li>
+<li><a href="#DANOS2005ReleaseNotes-Netconf–ConfirmedCommit">Netconf – Confirmed Commit</a></li>
+<li><a href="#DANOS2005ReleaseNotes-YangIdentityandIdentityrefSupport">Yang Identity and Identityref Support</a></li>
+<li><a href="#DANOS2005ReleaseNotes-TLS1.3Support">TLS 1.3 Support</a></li>
+<li><a href="#DANOS2005ReleaseNotes-ExpandedPPPoEfeatures">Expanded PPPoE features</a></li>
+<li><a href="#DANOS2005ReleaseNotes-CGNAT">CGNAT</a>
+<ul class="toc-indentation">
+<li><a href="#DANOS2005ReleaseNotes-SupportforPCPinCG-NAT">Support for PCP in CG-NAT</a></li>
+<li><a href="#DANOS2005ReleaseNotes-CGNATandSNAT,DNATand/orStatefulFirewalland/orALGsonsameinterface">CGNAT and SNAT, DNAT and/or Stateful Firewall and/or ALGs on same interface</a></li>
+<li><a href="#DANOS2005ReleaseNotes-CGNATmechanismtoremoveselectedsubscribersfromanactivesystem">CGNAT mechanism to remove selected subscribers from an active system</a></li>
+<li><a href="#DANOS2005ReleaseNotes-Allowtheabilitytoconfigurethresholdsonresourceusagestogenerateresourceconstraintalertsonthresholdcrossings.">Allow the ability to configure thresholds on resource usages to generate resource constraint alerts on threshold crossings.</a></li>
+<li><a href="#DANOS2005ReleaseNotes-Logtheportblockallocationlogs,subscriberlogsandresourceconstraintlogstoaKafkacluster">Log the port block allocation logs, subscriber logs and resource constraint logs to a Kafka cluster</a></li>
+<li><a href="#DANOS2005ReleaseNotes-AddtheNatPolicynametotheportblockallocationlogs">Add the NatPolicy name to the port block allocation logs</a></li>
+<li><a href="#DANOS2005ReleaseNotes-ProvideawaytocontrolCGNATsessiontimeoutforDNS">Provide a way to control CGNAT session time out for DNS</a></li>
+<li><a href="#DANOS2005ReleaseNotes-FullCGNATconfiguration">Full CGNAT configuration</a></li>
+</ul>
+</li>
+<li><a href="#DANOS2005ReleaseNotes-Allowdescriptionstobeaddedtostaticroutesandtables">Allow descriptions to be added to static routes and tables</a></li>
+<li><a href="#DANOS2005ReleaseNotes-AddCLIfeaturetoenablersyslogTLS">Add CLI feature to enable rsyslog TLS</a></li>
+<li><a href="#DANOS2005ReleaseNotes-SNMPconfigobfuscationtoredactcommunitystrings">SNMP config obfuscation to redact community strings</a></li>
+<li><a href="#DANOS2005ReleaseNotes-AllowfirewallruleloggingonpacketswhichhavesessionstatebyNATorFWwithoutsignificantlyaffectingthroughput">Allow firewall rule logging on packets which have session state by NAT or FW without significantly affecting throughput</a></li>
+<li><a href="#DANOS2005ReleaseNotes-Ephemeralcomponentsupport">Ephemeral component support</a></li>
+<li><a href="#DANOS2005ReleaseNotes-TrackingfeaturesupportforVRRP/Route">Tracking feature support for VRRP/Route</a></li>
+<li><a href="#DANOS2005ReleaseNotes-IPsecRAVPNserver">IPsec RA VPN server</a></li>
+<li><a href="#DANOS2005ReleaseNotes-ConfigurationofNeighborDiscoverycachesize">Configuration of Neighbor Discovery cache size</a></li>
+<li><a href="#DANOS2005ReleaseNotes-minimum-linksbondingconfiguration">minimum-links bonding configuration</a></li>
+<li><a href="#DANOS2005ReleaseNotes-Stormcontrolcanbeappliedtobondinginterfaces">Storm control can be applied to bonding interfaces</a></li>
+<li><a href="#DANOS2005ReleaseNotes-MiscellaneousQoSconfigurationchanges">Miscellaneous QoS configuration changes</a></li>
+<li><a href="#DANOS2005ReleaseNotes-ConfiguresystembehaviorfollowingNon-MaskableInterrupt(NMI)events">Configure system behavior following Non-Maskable Interrupt (NMI) events</a></li>
+<li><a href="#DANOS2005ReleaseNotes-Controltheconfigurationofthekernelbootupparameter(requiresareboottotakeeffect)">Control the configuration of the kernel bootup parameter (requires a reboot to take effect)</a></li>
+</ul>
+</li>
+<li><a href="#DANOS2005ReleaseNotes-Acknowledgements">Acknowledgements</a></li>
+<li><a href="#DANOS2005ReleaseNotes-ResolvedSecurityVulnerabilities">Resolved Security Vulnerabilities</a></li>
+</ul>
+</div><h1 id="DANOS2005ReleaseNotes-Overview">Overview</h1><p>Welcome to the 2005 (May 2020) version of DANOS.</p><p>The DANOS 2005 release is based upon Debian 10, with the 4.19 version of the Linux Kernel, the 18.11 version of DPDK, and the 7.3.1 version of FRR.</p><h1 id="DANOS2005ReleaseNotes-Importantchanges">Important changes</h1><h2 id="DANOS2005ReleaseNotes-Defaultusernameandpassword">Default username and password</h2><p>The default LiveCD and ONIE image username and password have changed from vyatta/vyatta to tmpuser/tmppwd.</p><p>As part of the installation process, the user has to manually enter a username and password. It is no longer possible to press "enter" and accept the default vyatta/vyatta option.</p><h2 id="DANOS2005ReleaseNotes-AS5916-54XKS">AS5916-54XKS</h2><p>This release introduces support for Accton/Edgecore Qumran-MX platform AS5916-54XKS 10G/100G Edge Router.</p><h2 id="DANOS2005ReleaseNotes-DataplanePluggable(vector)architecture">Dataplane Pluggable (vector) architecture</h2><p>The packet forwarding dataplane now supports a pluggable (vector) architecture to allow the integration of new features dynamically. The following links are a good starting point to learn more.</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://github.com/danos/vyatta-dataplane/blob/master/include/readme.md" rel="nofollow">https://github.com/danos/vyatta-dataplane/blob/master/include/readme.md</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://github.com/danos/vyatta-dataplane/blob/master/src/pipeline/nodes/sample/sample.c" rel="nofollow">https://github.com/danos/vyatta-dataplane/blob/master/src/pipeline/nodes/sample/sample.c</a> </p></li></ul><h2 id="DANOS2005ReleaseNotes-Commitarchivecredentials">Commit archive credentials</h2><p>To allow commit archive credentials to be kept secret, a new configuration has been added as an alternative to "system config-management commit-archive location &lt;url&gt;", which is now being deprecated. Users are encouraged to use the new configuration "system config-management commit-archive archive &lt;url&gt;" configuration, and to transition existing configurations to the new "system config-management commit-archive archive &lt;url&gt;" configuration, which keeps archive password credentials secret from unauthorised users. Example of deprecated configuration:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system {
+    config-management {
+        commit-archive {
+            location "scp://user-fred:freds-password@192.168.1.1/home/username/archive-location"
+        }
+    }
+}</pre>
+</div></div><p>Example of the new configuration:</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system {
+    config-management {
+        commit-archive {
+            archive "scp://192.168.1.1/home/username/archive-location" {
+                password freds-password
+                username user-fred
+            }
+        }
+    }
+}</pre>
+</div></div><p>For users that are not members of the secrets group, passwords will be obfuscated when listing the configuration. e.g.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system {
+    config-management {
+        commit-archive {
+            archive "scp://192.168.1.1/home/username/archive-location" {
+                password "********"
+                username user-fred
+            }
+        }
+    }
+}</pre>
+</div></div><h1 id="DANOS2005ReleaseNotes-NewFeatures">New Features</h1><h2 id="DANOS2005ReleaseNotes-Zone-baseFirewall(ZBF)">Zone-base Firewall (ZBF)</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">security zone-policy zone &lt;alpha-numeric&gt;
+security zone-policy zone &lt;alpha-numeric&gt; default-action (accept|drop)
+security zone-policy zone &lt;alpha-numeric&gt; description &lt;text&gt;
+security zone-policy zone &lt;alpha-numeric&gt; interface &lt;text&gt;
+security zone-policy zone &lt;alpha-numeric&gt; local-zone
+security zone-policy zone &lt;alpha-numeric&gt; to &lt;text&gt;
+security zone-policy zone &lt;alpha-numeric&gt; to &lt;text&gt; firewall &lt;text&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-VRRPstateretrievalviaNETCONF">VRRP state retrieval via NETCONF</h2><p>This feature allows the retrieval of the state of VRRP via NETCONF in addition to the existing mechanism of the CLI using the "show vrrp" commands</p><h2 id="DANOS2005ReleaseNotes-EnhancementstotheconfigurationofQoSBurstSize">Enhancements to the configuration of QoS Burst Size</h2><p>This feature will allow for the burst size for a shaper to be specified in units of milliseconds.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">policy qos name &lt;name&gt; shaper burst &lt;(1-100ms[ec])&gt;
+policy qos name &lt;name&gt; shaper profile &lt;name&gt; burst &lt;(1-100ms[ec])&gt;
+policy qos profile &lt;name&gt; burst Time duration &lt;(1-100ms[ec])&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-HotFixInstallation">Hot Fix Installation</h2><p>This feature adds the support for hot-fix Debian package installation.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">add system image &lt;image name&gt; packages &lt;list of pkgs&gt;
+show system image &lt;image name&gt; package</pre>
+</div></div><h2 id='DANOS2005ReleaseNotes-Displayuptime/lastclearin"showinterfacedataplane"output'>Display uptime/last clear in "show interface dataplane" output</h2><p>A small change to add uptime and last-clear output to "show interface dataplane detail foo".</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">show interface dataplane detail
+show interface dataplane &lt;if&gt;</pre>
+</div></div><h2 id='DANOS2005ReleaseNotes-LinkAggregationfast-periodic("fastrate")support'>Link Aggregation fast-periodic ("fast rate") support </h2><p>Link aggregation, 802.1AX-2014 (formerly 802.3ad), supports a shorter timeout for LACPDU packets and this feature adds such support. This is often called "fast periodic" or "fast rate”.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces bonding &lt;if&gt; lacp-options periodic-rate (fast|slow)</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-IPsecRemoteAccessVPNserver:EAP-TLSauthenticationsupport">IPsec Remote Access VPN server: EAP-TLS authentication support</h2><p>This feature adds support for EAP-TLS (RFC 5126).</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">set security vpn ipsec remote-access-vpn-server profile &lt;profile-name&gt; authentication mode eap-tls</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-IPsecRAVPNserver:DNSconfigurationattributes">IPsec RA VPN server: DNS configuration attributes </h2><p>This feature introduces support for the configuration payloads INTERNAL_IP4_DNS and INTERNAL_IP6_DNS. These allow the IPsec RA VPN server to communicate to the IPsec RA VPN client which DNS server should be used inside the tunnel, in accordance with RFC 7296.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">set security vpn ipsec remote-access-server pool &lt;pool-name&gt; attributes dns [ &lt;IPv4/IPv6 inner DNS server addr&gt;, ... ]</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-IPsecRAVPNserver:Per-profileclientIDauthenticationfilteringandmatching">IPsec RA VPN server: Per-profile client ID authentication filtering and matching</h2><p>This feature allows filters to be configured which IKE uses to match and filter remote peers</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">set security vpn ipsec remote-access-server profile &lt;profile-name&gt; authentication remote-id &lt;filter&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-IncreaseTWAMPServerMaximumControlSessions">Increase TWAMP Server Maximum Control Sessions </h2><p>This feature allows support for up to 4096 concurrent control sessions.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">routing routing-instance &lt;alpha-numeric&gt; service twamp server maximum-connections &lt;1..4096&gt;
+service twamp server maximum-connections &lt;1..4096&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-Netconf–ConfirmedCommit">Netconf – Confirmed Commit </h2><p>Commit confirm is a feature which is currently available on the vRouter CLI. It helps guard against committing configurations which can cause loss of connection to the system being managed, or perhaps the configuration being committed causes system instability or crashes. Such scenarios are automatically recovered from if the configuration is not confirmed</p><h2 id="DANOS2005ReleaseNotes-YangIdentityandIdentityrefSupport">Yang Identity and Identityref Support</h2><p>This feature will complete the support of identities in the Yang compiler, as specified in RFC 6020</p><h2 id="DANOS2005ReleaseNotes-TLS1.3Support">TLS 1.3 Support </h2><p>TLS 1.3 support has been added for the following features:</p><ul><li><p>vyatta-zerotouch / Phone Home Client</p></li><li><p>vyatta-restclient-perl</p></li><li><p>add system image ...</p></li><li><p>clone image ...</p></li><li><p>vyatta-openvpn / resource service-users ldap</p></li><li><p>strongswan / ext-fetcher</p></li></ul><h2 id="DANOS2005ReleaseNotes-ExpandedPPPoEfeatures">Expanded PPPoE features</h2><p>PPPoE support for: tcp-mss, policy route pbr, firewall in, firewall out, firewall local, </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces pppoe &lt;if&gt; firewall in &lt;name&gt;
+interfaces pppoe &lt;if&gt; firewall local &lt;name&gt;
+interfaces pppoe &lt;if&gt; firewall out &lt;name&gt;
+interfaces pppoe &lt;if&gt; ip tcp-mss limit &lt;1..65535&gt;
+interfaces pppoe &lt;if&gt; ip tcp-mss mtu
+interfaces pppoe &lt;if&gt; ip tcp-mss mtu-minus &lt;1..65535&gt;
+interfaces pppoe &lt;if&gt; ipv6 tcp-mss limit &lt;1..65535&gt;
+interfaces pppoe &lt;if&gt; ipv6 tcp-mss mtu
+interfaces pppoe &lt;if&gt; ipv6 tcp-mss mtu-minus &lt;1..65535&gt;
+interfaces pppoe &lt;if&gt; policy route pbr &lt;name&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-CGNAT">CGNAT</h2><h3 id="DANOS2005ReleaseNotes-SupportforPCPinCG-NAT">Support for PCP in CG-NAT</h3><p>Port Control Protocol (PCP) support in a Carrier-Grade NAT system is a way for individual subscribers to open a public port such as to allow inbound connections to be made.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">service pcp feature-interface &lt;name&gt;
+service pcp feature-interface &lt;name&gt; template &lt;name&gt;
+service pcp feature-interface &lt;name&gt; template &lt;name&gt; internal-prefix &lt;prefix&gt;
+service pcp server &lt;name&gt;
+service pcp server &lt;name&gt; announce multicast
+service pcp server &lt;name&gt; announce unicast &lt;address&gt;
+service pcp server &lt;name&gt; announce unicast &lt;address&gt; port &lt;value&gt;
+service pcp server &lt;name&gt; listener &lt;address&gt;
+service pcp server &lt;name&gt; listener &lt;address&gt; port &lt;value&gt;
+service pcp server &lt;name&gt; log debug
+service pcp server &lt;name&gt; nonce-check &lt;value&gt;
+service pcp server &lt;name&gt; template &lt;name&gt;
+service pcp server &lt;name&gt; template &lt;name&gt; opcodes announce
+service pcp server &lt;name&gt; template &lt;name&gt; opcodes map
+service pcp server &lt;name&gt; template &lt;name&gt; type cgnat
+service pcp server &lt;name&gt; third-party
+service pcp server &lt;name&gt; third-party interface &lt;name&gt;
+routing routing-instance &lt;instance-name&gt; service pcp feature-interface &lt;name&gt;
+routing routing-instance &lt;instance-name&gt; service pcp feature-interface &lt;name&gt; template &lt;name&gt;
+routing routing-instance &lt;instance-name&gt; service pcp feature-interface &lt;name&gt; template &lt;name&gt; internal-prefix &lt;prefix&gt;
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt;
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; announce multicast
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; announce unicast &lt;address&gt;
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; announce unicast &lt;address&gt; port &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; listener &lt;address&gt;
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; listener &lt;address&gt; port &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; log debug
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; nonce-check &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; template &lt;name&gt;
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; template &lt;name&gt; opcodes announce
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; template &lt;name&gt; opcodes map
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; template &lt;name&gt; type cgnat
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; third-party
+routing routing-instance &lt;instance-name&gt; service pcp server &lt;name&gt; third-party interface &lt;name&gt;</pre>
+</div></div><h3 id="DANOS2005ReleaseNotes-CGNATandSNAT,DNATand/orStatefulFirewalland/orALGsonsameinterface">CGNAT and SNAT, DNAT and/or Stateful Firewall and/or ALGs on same interface</h3><p>Support independent SNAT, DNAT and ALG flows along with CGNAT on the same interface. Packets will be translated once.</p><h3 id="DANOS2005ReleaseNotes-CGNATmechanismtoremoveselectedsubscribersfromanactivesystem">CGNAT mechanism to remove selected subscribers from an active system</h3><p>There is a requirement to remove select subscribers from an active CGNAT policy so that they may be moved to an alternative policy of device.</p><h3 id="DANOS2005ReleaseNotes-Allowtheabilitytoconfigurethresholdsonresourceusagestogenerateresourceconstraintalertsonthresholdcrossings.">Allow the ability to configure thresholds on resource usages to generate resource constraint alerts on threshold crossings.</h3><p>This feature provides the ability to configure thresholds on CGNAT resource usages. Resource constraint alerts are generated upon threshold crossing.</p><p>For each of the CGNAT resource constraints listed below, it will be possible to configure a threshold. An alert will be logged when the resource exceeds the threshold. Each threshold will be expressed as a percentage.</p><ul><li><p>Maximum sessions</p></li><li><p>No available public addresses in a NAT pool</p></li><li><p>Mapping Table full</p></li><li><p>Subscriber Table full</p></li></ul><p>For each threshold, it will also be possible to configure an optional rate at which the notification is generated if the resource remains constrained. The warning will not repeat if the rate is omitted; the resource must fall below the threshold before the warning can be logged again.</p><h3 id="DANOS2005ReleaseNotes-Logtheportblockallocationlogs,subscriberlogsandresourceconstraintlogstoaKafkacluster">Log the port block allocation logs, subscriber logs and resource constraint logs to a Kafka cluster</h3><p>CGNAT will be enhanced so that the logging infrastructure will have the option to send the logs off-box to managements devices in a Kafka cluster.</p><p>There are two categories of logging information: information that should not be lost and should be stored on disk (subject to a maximum size) if waiting to be sent off-box - this is called "persistent" information; information (such as session logging) which, due to the volume it creates, will not be stored on disk and will be buffered in memory (with a smaller maximum size) - this is called "non-persistent" information. Note that the "non-persistent" information will likely result in drops of logs if unable to send out for a short period or due to overloading the channels to the Kafka cluster.</p><h3 id="DANOS2005ReleaseNotes-AddtheNatPolicynametotheportblockallocationlogs">Add the NatPolicy name to the port block allocation logs</h3><p>Include NatPolicy Name along with the port block allocation log entries to allow correlation between the two.</p><h3 id="DANOS2005ReleaseNotes-ProvideawaytocontrolCGNATsessiontimeoutforDNS">Provide a way to control CGNAT session time out for DNS</h3><p>This feature allows configuration of session timeout values for individual port numbers. When configured, these take precedence over any other protocol-specific timeout value or the default value. </p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">service nat cgnat session-timeout (tcp|udp) ...</pre>
+</div></div><h3 id="DANOS2005ReleaseNotes-FullCGNATconfiguration">Full CGNAT configuration</h3><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">service nat cgnat
+service nat cgnat cpu-affinity event session &lt;0..65535&gt;
+service nat cgnat disable-hairpinning
+service nat cgnat export event port-block-allocation using kafka
+service nat cgnat export event port-block-allocation using kafka cluster &lt;text&gt;
+service nat cgnat export event port-block-allocation using kafka with field-delimiter &lt;pattern&gt;
+service nat cgnat export event port-block-allocation using kafka with key-field (cgn-instance|public-ip-address|subscriber-ip-address)
+service nat cgnat export event port-block-allocation using kafka with priority critical
+service nat cgnat export event port-block-allocation using kafka with storage-limit &lt;1..1048576&gt;
+service nat cgnat export event port-block-allocation using kafka with topic &lt;pattern&gt;
+service nat cgnat export event resource-constraint using kafka
+service nat cgnat export event resource-constraint using kafka cluster &lt;text&gt;
+service nat cgnat export event resource-constraint using kafka with field-delimiter &lt;pattern&gt;
+service nat cgnat export event resource-constraint using kafka with key-field cgn-instance
+service nat cgnat export event resource-constraint using kafka with priority critical
+service nat cgnat export event resource-constraint using kafka with storage-limit &lt;1..1048576&gt;
+service nat cgnat export event resource-constraint using kafka with topic &lt;pattern&gt;
+service nat cgnat export event session using kafka
+service nat cgnat export event session using kafka cluster &lt;text&gt;
+service nat cgnat export event session using kafka with field-delimiter &lt;pattern&gt;
+service nat cgnat export event session using kafka with key-field (cgn-instance|destination-ip-address|destination-port|interface|ip-protocol|public-ip-address|public-port|session-id|sub-session-id|subscriber-ip-address|subscriber-port)
+service nat cgnat export event session using kafka with priority critical
+service nat cgnat export event session using kafka with storage-limit &lt;1..1048576&gt;
+service nat cgnat export event session using kafka with topic &lt;pattern&gt;
+service nat cgnat export event subscriber using kafka
+service nat cgnat export event subscriber using kafka cluster &lt;text&gt;
+service nat cgnat export event subscriber using kafka with field-delimiter &lt;pattern&gt;
+service nat cgnat export event subscriber using kafka with key-field (cgn-instance|subscriber-ip-address)
+service nat cgnat export event subscriber using kafka with priority critical
+service nat cgnat export event subscriber using kafka with storage-limit &lt;1..1048576&gt;
+service nat cgnat export event subscriber using kafka with topic &lt;pattern&gt;
+service nat cgnat interface &lt;text&gt;
+service nat cgnat interface &lt;text&gt; policy &lt;text&gt;
+service nat cgnat log event port-block-allocation
+service nat cgnat log event resource-constraint
+service nat cgnat log event session
+service nat cgnat log event subscriber
+service nat cgnat max-dest-per-session &lt;1..64&gt;
+service nat cgnat max-sessions &lt;1..33554432&gt;
+service nat cgnat policy &lt;alpha-numeric&gt;
+service nat cgnat policy &lt;alpha-numeric&gt; log session address-group &lt;text&gt;
+service nat cgnat policy &lt;alpha-numeric&gt; log session all-subscribers
+service nat cgnat policy &lt;alpha-numeric&gt; log session creation
+service nat cgnat policy &lt;alpha-numeric&gt; log session deletion
+service nat cgnat policy &lt;alpha-numeric&gt; log session periodic &lt;300..86400&gt;
+service nat cgnat policy &lt;alpha-numeric&gt; log subscriber
+service nat cgnat policy &lt;alpha-numeric&gt; match source address-group &lt;text&gt;
+service nat cgnat policy &lt;alpha-numeric&gt; priority &lt;1..9999&gt;
+service nat cgnat policy &lt;alpha-numeric&gt; select event session address-group &lt;text&gt;
+service nat cgnat policy &lt;alpha-numeric&gt; select event session all-subscribers
+service nat cgnat policy &lt;alpha-numeric&gt; select event session creation
+service nat cgnat policy &lt;alpha-numeric&gt; select event session deletion
+service nat cgnat policy &lt;alpha-numeric&gt; select event session periodic &lt;300..86400&gt;
+service nat cgnat policy &lt;alpha-numeric&gt; select event subscriber
+service nat cgnat policy &lt;alpha-numeric&gt; translation pool &lt;text&gt;
+service nat cgnat select warning event resource-constraint mapping-table
+service nat cgnat select warning event resource-constraint mapping-table interval &lt;1..4294967295&gt;
+service nat cgnat select warning event resource-constraint mapping-table threshold &lt;1..99&gt;
+service nat cgnat select warning event resource-constraint public-addresses
+service nat cgnat select warning event resource-constraint public-addresses interval &lt;1..4294967295&gt;
+service nat cgnat select warning event resource-constraint public-addresses threshold &lt;1..99&gt;
+service nat cgnat select warning event resource-constraint session-table
+service nat cgnat select warning event resource-constraint session-table interval &lt;1..4294967295&gt;
+service nat cgnat select warning event resource-constraint session-table threshold &lt;1..99&gt;
+service nat cgnat select warning event resource-constraint subscriber-table
+service nat cgnat select warning event resource-constraint subscriber-table interval &lt;1..4294967295&gt;
+service nat cgnat select warning event resource-constraint subscriber-table threshold &lt;1..99&gt;
+service nat cgnat session-timeout other established &lt;30..1800&gt;
+service nat cgnat session-timeout other partially-open &lt;10..240&gt;
+service nat cgnat session-timeout tcp established &lt;30..14400&gt;
+service nat cgnat session-timeout tcp partially-closed &lt;10..240&gt;
+service nat cgnat session-timeout tcp partially-open &lt;10..240&gt;
+service nat cgnat session-timeout tcp port &lt;1..65535&gt;
+service nat cgnat session-timeout tcp port &lt;1..65535&gt; established &lt;10..14400&gt;
+service nat cgnat session-timeout udp established &lt;30..1800&gt;
+service nat cgnat session-timeout udp partially-open &lt;10..240&gt;
+service nat cgnat session-timeout udp port &lt;1..65535&gt;
+service nat cgnat session-timeout udp port &lt;1..65535&gt; established &lt;10..1800&gt;
+service nat cgnat snat-alg-bypass
+service nat pool &lt;alpha-numeric&gt;
+service nat pool &lt;alpha-numeric&gt; address-allocation round-robin
+service nat pool &lt;alpha-numeric&gt; address-pooling paired
+service nat pool &lt;alpha-numeric&gt; blacklist address-group &lt;text&gt;
+service nat pool &lt;alpha-numeric&gt; entry &lt;alpha-numeric&gt;
+service nat pool &lt;alpha-numeric&gt; entry &lt;alpha-numeric&gt; ip-address prefix &lt;x.x.x.x/x&gt;
+service nat pool &lt;alpha-numeric&gt; entry &lt;alpha-numeric&gt; ip-address range
+service nat pool &lt;alpha-numeric&gt; entry &lt;alpha-numeric&gt; ip-address range end &lt;x.x.x.x&gt;
+service nat pool &lt;alpha-numeric&gt; entry &lt;alpha-numeric&gt; ip-address range start &lt;x.x.x.x&gt;
+service nat pool &lt;alpha-numeric&gt; entry &lt;alpha-numeric&gt; ip-address subnet &lt;x.x.x.x/x&gt;
+service nat pool &lt;alpha-numeric&gt; log block-allocation
+service nat pool &lt;alpha-numeric&gt; port allocation (random|sequential)
+service nat pool &lt;alpha-numeric&gt; port dynamic-block-allocation block-size &lt;64..4096&gt;
+service nat pool &lt;alpha-numeric&gt; port dynamic-block-allocation max-blocks-per-subscriber &lt;1..32&gt;
+service nat pool &lt;alpha-numeric&gt; port range end &lt;0..65535&gt;
+service nat pool &lt;alpha-numeric&gt; port range start &lt;0..65535&gt;
+service nat pool &lt;alpha-numeric&gt; select event port-block-allocation
+service nat pool &lt;alpha-numeric&gt; type CGNAT
+system export kafka cluster &lt;pattern&gt;
+system export kafka cluster &lt;pattern&gt; bootstrap ipv4-address &lt;x.x.x.x&gt;
+system export kafka cluster &lt;pattern&gt; bootstrap ipv6-address &lt;h:h:h:h:h:h:h:h&gt;
+system export kafka cluster &lt;pattern&gt; bootstrap routing-instance (&lt;alpha-numeric&gt;|default)</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-Allowdescriptionstobeaddedtostaticroutesandtables">Allow descriptions to be added to static routes and tables</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">protocols static interface-route &lt;tagnode&gt; description &lt;value&gt;
+protocols static interface-route6 &lt;tagnode&gt; description &lt;value&gt;
+protocols static route &lt;tagnode&gt; description &lt;value&gt;
+protocols static route6 &lt;tagnode&gt; description &lt;value&gt;
+protocols static table &lt;tagnode&gt; description &lt;value&gt;
+protocols static table &lt;tagnode&gt; interface-route &lt;tagnode&gt; description &lt;value&gt;
+protocols static table &lt;tagnode&gt; interface-route6 &lt;tagnode&gt; description &lt;value&gt;
+protocols static table &lt;tagnode&gt; route &lt;tagnode&gt; description &lt;value&gt;
+protocols static table &lt;tagnode&gt; route6 &lt;tagnode&gt; description &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; protocols static interface-route &lt;tagnode&gt; description &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; protocols static interface-route6 &lt;tagnode&gt; description &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; protocols static route &lt;tagnode&gt; description &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; protocols static route6 &lt;tagnode&gt; description &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; protocols static table &lt;tagnode&gt; description &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; protocols static table &lt;tagnode&gt; interface-route &lt;tagnode&gt; description &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; protocols static table &lt;tagnode&gt; interface-route6 &lt;tagnode&gt; description &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; protocols static table &lt;tagnode&gt; route &lt;tagnode&gt; description &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; protocols static table &lt;tagnode&gt; route6 &lt;tagnode&gt; description &lt;value&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-AddCLIfeaturetoenablersyslogTLS">Add CLI feature to enable rsyslog TLS</h2><p>Syslog TLS config revolves around a "server certificate" and "client certificate" + "client key". These files, plus a remote hostname are the only mandatory requirements needed to configure a Syslog TLS remote logging connection.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system syslog host &lt;tagnode&gt; protocol tcp
+system syslog host &lt;tagnode&gt; protocol udp
+system syslog host &lt;tagnode&gt; tls
+system syslog host &lt;tagnode&gt; tls authentication mode x509/fingerprint
+system syslog host &lt;tagnode&gt; tls authentication mode x509/name
+system syslog host &lt;tagnode&gt; tls authentication peers &lt;peer&gt;
+system syslog host &lt;tagnode&gt; tls authentication peers &lt;peer&gt; fingerprint &lt;value&gt;
+system syslog host &lt;tagnode&gt; tls certificate-authority &lt;CA&gt;
+system syslog host &lt;tagnode&gt; tls certificate-authority &lt;CA&gt; file &lt;value&gt;
+system syslog host &lt;tagnode&gt; tls cipher-suite &lt;cipher&gt;
+system syslog host &lt;tagnode&gt; tls local-certificate certificate &lt;value&gt;
+system syslog host &lt;tagnode&gt; tls local-certificate key &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; protocol tcp
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; protocol udp
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls authentication mode x509/fingerprint
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls authentication mode x509/name
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls authentication peers &lt;peer&gt;
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls authentication peers &lt;peer&gt; fingerprint &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls certificate-authority &lt;CA&gt;
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls certificate-authority &lt;CA&gt; file &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls cipher-suite &lt;cipher&gt;
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls local-certificate certificate &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; system syslog host &lt;tagnode&gt; tls local-certificate key &lt;value&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-SNMPconfigobfuscationtoredactcommunitystrings">SNMP config obfuscation to redact community strings</h2><p>The vRouter Yang models currently model the SNMP community strings as a list key. The community string permits SNMP access to a device, so is considered as sensitive information that warrants restricted access.</p><h2 id="DANOS2005ReleaseNotes-AllowfirewallruleloggingonpacketswhichhavesessionstatebyNATorFWwithoutsignificantlyaffectingthroughput">Allow firewall rule logging on packets which have session state by NAT or FW without significantly affecting throughput</h2><p>Customers often want connection attempts to or through any interface of the firewall logged in order to create a record of the network activity. Vyatta only offered the ability to log per-packet and this impacted the forwarding performance of the router. This feature implements per-session logging as an alternative to per-packet logging. This will greatly reduce the number of messages logged.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system session log creation
+system session log deletion
+system session log periodic &lt;5..86400&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-Ephemeralcomponentsupport">Ephemeral component support</h2><p>The goal of this infrastructure is to make the transition to Vyatta components easier and to allow for some code reuse with the existing implementations. Some features will benefit from this but others are written so far outside of the recommended mechanism that they will still require significant rework to be ported and a fully developed component should be considered in those cases for performance reasons.</p><h2 id="DANOS2005ReleaseNotes-TrackingfeaturesupportforVRRP/Route">Tracking feature support for VRRP/Route</h2><p>VRRP currently tracks interfaces. The state of these tracked objects can modify a group's priority or take it down completely. As part of the CG-NAT project as well as tracking level 1 (interface up), level 2 (ping the other side of the connection) it would be advantageous to also track the state of level 3 (has BGP converged). Rather than explicitly tracking the state of BGP tracking of when a route exists provides a more generic feature and fulfils the requirements.</p><p>For the CG-NAT use case, this feature will be used for checking of upstream routers. If BGP peering fails the MASTER ship can change to a router that hopefully has an active and relevant route.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces bonding &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt;
+interfaces bonding &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight
+interfaces bonding &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight type decrement
+interfaces bonding &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight type increment
+interfaces bonding &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight value &lt;value&gt;
+interfaces bonding &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt;
+interfaces bonding &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight
+interfaces bonding &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight type decrement
+interfaces bonding &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight type increment
+interfaces bonding &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight value &lt;value&gt;
+interfaces dataplane &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt;
+interfaces dataplane &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight
+interfaces dataplane &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight type decrement
+interfaces dataplane &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight type increment
+interfaces dataplane &lt;tagnode&gt; vif &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight value &lt;value&gt;
+interfaces dataplane &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt;
+interfaces dataplane &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight
+interfaces dataplane &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight type decrement
+interfaces dataplane &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight type increment
+interfaces dataplane &lt;tagnode&gt; vrrp vrrp-group &lt;tagnode&gt; track route-to &lt;route&gt; weight value &lt;value&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-IPsecRAVPNserver">IPsec RA VPN server</h2><p>Make use of Virtual Feature Point (VFP) interfaces to apply firewall/DNAT/SNAT rules on the IPsec RA VPN server terminated tunnel traffic.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">security vpn ipsec remote-access-server
+security vpn ipsec remote-access-server pool &lt;text&gt;
+security vpn ipsec remote-access-server pool &lt;text&gt; attributes dns (&lt;h:h:h:h:h:h:h:h&gt;|&lt;x.x.x.x&gt;)
+security vpn ipsec remote-access-server pool &lt;text&gt; description &lt;text&gt;
+security vpn ipsec remote-access-server pool &lt;text&gt; subnet (&lt;h:h:h:h:h:h:h:h/x&gt;|&lt;x.x.x.x/x&gt;)
+security vpn ipsec remote-access-server profile &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication id type (keyid|rfc822)
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication id value &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication mode (eap-tls|x509)
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication reauth-time &lt;60..86400&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication remote-id &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication x509
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication x509 cert-file &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication x509 key file &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication x509 key password &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; authentication x509 revocation-policy (relaxed|strict)
+security vpn ipsec remote-access-server profile &lt;text&gt; description &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; esp-group &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; force-udp-encap
+security vpn ipsec remote-access-server profile &lt;text&gt; ike-group &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; local-address (&lt;h:h:h:h:h:h:h:h&gt;|&lt;x.x.x.x&gt;|any)
+security vpn ipsec remote-access-server profile &lt;text&gt; pools &lt;text&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; tunnel &lt;0..4294967295&gt;
+security vpn ipsec remote-access-server profile &lt;text&gt; tunnel &lt;0..4294967295&gt; local network (&lt;h:h:h:h:h:h:h:h/x&gt;|&lt;x.x.x.x/x&gt;)
+security vpn ipsec remote-access-server profile &lt;text&gt; tunnel &lt;0..4294967295&gt; remote network (&lt;h:h:h:h:h:h:h:h/x&gt;|&lt;x.x.x.x/x&gt;)
+security vpn ipsec remote-access-server profile &lt;text&gt; tunnel &lt;0..4294967295&gt; uses &lt;vfpN&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-ConfigurationofNeighborDiscoverycachesize">Configuration of Neighbor Discovery cache size</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system ipv6 neighbor resolution-throttling &lt;value&gt;
+system ipv6 neighbor table-size 65536</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-minimum-linksbondingconfiguration">minimum-links bonding configuration</h2><p>Support configuration for the bonding interface to specify the minimum number of links that need to be up before the bonding interface comes up.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces bonding &lt;if&gt; minimum-links &lt;1..255&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-Stormcontrolcanbeappliedtobondinginterfaces">Storm control can be applied to bonding interfaces</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces bonding &lt;if&gt; storm-control profile &lt;text&gt;
+interfaces bonding &lt;if&gt; storm-control vlan &lt;1..4094&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-MiscellaneousQoSconfigurationchanges">Miscellaneous QoS configuration changes</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">policy qos name &lt;name&gt; shaper profile &lt;name&gt; map dscp-group &lt;text&gt; to &lt;0..31&gt;
+policy qos platform buffer-threshold &lt;1..100&gt;
+policy qos profile &lt;name&gt; map dscp-group &lt;text&gt; to &lt;0..31&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-ConfiguresystembehaviorfollowingNon-MaskableInterrupt(NMI)events">Configure system behavior following Non-Maskable Interrupt (NMI) events</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system fault-behavior panic-on-io-nmi (false|true)
+system fault-behavior panic-on-oom (false|true)
+system fault-behavior panic-on-oops (false|true)
+system fault-behavior panic-on-unknown-nmi (false|true)
+system fault-behavior panic-on-unrecovered-nmi (false|true)
+system fault-behavior reboot-on-panic (false|true)
+system fault-behavior reboot-wait-after-panic &lt;1..2147483647&gt;</pre>
+</div></div><h2 id="DANOS2005ReleaseNotes-Controltheconfigurationofthekernelbootupparameter(requiresareboottotakeeffect)">Control the configuration of the kernel bootup parameter (requires a reboot to take effect)</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system iommu passthrough (false|true)</pre>
+</div></div><h1 id="DANOS2005ReleaseNotes-Acknowledgements">Acknowledgements</h1><p>Special thanks to Niral Networks (<a class="external-link" href="https://niralnetworks.com/" rel="nofollow">https://niralnetworks.com/</a>) for the upgrade of FRR to version 7.3.1, and thanks to the following people who submitted fixes:</p><ul><li><p><a class="external-link" data-card-appearance="inline" href="https://github.com/bbs2web" rel="nofollow">https://github.com/bbs2web</a> </p></li><li><p><a class="external-link" data-card-appearance="inline" href="https://github.com/whatupmiked" rel="nofollow">https://github.com/whatupmiked</a> </p></li></ul><h1 id="DANOS2005ReleaseNotes-ResolvedSecurityVulnerabilities">Resolved Security Vulnerabilities</h1><p>The following security issues are resolved in this release:</p><ul><li><p>[DSA 4667-1] linux security update</p></li><li><p>[DSA 4665-1] qemu security update</p></li><li><p>[DSA 4613-1] libidn2 security update</p></li><li><p>[DSA 4616-1] qemu security update</p></li><li><p>[DSA 4608-1] tiff security update</p></li><li><p>[DSA 4579-1] nss security update</p></li><li><p>[DSA 4566-1] qemu security update</p></li><li><p>[DSA 4564-1] linux security update</p></li><li><p>[DSA-4602-1] xen - security update (MDSUM/RIDL) (MFBDS/RIDL/ZombieLoad) (MLPDS/RIDL) (MSBDS/Fallout)</p></li><li><p>CVE-2020-1967 [DSA-4661-1] openssl - security update</p></li><li><p>CVE-2020-11501 [DSA-4652-1] gnutls28 - security update</p></li><li><p>CVE-2020-10531 [DSA-4646-1] icu - security update</p></li><li><p>CVE-2020-8597 [DSA-4632-1] ppp - security update</p></li><li><p>CVE-2020-12243, [DSA-4666-1] openldap - security update</p></li><li><p>CVE-2019-18634, DSA-4614-1] sudo - security update</p></li><li><p>CVE-2018-19052 lighttpd package showing 1.4.45-1 as vulnerable</p></li><li><p>CVE-2019-15795, CVE-2019-15796, [DSA-4609-1] python-apt - security update</p></li><li><p>CVE-2016-2147, CVE-2016-2148, CVE-2016-6301, CVE-2017-16544 busybox package showing 1:1.22.0-19 vulnerable</p></li><li><p>CVE-2020-3810, [DSA-4685-1]apt - security update</p></li><li><p>CVE-2015-8553 CVE-2018-5995 CVE-2018-20836 CVE-2018-20856 CVE-2019-1125 CVE-2019-3882 CVE-2019-3900 CVE-2019-10207 CVE-2019-10638 CVE-2019-10639 CVE-2019-13631 CVE-2019-13648 CVE-2019-14283 CVE-2019-14284: [DSA 4497-1] linux security update (VRVDR-47897)</p></li><li><p>CVE-2018-20815, CVE-2019-13164, CVE-2019-14378: [DSA-4506-1] : qemu - security update (VRVDR-48074)</p></li><li><p>CVE-2019-9511 CVE-2019-9513: [DSA 4511-1] nghttp2 security update (VRVDR-48132)</p></li><li><p>CVE-2019-13164 CVE-2019-14378: [DSA 4512-1] qemu security update (VRVDR-48133)</p></li><li><p>CVE-2019-15903: [DSA-4530-1] : expat - security update (VRVDR-48389)</p></li><li><p>CVE-2019-14821, CVE-2019-14835, CVE-2019-15117, CVE-2019-15118, CVE-2019-15902: [DSA-4531-1] : linux - security update (VRVDR-48412)</p></li><li><p>CVE-2019-5094: [DSA-4535-1] : e2fsprogs - security update (VRVDR-48446)</p></li><li><p>CVE-2019-1547, CVE-2019-1549, CVE-2019-1563: [DSA-4539-1] : openssl - security update (VRVDR-48502)</p></li><li><p>CVE-2019-14287: [DSA-4543-1] : sudo - security update (VRVDR-48652)</p></li><li><p>CVE-2019-16866: [DSA 4544-1] unbound security update (VRVDR-48691)</p></li><li><p>CVE-2018-10103 CVE-2018-10105 CVE-2018-14461 CVE-2018-14462 CVE-2018-14463 CVE-2018-14464 CVE-2018-14465 CVE-2018-14466 CVE-2018-14467 CVE-2018-14468 CVE-2018-14469 CVE-2018-14470 CVE-2018-14879 CVE-2018-14880 CVE-2018-14881 CVE-2018-14882 CVE-2018-16227 CVE-2018-16228 CVE-2018-16229 CVE-2018-16230 CVE-2018-16300 CVE-2018-16451 CVE-2018-16452 CVE-2019-15166: [DSA-4547-1] : tcpdump - security update (VRVDR-48691)</p></li><li><p>CVE-2019-18218: [DSA-4550-1] : file - security update (VRVDR-48841)</p></li><li><p>CVE-2019-14818: DPDK leaking resources (VRVDR-49058)</p></li><li><p>CVE-2018-5265: Ubiquiti EdgeOS 1.9.1 on EdgeRouter Lite devices allows remote attackers to execute arbitrary code with admin credentials (VRVDR-49155)</p></li></ul>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

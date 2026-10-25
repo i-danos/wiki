@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Configuration commands - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details open><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details open><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item active'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>Configuration commands</h1><style type="text/css">/*<![CDATA[*/
+div.rbtoc1790153968908 {padding: 0px;}
+div.rbtoc1790153968908 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1790153968908 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1790153968908">
+<ul class="toc-indentation">
+<li><a href="#Configurationcommands-commit-committhecurrentsetofchanges">commit - commit the current set of changes</a></li>
+<li><a href="#Configurationcommands-commit-confirm-committhecurrentsetofchanges;rollbackifnotconfirmed">commit-confirm - commit the current set of changes; rollback if not confirmed</a></li>
+<li><a href="#Configurationcommands-compare-compareconfigurationrevisions">compare - compare configuration revisions</a></li>
+<li><a href="#Configurationcommands-confirm-confirmconfigurationchanges">confirm - confirm configuration changes</a></li>
+<li><a href="#Configurationcommands-delete-deleteaconfigurationelement">delete - delete a configuration element</a></li>
+<li><a href="#Configurationcommands-discard-discarduncommittedchanges">discard - discard uncommitted changes</a></li>
+<li><a href="#Configurationcommands-edit-editasub-element">edit - edit a sub-element</a></li>
+<li><a href="#Configurationcommands-exit-exitfromconfigurationlevel">exit - exit from configuration level</a></li>
+<li><a href="#Configurationcommands-load-loadconfigurationfromafileandreplacecandidateconfiguration">load - load configuration from a file and replace candidate configuration</a></li>
+<li><a href="#Configurationcommands-merge-mergeconfigurationfromafileintothecandidateconfiguration">merge - merge configuration from a file into the candidate configuration</a></li>
+<li><a href="#Configurationcommands-rollback-rollbacktoapreviousconfiguration">rollback - rollback to a previous configuration</a></li>
+<li><a href="#Configurationcommands-run-runanoperational-modecommand">run - run an operational-mode command</a></li>
+<li><a href="#Configurationcommands-save-savetheconfigurationtoafile">save - save the configuration to a file</a></li>
+<li><a href="#Configurationcommands-set-setthevalueofaparameterorcreateanewelement">set - set the value of a parameter or create a new element</a></li>
+<li><a href="#Configurationcommands-show-showtheconfiguration">show - show the configuration</a></li>
+<li><a href="#Configurationcommands-top-settheeditleveltotheroot">top - set the edit level to the root</a></li>
+<li><a href="#Configurationcommands-up-settheeditlevelonelevelup">up - set the edit level one level up</a></li>
+<li><a href="#Configurationcommands-validate-validatethecurrentsetofchanges">validate - validate the current set of changes</a></li>
+</ul>
+</div><h1 id="Configurationcommands-commit-committhecurrentsetofchanges">commit - commit the current set of changes</h1><p>Syntax: <code>commit [ comment &lt;comment-text&gt; ]</code></p><p>Use this command to apply and save uncommitted changes to the configuration.</p><p>When you add configuration to, modify the existing configuration, or delete configuration from the system, the changes you make must be committed before they take effect. To commit changes, use the <code>commit</code> command.</p><p>If you try to exit or quit configuration mode while uncommitted configuration changes still exist, the system gives you a warning. You cannot exit configuration mode until you either commit the changes by entering the <code>commit</code> command or discard the changes by using the <code>discard</code> command.</p><p>Until a configuration change is committed, the system marks the change when displaying the information.</p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>If your login username is not a member of the "secrets" login user group and you either save a configuration through the REST API or use the save command, the encrypted passwords in the configuration file are replaced with the ******** placeholder. If you load this configuration, the replaced password fields trigger validation errors because the placeholder does not match the format for an encrypted password. Do not commit this configuration. If you ignore the error message and perform a commit with this invalid configuration, the passwords are deleted.</p></div></div><p>Use <code>commit comment &lt;comment-text&gt;</code> to add a comment that describes the reason for the commit and seen in the output from <code>show system commit</code>. </p><h1 id="Configurationcommands-commit-confirm-committhecurrentsetofchanges;rollbackifnotconfirmed">commit-confirm - commit the current set of changes; rollback if not confirmed</h1><p>Syntax: <code>commit-confirm &lt;minutes&gt; [ comment &lt;comment-tex&gt; ]</code></p><p>Use this command to set the system to require confirmation of a configuration commit.</p><p>This operation is useful when making configuration changes over a remote connection that could cause you to be unable to reconnect to the system, for example, accidentally changing the IP address of the management port.</p><p>A reboot during the commit-confirm timeout window results in the restoration of the previous configuration.</p><p>After making a configuration change, enter the <code>commit-confirm</code> command, specifying the confirmation interval. Commit the change. If the commit is completed, without incident, confirm the commit by entering the command <code>confirm</code>. If you do not confirm, the changes are rolled back.</p><p>If the new commit-confirmed configuration causes a crash before the confirmation window expires, the system reboots and rolls back to avoid an endless cycle of rebooting.</p><p>If you attempt to use the GRUB configuration recovery option when rebooting during the commit-confirm timeout window is active, a message to wait for the rollback to be completed is displayed.</p><p>If you enter commit, <code>commit-confirm</code>, or <code>rollback</code> commands during the commit-confirm timeout, the current commit that is pending confirmation is implicitly confirmed. For example, <code>rollback 1</code> takes you back to the immediately preceding commit (before the original commit-confirm), and <code>rollback 0</code> recommits the current configuration.</p><h1 id="Configurationcommands-compare-compareconfigurationrevisions">compare - compare configuration revisions</h1><p>Syntax: <code>compare [ rev-num1 [ rev-num2 ] ]</code></p><p>When used with no option, the working and active (running) configuration are compared. When only one revision number is specified, the system compares the working configuration to the specified revision. When two revisions are specified, the system compares the two specified revisions.</p><p>You can see the list of configuration file revisions by using <code>show system commit</code> in operational mode (use <code>run show system commit</code> in configuration mode).</p><h1 id="Configurationcommands-confirm-confirmconfigurationchanges">confirm - confirm configuration changes</h1><p>Syntax: <code>confirm</code></p><p>Use this command to confirm a successful change in configuration after requiring commit confirmation.</p><p>For configuration changes that carry some risk of causing loss of access to a system, you can direct the system to require commit confirmation by using the command <code>commit-confirm &lt;minutes&gt;</code>. This command sets the system to wait for confirmation that a configuration has succeeded.</p><p>Entering the confirm command within the specified commit-confirm interval causes the configuration change to be accepted. If confirmation is not provided by entering this command, the system reboots to the previous configuration.</p><h1 id="Configurationcommands-delete-deleteaconfigurationelement">delete - delete a configuration element</h1><p>Syntax: <code>delete &lt;config-node&gt;</code></p><p>Use this command to delete a part of configuration. To do this, you delete the appropriate subnode of a configuration node.</p><p>If you show configuration before it is committed, you see the deleted statement flagged with a minus sign (-); the statement disappears after the configuration change is committed.</p><p>Some configuration nodes and statements are mandatory; these nodes or statements cannot be deleted. Some configuration statements are mandatory but have default values; if you delete one of these statements, the default value is restored.</p><h1 id="Configurationcommands-discard-discarduncommittedchanges">discard - discard uncommitted changes</h1><p>Syntax: <code>discard</code></p><p>Use this command to discard all uncommitted changes to the configuration.</p><h1 id="Configurationcommands-edit-editasub-element">edit - edit a sub-element</h1><p>Syntax; <code>edit &lt;path&gt;</code></p><p>Use this command to navigate to a specific configuration subnode for editing. The [edit] prompt changes dynamically to mark your place in the configuration tree.</p><p>Once at that location, any actions you take such as showing, creating, or deleting configuration are relative to your location in the tree.</p><h1 id="Configurationcommands-exit-exitfromconfigurationlevel">exit - exit from configuration level</h1><p>Syntax: <code>exit [ discard ]</code></p><p>Use this command from a subnode in the configuration tree to navigate to the top of the configuration tree.</p><p>Use this command from the top of the configuration tree to exit from configuration mode to operational mode.</p><p>If you try to exit from configuration mode while there are still uncommitted configuration changes, the system gives you a warning. You cannot exit from configuration mode until you either commit the changes by entering the <code>commit</code> command or discard the changes by using the <code>discard</code> option. This option applies only to this usage.</p><h1 id="Configurationcommands-load-loadconfigurationfromafileandreplacecandidateconfiguration">load - load configuration from a file and replace candidate configuration</h1><p>Syntax: <code>load &lt;file-name&gt;</code></p><p>Use this command to load from a file a configuration that was previously saved.</p><p>The loaded configuration becomes the working configuration and must be committed before it becomes the active configuration.</p><p>Configuration can be loaded from a hard disk (including a Flash disk or USB device), a TFTP server, an FTP server, an SCP server, or an HTTP server. Note that you cannot load an empty configuration file; the configuration file must contain at least one configuration node. In addition, an error is reported if an invalid configuration file is loaded.</p><p>The default configuration directory is /config.</p><h1 id="Configurationcommands-merge-mergeconfigurationfromafileintothecandidateconfiguration">merge - merge configuration from a file into the candidate configuration</h1><p>Syntax: <code>merge &lt;file-name&gt;</code></p><p>Use this command to load from a file a configuration that was previously saved and merge it with the active (running) configuration. The merger adds new configuration entries and applies any modifications to existing active entries to produce a new working configuration. This configuration must be committed before it becomes the active configuration.</p><p>Configuration can be loaded from a hard disk (including a Flash disk or USB device), a TFTP server, an FTP server, an SCP server, or an HTTP server. Note that you cannot load an empty configuration file; the configuration file must contain at least one configuration node.</p><p>The default configuration directory is /config.</p><h1 id="Configurationcommands-rollback-rollbacktoapreviousconfiguration">rollback - rollback to a previous configuration</h1><p>Syntax: <code>rollback &lt;rev-number&gt; [ comment &lt;comment-text&gt; ]</code></p><p>Use this command to roll back to the configuration revision specified.</p><p>You can see the list of configuration file revisions using the <code>show system commit</code> operational mode command (use <code>run show system commit</code> from configuration mode).</p><h1 id="Configurationcommands-run-runanoperational-modecommand">run - run an operational-mode command</h1><p>Syntax: <code>run</code></p><p>Run one of the operational-mode commands while still in the configuration-mode.</p><h1 id="Configurationcommands-save-savetheconfigurationtoafile">save - save the configuration to a file</h1><p>Syntax: <code>save &lt;file-name&gt;</code></p><p>Use this command to save the running configuration to a file.</p><p>The resulting file can later be loaded into the running system to replace the previous running configuration by using the <code>load</code> command. A nonabsolute path is interpreted relative to the default configuration directory, which is /config.</p><div class="confluence-information-macro confluence-information-macro-note"><span class="aui-icon aui-icon-small aui-iconfont-warning confluence-information-macro-icon"></span><div class="confluence-information-macro-body"><p>If your login username is not a member of the "secrets" login user group and you either save a configuration through the REST API or use the save command, the encrypted passwords in the configuration file are replaced with the ******** placeholder. If you load this configuration, the replaced password fields trigger validation errors because the placeholder does not match the format for an encrypted password. Do not commit this configuration. If you ignore the error message and perform a commit with this invalid configuration, the passwords are deleted.</p></div></div><h1 id="Configurationcommands-set-setthevalueofaparameterorcreateanewelement">set - set the value of a parameter or create a new element</h1><p>Syntax: <code>set config-name attribute [ value ]</code></p><p>Use this command to add a configuration element to the current configuration.</p><p>You can also use this command to modify the value of an existing configuration item. When setting configuration values, note that the change does not take effect until the change is committed by using the <code>commit</code> command.<br/>After a configuration node has been added, you can modify it later by using <code>set</code> or delete it by using <code>delete</code>.</p><h1 id="Configurationcommands-show-showtheconfiguration">show - show the configuration</h1><p>Syntax: <code>show [ -all ] [ config-name ]</code></p><p>Use this command in configuration mode to display the configured state of the system.</p><p>This command displays the specified configuration node and all subnodes. The node specification is interpreted relative to your current location in the configuration tree.</p><p>Unless the <code>-all</code> keyword is used, default information is not included in the displayed information.</p><p>In addition to this command, a number of <code>show</code> commands are available in operational mode.</p><p>For example, see the difference between <code>show interfaces</code> and <code>show -all interfaces</code>.</p><p></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# show interfaces
+ interfaces {
+        dataplane dp0p1s1 {
+                address 10.10.1.1/24
+        }
+        dataplane dp0s2 {
+                address dhcp
+        }
+        loopback lo
+ }
+vyatta@R1# show -all interfaces
+ interfaces {
+        dataplane dp0p1s1 {
+                address 10.10.1.1/24
+                duplex auto
+                ip {
+                        gratuitous-arp-count 1
+                        rpf-check disable
+                }
+                ipv6 {
+                        dup-addr-detect-transmits 1
+                }
+                mtu 1500
+                speed auto
+                vlan-protocol 0x8100
+                vrrp {
+                        start-delay 0
+                }
+        }
+        dataplane dp0s2 {
+                address dhcp
+                duplex auto
+                ip {
+                        gratuitous-arp-count 1
+                        rpf-check disable
+                }
+                ipv6 {
+                        dup-addr-detect-transmits 1
+                }
+                mtu 1500
+                speed auto
+                vlan-protocol 0x8100
+                vrrp {
+                        start-delay 0
+                }
+        }
+        loopback lo
+ }
+vyatta@R1#</pre>
+</div></div><h1 id="Configurationcommands-top-settheeditleveltotheroot">top - set the edit level to the root</h1><p>Syntax: <code>top</code></p><p>Use this command to navigate quickly to the top level of the configuration hierarchy.</p><h1 id="Configurationcommands-up-settheeditlevelonelevelup">up - set the edit level one level up</h1><p>Syntax: <code>up</code></p><p>This command navigates up one level in the configuration hierarchy. For example:</p><p></p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# edit protocols ospfv3 timers spf
+[edit protocols ospfv3 timers spf]
+vyatta@R1# up
+[edit protocols ospfv3 timers]
+vyatta@R1# up
+[edit protocols ospfv3]
+vyatta@R1# up
+[edit protocols]
+vyatta@R1# up
+[edit]
+vyatta@R1#</pre>
+</div></div><h1 id="Configurationcommands-validate-validatethecurrentsetofchanges">validate - validate the current set of changes</h1><p>Syntax: <code>validate</code></p><p>Perform pre-commit checks to make sure the configuration changes are valid.</p>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

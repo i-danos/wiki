@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>IPsec/IKEv2 Remote-Access VPN server guide - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details open><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item active'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>IPsec/IKEv2 Remote-Access VPN server guide</h1><p>Brief documentation how to setup a IPsec/IKEv2 Remote-Access VPN server with DANOS.</p><h1 id="IPsec/IKEv2Remote-AccessVPNserverguide-GeneralIKE/control-planesettings">General IKE/control-plane settings</h1><p>For production IPsec RA VPN server deployment it is essential to tune the IKE control-plane. For details on this, see the <a data-linked-resource-id="1567588383" data-linked-resource-type="page" data-linked-resource-version="1" href="1567588383-ipsec-ike-manual.html">IPsec/IKE manual</a> </p><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-Usageofmultipleserverprofiles">Usage of multiple server profiles</h2><p>The RAVPN Server supports the ability to configure multiple server profiles. This might be useful for providing multi-tenant VPN access or providing VPN access with different authentication methods. To assign the connecting clients to the appropriate server profile there are two options available:</p><ol><li><p>based on server (local) interface address</p></li><li><p>matching the client's identify/credential</p></li></ol><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-EAP-TLSauthenticationmethodforWindows,macOS,...">EAP-TLS authentication method for Windows, macOS, ...</h2><p>To support a large variety of native desktop/mobile OS IPsec RA VPN clients, the suggestion is to use EAP-TLS as authentication method, rather the IKE X.509 authentication method:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="acc50b5d-6c22-4132-926f-7f1e30adeec4" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># EAP-TLS authentication configuration
+set security vpn ipsec remote-access-server profile TENANT1 authentication mode eap-tls
+ 
+# End-entity/Host certificate of the server, used for EAP-TLS
+set security vpn ipsec remote-access-server profile TENANT1 authentication x509 cert-file /config/auth/server1.pem
+ 
+# Private key of the server certificate, used for EAP-TLS
+set security vpn ipsec remote-access-server profile TENANT1 authentication x509 key file /config/auth/server1.key</pre>
+</div></div><p>The IPsec RA VPN server then will provide following TLS cipher-suites as part of the EAP-TLS negotiation:<br/></p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="c7fbed9f-c1f5-4821-bdb2-8e0e781e2f3e" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">TLS_ECDHE_RSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_RSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_256_GCM_SHA384
+TLS_ECDHE_ECDSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_RSA_WITH_AES_128_CBC_SHA256
+TLS_ECDHE_ECDSA_WITH_AES_256_CBC_SHA384
+TLS_ECDHE_RSA_WITH_AES_256_CBC_SHA384</pre>
+</div></div><p>... those are known to work with Windows 10, macOS 10.3+ and Linux Network Manager/Strongswan.</p><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-Serverconfigurationsample">Server configuration sample</h2><p>This example topology provides access to the "Cooperated Network" 10.56.48.0/20 by providing two IPsec RA VPN server instances.</p><p>Each IPsec RA VPN server instance has a dedicated Virtual-IP address pool, which is not overlapping, due to missing synchronization between those two pools. Virtual IP addresses get assigned to each individual client during the initial VPN tunnel negotiation. The Virtual IPs get released once the client disconnects. As part of the VPN tunnel negotiation the IPsec RA VPN server can also push down DNS server addresses which should be used by the client inside the VPN. The request and assignment of Virtual IP address is the major difference between IPsec site-to-site and IPsec RA VPN setups from IKE perspective. Everything else, including ESP, is identical.</p><p>Every time a client connects, the server will first perform a basic integrity check of the provided client certificate: is the certificate expired? is the certificate issued by a trusted CA? Finally it will perform a certificate revocation check either via OCSP or CRL, to check the central CA database of revoked certificates. When using X.509 authentication, certificate revocation is the only way to revoke VPN access for an individual client. The server can configure a reauthentication time, which forces the client to perform a IKE re-authentication within a certain time window, to enforce expiration or revocation of VPN client access.</p><p>On the IPsec RA VPN server, there is only need for following certificate files: Host/End-entity certificate for the sever itself, the corresponding private key and the Root certificate. It is highly recommend to not store any further private keys on a server instance, other then the server's own private key!</p><p></p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="ec8a5db9-a805-48c0-a1dd-5d6469378fbf" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">set security vpn ike make-before-break
+set security vpn ipsec esp-group ESP1 proposal 1 encryption aes128gcm128
+set security vpn ipsec esp-group ESP1 proposal 1 hash null
+set security vpn ipsec ike-group IKE1 dead-peer-detection action clear
+set security vpn ipsec ike-group IKE1 ike-version 2
+set security vpn ipsec ike-group IKE1 proposal 1 dh-group 19
+set security vpn ipsec ike-group IKE1 proposal 1 encryption aes128gcm128
+set security vpn ipsec ike-group IKE1 proposal 1 hash sha2_256
+ 
+set security vpn ipsec remote-access-server pool POOL1 subnet 10.56.192.0/27
+set security vpn ipsec remote-access-server pool POOL1 attributes dns 10.56.48.1
+ 
+ 
+set security vpn ipsec remote-access-server pool POOL2 subnet 10.56.193.0/27
+set security vpn ipsec remote-access-server pool POOL2 attributes dns 10.56.64.1
+ 
+ 
+set security vpn ipsec remote-access-server profile TENANT1 authentication mode x509
+set security vpn ipsec remote-access-server profile TENANT1 authentication x509 cert-file /config/auth/server1.pem
+set security vpn ipsec remote-access-server profile TENANT1 authentication x509 key file /config/auth/server1.key
+set security vpn ipsec remote-access-server profile TENANT1 authentication x509 remote-id 'O=Tenant1, CN=*'
+set security vpn ipsec remote-access-server profile TENANT1 authentication x509 revocation-policy strict
+set security vpn ipsec remote-access-server profile TENANT1 esp-group ESP1
+set security vpn ipsec remote-access-server profile TENANT1 ike-group IKE1
+set security vpn ipsec remote-access-server profile TENANT1 local-address 10.10.2.3
+set security vpn ipsec remote-access-server profile TENANT1 pools POOL1
+set security vpn ipsec remote-access-server profile TENANT1 tunnel 1 local network 10.56.48.0/20
+ 
+set security vpn ipsec remote-access-server profile TENANT2 authentication mode x509
+set security vpn ipsec remote-access-server profile TENANT2 authentication x509 cert-file /config/auth/server1.pem
+set security vpn ipsec remote-access-server profile TENANT2 authentication x509 key file /config/auth/server1.key
+set security vpn ipsec remote-access-server profile TENANT2 authentication x509 remote-id 'O=Tenant2, CN=*'
+set security vpn ipsec remote-access-server profile TENANT2 authentication x509 revocation-policy strict
+set security vpn ipsec remote-access-server profile TENANT2 esp-group ESP1
+set security vpn ipsec remote-access-server profile TENANT2 ike-group IKE1
+set security vpn ipsec remote-access-server profile TENANT2 local-address 10.10.2.3
+set security vpn ipsec remote-access-server profile TENANT2 pools POOL2
+set security vpn ipsec remote-access-server profile TENANT2 tunnel 1 local network 10.56.64.0/20
+ 
+set security vpn x509 ca-certs /config/auth/RootCA.pem</pre>
+</div></div><p><u>Annotated configuration sample:</u></p><p></p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="efd47f61-a5f3-418a-b350-0ff14ba3da03" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># On re-authentication IKEv2 creates a overlapping set of IKE SAs and IPsec SAs, to prevent tunnel interruptions.
+# This is a global setting apply to all IKEv2/IPsec tunnels.
+set security vpn ike make-before-break
+
+# IPsec ESP group proposal. For guidance on selection of the ESP algorithms please refer to RFC 8221 (or successor IETF documents)
+set security vpn ipsec esp-group ESP1 proposal 1 encryption aes128gcm128
+set security vpn ipsec esp-group ESP1 proposal 1 hash null
+
+# Enable IKE dead-peer-detection. In case a dead peer is detected, clear all stale IKE and IPsec SAs.
+set security vpn ipsec ike-group IKE1 dead-peer-detection action clear
+
+# The IPsec RA VPN server only support IKEv2
+set security vpn ipsec ike-group IKE1 ike-version 2
+
+# IKE group proposal. For guidance on selection of the IKE algorithms please refer to RFC 8247 (or successor IETF documents)
+set security vpn ipsec ike-group IKE1 proposal 1 dh-group 19
+set security vpn ipsec ike-group IKE1 proposal 1 encryption aes128gcm128
+set security vpn ipsec ike-group IKE1 proposal 1 hash sha2_256
+
+# Configure a Virtual IP address pools, used to assign inner-tunnels address for the RA VPN clients.
+# The network range for the pool needs to be appropriated size. If thee pool runs out of free IP addresses,
+# the server will reject new client connections for remote-access-server profiles using this pool.
+#
+# Pools can be shared between different remotee-access-server profiles
+set security vpn ipsec remote-access-server pool POOL1 subnet 10.56.192.0/27
+# User ordered list of (VPN) internal DNS server addresses, which get pushed down to the RA VPN client
+set security vpn ipsec remote-access-server pool POOL1 attributes dns 10.56.48.1
+
+
+# X.509 authentication configuation
+set security vpn ipsec remote-access-server profile TENANT1 authentication mode x509
+
+# Limit the access to this remote-access-server profiles only to clients with a particular certifcate subject.
+# Wildcards are represented by the asterisks character.
+#
+# !!! WARNING: without any remote-id defined, all client certificate are accepted which are issued by a trusted CA !!!
+# (unless they got revoked by the CA (OCSP/CRL) or they expired or are not yet valid)
+set security vpn ipsec remote-access-server profile TENANT1 authentication remote-id 'O=Tenant1, CN=*'
+
+# End-entity/Host certificate of the server
+set security vpn ipsec remote-access-server profile TENANT1 authentication x509 cert-file /config/auth/server1.pem
+
+# Private key of the server certificate
+set security vpn ipsec remote-access-server profile TENANT1 authentication x509 key file /config/auth/server1.key
+
+# Controls the revocation behavior of the server if none of the CRL-servers nor OCSP responders were
+# reachable or able to provide any status on the a to be checked client certificate chain.
+#
+# If configured "strict", client authentication/verification will fail if none of the CRL/OCSP revocation
+# checks were executed without failure.
+#
+# If configured "relaxed", client authentication/verification will not fail due to the unavailability of a
+# CRL/OCSP status.
+set security vpn ipsec remote-access-server profile TENANT1 authentication x509 revocation-policy strict
+
+
+# Assign ESP/IKE group definition to the remote-access-server profile
+set security vpn ipsec remote-access-server profile TENANT1 esp-group ESP1
+set security vpn ipsec remote-access-server profile TENANT1 ike-group IKE1
+
+# This remote-access-server profiles listens only to following local-address
+set security vpn ipsec remote-access-server profile TENANT1 local-address 10.10.2.3
+
+# Assign the Virtual IP pool to the remote-access-server profile
+set security vpn ipsec remote-access-server profile TENANT1 pools POOL1
+
+# Only a local traffic-selector gets defined, which represents to protected-network to provide access to.
+# By default the remote traffic-selector gets negotiated down to the assigned Virtual IP address of the client.
+set security vpn ipsec remote-access-server profile TENANT1 tunnel 1 local network 10.56.48.0/20
+
+# Global IPsec CA trust-store. Will be used to verify and trust all peer certificate chains
+set security vpn x509 ca-certs /config/auth/RootCA.pem</pre>
+</div></div><p></p><h1 id="IPsec/IKEv2Remote-AccessVPNserverguide-IPsecRAVPNserverworkflows">IPsec RA VPN server workflows</h1><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-Revokingclientaccess">Revoking client access</h2><ol><li><p>The client certificate needs to be revoked by the Public Key Infrastructure / CA</p></li><li><p>The certificate state caches should be flushed on all IPsec RA VPN server instances by running: "clear vpn x509 status"</p></li><li><p>Active client connections should be immediately terminated, based on the client certificate subject: "reset vpn ipsec-remote-access-server profile &lt;profile-name&gt; peer &lt;IP address, remote ID or certificate subject&gt;</p></li></ol><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-Applyingfirewallrulesonclienttraffic">Applying firewall rules on client traffic</h2><p>To apply firewall rules on IPsec policy-based VPN traffic, a virtual-feature-pointer interface needs to be bound to the IPsec RA VPN server profile tunne:</p><div class="table-wrap"><table class="confluenceTable" data-layout="default" data-local-id="50e2df30-e3f2-4dea-8c83-b5834206ae2a"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd" data-highlight-colour="initial"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="92bf3b94-b388-429c-aa92-ef24da2ed77b" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">set interfaces virtual-feature-point vfp1
+set security vpn ipsec remote-access-server profile TENANT1 tunnel 1 local network 10.56.48.0/20
+set security vpn ipsec remote-access-server profile TENANT1 tunnel 1 uses vfp1</pre>
+</div></div></td></tr></tbody></table></div><p>The created vfp1 interface then can be used to assign firewall rules.</p><p></p><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-Logginglevel">Logging level</h2><p>By default the IPsec daemon is chatty which can be useful for troubleshooting during initial installation or problem triage but is not optimal for performance. For day-to-day production use a new log-mode has been introduced that minimizes the amount of log messages sent while still providing relevant information.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default" data-local-id="7a8a8d47-47b2-4749-b849-e88de523e8c3"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd" data-highlight-colour="initial"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="558b2eea-c5cf-4bf5-a21f-0cd157dfc39d" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">set security vpn ipsec log-modes minimal</pre>
+</div></div></td></tr></tbody></table></div><p>The 'minimal' log-mode is recommended for day-to-day production use.</p><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-PersistentCRLcache">Persistent CRL cache</h2><p>If a public CA is used, the CRL file might be up to 1 Megabyte or larger, which needs to be downloaded entirely once a CRL expired, or the IKE control-plane got restarted.</p><p>CRL files can be persistently cached, so they are available across IKE control-plane restarts and reboot:</p><div class="table-wrap"><table class="confluenceTable" data-layout="default" data-local-id="27f307b3-ef61-41d3-8fbd-55985f37d957"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd" data-highlight-colour="initial"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="2ce7c212-a098-445d-942c-478b26baa2bf" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">set security vpn x509 status crl cache</pre>
+</div></div></td></tr></tbody></table></div><p>CRL results get always cached in memory by the IKE control-plane, unless "clear vpn x509 status" got called.</p><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-DisableOCSP/CRLrevocationchecks">Disable OCSP/CRL revocation checks</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default" data-local-id="b7ec6fda-83b4-4647-ab02-34d5d83410dd"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd" data-highlight-colour="initial"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="6833e89e-f347-47b5-87da-fa503abd798e" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence"># Disable
+set security vpn x509 status crl disable
+set security vpn x509 status ocsp disable</pre>
+</div></div></td></tr></tbody></table></div><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-make-before-break">make-before-break</h2><p>In this mode a duplicate is created of the existing IKE and CHILD SAs before renegotiation. Once renegotiation occurs the old SAs are then deleted. The advantage of this mode is that it avoids tunnel interruption during renegotiation. The disadvantage is that both sides of the connection must be configured to support it.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default" data-local-id="7d5e00a3-e6a5-4a84-9f89-59b60e76d770"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd" data-highlight-colour="initial"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="98b9ac36-b1a0-4e64-a883-bf5e18ffd17f" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">set security vpn ike make-before-break</pre>
+</div></div></td></tr></tbody></table></div><p>By default the system will tear down all IKE and CHILD SAs before renegotiation. For RA VPN it is recommended to use the make-before-break setting.</p><h1 id="IPsec/IKEv2Remote-AccessVPNserverguide-VPNTerminology">VPN Terminology</h1><h2 id="IPsec/IKEv2Remote-AccessVPNserverguide-Acronyoms">Acronyoms</h2><p>RA VPN = Remote Access Virtual Private Network<br/>IKEv2 = Internet Key Exchange version 2 (rfc4306)<br/>ESP = Encapsulating Security Payload (rfc4303)<br/>DPD = Dead Peer Detection (rfc3706)<br/>CA = Certificate Authority<br/>PKI = Public Key Infrastructure<br/>VFP = Virtual Feature Point - a vyatta specific interface type<br/>IPsec (SA) = IPsec Security Association<br/>IPsec (SPD) = IPsec Security Policy Database<br/>IPsec (SAD) = IPsec Security Association Database<br/>OCSP = Online Certificate Status Protocol<br/>CRL = Certificate Revocation List</p>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

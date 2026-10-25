@@ -1,0 +1,1243 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>C Configd Client Library - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details open><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item active'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>C Configd Client Library</h1><div class="toc-macro client-side-toc-macro conf-macro output-block" data-hasbody="false" data-headerelements="H1,H2,H3,H4,H5,H6,H7" data-layout="default" data-macro-id="a72ba7cf-1ddc-42bd-897e-5492187df641" data-macro-name="toc"> </div><h1 id="CConfigdClientLibrary-Introduction">Introduction</h1><p>Please refer to <a href="684621974-configd-client-library.html" rel="nofollow">Configd Client Library</a> for the general concepts behind the API. This document will cover only C specifics. It is not recommended that the C configd API is used in end user code; it is very low level and path creation can be tricky to do correctly. A path in this API is a "/" separated string where each element is URL escaped.</p><h1 id="CConfigdClientLibrary-Mechanics">Mechanics</h1><p>Before we can use the configd API we need to establish a connection to the daemon, one uses "configd_open_connection" to do this. The "configd_close_connection" function will terminate the connection.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="8d6810fb-d43b-4fdc-812f-e8766e108653" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#include &lt;vyatta-cfg/client/connect.h&gt;
+
+int main(int argc, char **argv) {
+        struct configd_conn conn;
+        if (configd_open_connection(&amp;conn) != 0) {
+                fprintf(stderr, "failed to open configd connection");
+                return -1;
+        }
+        configd_close_connection(&amp;conn);
+}</pre>
+</div></div></td></tr></tbody></table></div><p>Once connected we can do a variety of actions on the system, one can configure the device, request the operational state of the device, or perform feature specific RPCs. When configuring the device via the Configd APIs one follows much the same procedure as with the CLI. One creates a configuration session, makes changes, commits those changes, then tears down the session. One may view the RUNNING datastore without a session being created. Sessions persist process exit and must be explicitly removed with "configd_sess_teardown". The minimal configuration application looks like the following.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="3b368870-c675-4cf4-9476-03c9823c5030" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#define _GNU_SOURCE
+
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+
+#include &lt;vyatta-cfg/client/connect.h&gt;
+#include &lt;vyatta-cfg/client/error.h&gt;
+#include &lt;vyatta-cfg/client/session.h&gt;
+
+int main(int argc, char **argv) {
+        struct configd_conn conn;
+        struct configd_error err = {0};
+        if (configd_open_connection(&amp;conn) != 0) {
+                fprintf(stderr, "failed to open configd connection\n");
+                return -1;
+        }
+
+        pid_t pid = getpid();
+        char *sess_id = NULL;
+        asprintf(&amp;sess_id, "%d", pid);
+        configd_set_session_id(&amp;conn, sess_id);
+        free(sess_id);
+
+        if (configd_sess_setup(&amp;conn, &amp;err) != 0) {
+                fprintf(stderr, "failed to setup session %s\n", err.text);
+                return -1;
+        }
+
+        //do something with the config
+
+        if (configd_sess_teardown(&amp;conn, &amp;err) != 0) {
+                fprintf(stderr, "failed to teardown session %s\n", err.text);
+                return -1;
+        }
+        configd_error_free(&amp;err);
+        configd_close_connection(&amp;conn);
+}</pre>
+</div></div></td></tr></tbody></table></div><p>From here, one may perform actions similar to what one does on the CLI. Since the interface here is meant for programatic interaction, one may also introspect on the data-model and the current state of the candidate tree to determine available actions, this is similar to using "tab-completion" to inspect the CLI.</p><h1 id="CConfigdClientLibrary-Examples">Examples</h1><h2 id="CConfigdClientLibrary-Configuration">Configuration</h2><p>The following example uses the C configd API to set all dataplane interfaces to listen for DHCP addresses if no other address is assigned to that interface. While this is a silly thing to do, it demonstrates the basic mechanics of the this API.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="528217f2-e21b-48a9-9b4d-5e7edb687f11" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#define _GNU_SOURCE
+
+#include &lt;stdio.h&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+
+#include &lt;vyatta-cfg/client/connect.h&gt;
+#include &lt;vyatta-cfg/client/error.h&gt;
+#include &lt;vyatta-cfg/client/node.h&gt;
+#include &lt;vyatta-cfg/client/rpc.h&gt;
+#include &lt;vyatta-cfg/client/session.h&gt;
+#include &lt;vyatta-cfg/client/transaction.h&gt;
+
+#include &lt;vyatta-util/vector.h&gt;
+
+static int
+setup_interface_address(struct configd_conn *conn, const char *intf, struct configd_error *err)
+{
+	int rc = 0;
+	char *path = NULL;
+	char *dhcp_path = NULL;
+	asprintf(&amp;path, "/interfaces/dataplane/%s/address", intf);
+	asprintf(&amp;dhcp_path, "/interfaces/dataplane/%s/address/dhcp", intf);
+
+	printf("%s:", intf);
+	struct vector *addrs = configd_node_get(conn, AUTO, path, err);
+	if (!addrs) {
+		rc = -1;
+		goto out;
+	}
+
+	const char *addr = NULL;
+	if ((addr = vector_next(addrs, addr)) != NULL) {
+		printf("%s", addr);
+		while ((addr = vector_next(addrs, addr))) {
+			printf(", %s", addr);
+		}
+	}
+	printf("\n");
+
+	if (vector_count(addrs) == 0) {
+		char *out = configd_set(conn, dhcp_path, err);
+		if (!out) {
+			rc = -1;
+			goto free_vector;
+		}
+		free(out);
+	}
+
+free_vector:
+	vector_free(addrs);
+
+out:
+	free(path);
+	free(dhcp_path);
+	return rc;
+}
+
+int
+main(int argc, char **argv)
+{
+	int rc = 0;
+	struct configd_conn conn;
+	struct configd_error err = {0};
+
+	if (configd_open_connection(&amp;conn) != 0) {
+		fprintf(stderr, "failed to open configd connection\n");
+		return -1;
+	}
+
+	pid_t pid = getpid();
+	char *sess_id = NULL;
+	asprintf(&amp;sess_id, "%d", pid);
+	configd_set_session_id(&amp;conn, sess_id);
+	free(sess_id);
+
+	if (configd_sess_setup(&amp;conn, &amp;err) != 0) {
+		fprintf(stderr, "failed to setup session %s\n", err.text);
+		rc = -1;
+		goto done;
+	}
+
+	struct vector * intfs = configd_node_get(&amp;conn, AUTO, "/interfaces/dataplane", &amp;err);
+	if (!intfs) {
+		fprintf(stderr, "%s\n", err.text);
+		rc = -1;
+		goto done;
+	}
+
+	const char *intf = NULL;
+	while ((intf = vector_next(intfs, intf)) != NULL) {
+		if (setup_interface_address(&amp;conn, intf, &amp;err) != 0) {
+			fprintf(stderr, "%s\n", err.text);
+			rc = -1;
+			goto free_vector;
+		}
+	}
+
+	char *out = configd_commit(&amp;conn, "setup interface addresses", &amp;err);
+	if (!out) {
+		fprintf(stderr, "%s\n", err.text);
+		rc = -1;
+		goto free_vector;
+	} else {
+		printf("%s\n", out);
+		free(out);
+	}
+
+	if (configd_sess_teardown(&amp;conn, &amp;err) != 0) {
+		fprintf(stderr, "failed to teardown session %s\n", err.text);
+		rc = -1;
+	}
+
+free_vector:
+	vector_free(intfs);
+done:
+	configd_error_free(&amp;err);
+	configd_close_connection(&amp;conn);
+	return rc;
+}</pre>
+</div></div></td></tr></tbody></table></div><p>Below is a sample run of the above application.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="0213efb5-ef66-475c-878d-a92baec97559" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ gcc -std=c11 -lvyatta-config -lvyatta-util -o configdapi configdapi.c
+$ ./configdapi
+dp0s3:10.156.58.201/23
+dp0s10:
+dp0s11:
+[interfaces dataplane dp0s10 address dhcp]
+Starting DHCP client on dp0s10 ...
+
+[interfaces dataplane dp0s11 address dhcp]
+Starting DHCP client on dp0s11 ...
+
+
+</pre>
+</div></div></td></tr></tbody></table></div><h2 id="CConfigdClientLibrary-RPC">RPC</h2><p>One can also call an RPC via this interface.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="ef7b3266-28d0-44f2-8df3-dd0e03265edd" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#include &lt;stdio.h&gt;
+
+#include &lt;jansson.h&gt;
+
+#include &lt;vyatta-cfg/client/connect.h&gt;
+#include &lt;vyatta-cfg/client/error.h&gt;
+#include &lt;vyatta-cfg/client/callrpc.h&gt;
+
+int
+main(int argc, char **argv)
+{
+	int rc = 0;
+	struct configd_conn conn;
+	struct configd_error err = {0};
+
+	if (configd_open_connection(&amp;conn) != 0) {
+		fprintf(stderr, "failed to open configd connection\n");
+		return -1;
+	}
+
+	json_t *input = json_pack("{s:s}", "host", "1.1.1.1");
+	char *inputs = json_dumps(input, JSON_COMPACT);
+	json_decref(input);
+
+	char *outputs = configd_call_rpc(&amp;conn, "vyatta-op-v1", "ping", inputs, &amp;err);
+	if (!outputs) {
+		fprintf(stderr, "%s\n", err.text);
+		rc = -1;
+		goto done;
+	}
+
+	json_error_t jerr;
+	json_t *output = json_loads(outputs, 0, &amp;jerr);
+	if (!output) {
+		fprintf(stderr, "%s\n", jerr.text);
+		rc = -1;
+		goto done;
+	}
+
+	int rx_packet_count = 0;
+	json_unpack(output, "{s:i}", "rx-packet-count", &amp;rx_packet_count);
+	json_decref(output);
+
+	printf("rx-packet-count %d\n", rx_packet_count);
+done:
+	free(outputs);
+	free(inputs);
+	configd_error_free(&amp;err);
+	configd_close_connection(&amp;conn);
+	return rc;
+}</pre>
+</div></div></td></tr></tbody></table></div><p>Below is an example run of the RPC application.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="c1f67904-b44d-4d07-a6cf-02f247698a0b" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ gcc -std=c11 -lvyatta-config -lvyatta-util $(pkg-config --cflags --libs jansson) -o configdapi configdapi.c
+$ ./configdapi
+rx-packet-count 3</pre>
+</div></div></td></tr></tbody></table></div><h2 id="CConfigdClientLibrary-OperationalStateData">Operational State Data</h2><p>Finally one may query for operational data information.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="68181899-4310-4758-a1a0-0819c4b98181" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#include &lt;stdio.h&gt;
+
+#include &lt;jansson.h&gt;
+
+#include &lt;vyatta-cfg/client/connect.h&gt;
+#include &lt;vyatta-cfg/client/error.h&gt;
+#include &lt;vyatta-cfg/client/node.h&gt;
+#include &lt;vyatta-cfg/client/rpc.h&gt;
+
+int
+main(int argc, char **argv)
+{
+	int rc = 0;
+	struct configd_conn conn;
+	struct configd_error err = {0};
+
+	if (configd_open_connection(&amp;conn) != 0) {
+		fprintf(stderr, "failed to open configd connection\n");
+		return -1;
+	}
+
+	char *trees = configd_tree_get_full_encoding(&amp;conn, AUTO,
+		"/system/state/platform", "rfc7951", &amp;err);
+
+	json_error_t jerr;
+	json_t *tree = json_loads(trees, 0, &amp;jerr);
+	if (!tree) {
+		fprintf(stderr, "%s\n", jerr.text);
+		rc = -1;
+		goto done;
+	}
+	const char *os_release = NULL;
+	json_unpack(tree, "{s:{s:s}}", "vyatta-system-v1:platform", "os-release", &amp;os_release);
+	if (os_release) {
+		printf("OS Release: %s\n", os_release);
+	}
+	json_decref(tree);
+done:
+	free(trees);
+	configd_error_free(&amp;err);
+	configd_close_connection(&amp;conn);
+	return rc;
+}</pre>
+</div></div></td></tr></tbody></table></div><p>Below is an example execution of this program.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="5c8b2da8-327a-4532-92fb-a31e1f74a59a" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ gcc -std=c11 -lvyatta-config -lvyatta-util $(pkg-config --cflags --libs jansson) -o configdapi configdapi.c
+$ ./configdapi
+OS Release: Vyatta:Master</pre>
+</div></div></td></tr></tbody></table></div><p><br/></p><h1 id="CConfigdClientLibrary-ManPage">Man Page</h1><p>The following documentation was generated automatically using Doxygen.</p><h2 id="CConfigdClientLibrary-auth.h">auth.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="9135f242-f17c-4218-a618-b2f887fac714" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/auth.h(3)	  Vyatta Configuration System	  src/client/auth.h(3)
+
+
+
+NAME
+       src/client/auth.h
+
+SYNOPSIS
+   Functions
+       struct map * configd_auth_getperms (struct configd_conn *, struct
+	   configd_error *error)
+       int configd_auth_authorized (struct configd_conn *conn, const char
+	   *cpath, uint perm, struct configd_error *error)
+
+Function Documentation
+   struct map* configd_auth_getperms (struct configd_conn *, struct
+       configd_error * error)
+       configd_auth_getperms returns the matched portion of the auth ruleset
+       for a given user as a map from path to permission. On error the return
+       value is NULL, and if the error strut pointer is non NULL then it will
+       be populated.
+
+   int configd_auth_authorized (struct configd_conn * conn, const char *
+       cpath, uint perm, struct configd_error * error)
+       configd_auth_authorized takes a '/' separated path and permission type
+       and tests that the connected user is authorized to preform the action.
+       The return values are 0:false, 1:true, -1:error. On error if an error
+       struct pointer is non NULL the error will be populated.
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020		  src/client/auth.h(3)</pre>
+</div></div></td></tr></tbody></table></div><p><br/></p><h2 id="CConfigdClientLibrary-callrpc.h">callrpc.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="9feaf823-9046-47cc-a56d-eea3ac524a59" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/callrpc.h(3)   Vyatta Configuration System  src/client/callrpc.h(3)
+
+
+
+NAME
+       src/client/callrpc.h
+
+SYNOPSIS
+   Functions
+       char * configd_call_rpc (struct configd_conn *conn, const char *ns,
+	   const char *name, const char *input, struct configd_error *error)
+       char * configd_call_rpc_xml (struct configd_conn *conn, const char *ns,
+	   const char *name, const char *input, struct configd_error *error)
+
+Function Documentation
+   char* configd_call_rpc (struct configd_conn * conn, const char * ns, const
+       char * name, const char * input, struct configd_error * error)
+       configd_call_rpc
+
+       Takes a namespace, rpc name, and the input to the RPC in JSON format.
+
+       Returns the output of the RPC in JSON format.
+
+       On error, returns NULL and if the error struct pointer is non-NULL the
+       error will be filled out.
+
+   char* configd_call_rpc_xml (struct configd_conn * conn, const char * ns,
+       const char * name, const char * input, struct configd_error * error)
+       configd_call_rpc_xml
+
+       Takes a namespace, rpc name, and the input to the RPC in XML format.
+
+       Returns the output of the RPC in XML format.
+
+       On error, returns NULL and if the error struct pointer is non-NULL the
+       error will be filled out.
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020	       src/client/callrpc.h(3)</pre>
+</div></div></td></tr></tbody></table></div><h2 id="CConfigdClientLibrary-connect.h">connect.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="4a93a2ce-dd0f-4b85-855d-f22e27f22e8d" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/connect.h(3)   Vyatta Configuration System  src/client/connect.h(3)
+
+
+
+NAME
+       src/client/connect.h
+
+SYNOPSIS
+       #include &lt;stdio.h&gt;
+       #include &lt;stdlib.h&gt;
+
+
+   Data Structures
+       struct configd_conn
+
+   Functions
+       int configd_open_connection (struct configd_conn *)
+       void configd_close_connection (struct configd_conn *)
+       int configd_set_session_id (struct configd_conn *, const char *)
+
+Function Documentation
+   int configd_open_connection (struct configd_conn *)
+       configd_open_connection connects to configd. The state for this
+       connection is stored in the configd_conn struct, which must be non
+       NULL. The return values are 0:ok, -1:error.
+
+   void configd_close_connection (struct configd_conn *)
+       configd_close_connection ends the connection with configd. After this
+       is called the connection struct is no longer valid.
+
+   int configd_set_session_id (struct configd_conn *, const char *)
+       configd_set_session_id sets the session id for this connection.
+       Typically this is done just after connecting to configd. The session id
+       is a string consisting of numbers representing the connection.
+       Typically the value that is used is the pid of the process. Any unique
+       identifier will work as a connection id.
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020	       src/client/connect.h(3)</pre>
+</div></div></td></tr></tbody></table></div><p><br/></p><h2 id="CConfigdClientLibrary-error.h">error.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="5bda3c1c-75c8-4c71-83b8-aaf509878e9d" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/error.h(3)	  Vyatta Configuration System	 src/client/error.h(3)
+
+
+
+NAME
+       src/client/error.h
+
+SYNOPSIS
+   Data Structures
+       struct configd_error
+	   The configd_error struct consists of the error message text and the
+	   function it was generated in (source).
+
+   Functions
+       void configd_error_free (struct configd_error *error)
+	   configd_error_free frees the error struct and should be used when
+	   the error message is no longer needed.
+
+Function Documentation
+   void configd_error_free (struct configd_error * error)
+       configd_error_free frees the error struct and should be used when the
+       error message is no longer needed.
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020		 src/client/error.h(3)</pre>
+</div></div></td></tr></tbody></table></div><p><br/></p><h2 id="CConfigdClientLibrary-file.h">file.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="742c6b4f-f25c-4a20-aea5-cdcea17ff28a" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/file.h(3)	  Vyatta Configuration System	  src/client/file.h(3)
+
+
+
+NAME
+       src/client/file.h
+
+SYNOPSIS
+   Functions
+       char * configd_file_read (struct configd_conn *, const char *filename,
+	   struct configd_error *error)
+       char * configd_file_migrate (struct configd_conn *, const char
+	   *filename, struct configd_error *error)
+
+Function Documentation
+   char* configd_file_read (struct configd_conn *, const char * filename,
+       struct configd_error * error)
+   char* configd_file_migrate (struct configd_conn *, const char * filename,
+       struct configd_error * error)
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020		  src/client/file.h(3)</pre>
+</div></div></td></tr></tbody></table></div><h2 id="CConfigdClientLibrary-node.h">node.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="b2346430-7699-4a31-88f0-fb5969844a27" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/node.h(3)	  Vyatta Configuration System	  src/client/node.h(3)
+
+
+
+NAME
+       src/client/node.h
+
+SYNOPSIS
+   Macros
+       #define CONFIGD_TREEGET_DEFAULTS   (1 &lt;&lt; 0)
+       #define CONFIGD_TREEGET_SECRETS	 (1 &lt;&lt; 1)
+       #define CONFIGD_TREEGET_ALL
+	   (CONFIGD_TREEGET_DEFAULTS|CONFIGD_TREEGET_SECRETS)
+
+   Functions
+       int configd_node_exists (struct configd_conn *, int DB, const char
+	   *path, struct configd_error *)
+       int configd_node_is_default (struct configd_conn *, int DB, const char
+	   *path, struct configd_error *)
+       struct vector * configd_node_get (struct configd_conn *, int DB, const
+	   char *path, struct configd_error *)
+       int configd_node_get_status (struct configd_conn *, int, const char *,
+	   struct configd_error *)
+       int configd_node_get_type (struct configd_conn *, const char *, struct
+	   configd_error *)
+       char * configd_node_get_comment (struct configd_conn *, int, const char
+	   *, struct configd_error *)
+       char * configd_tree_get_encoding (struct configd_conn *conn, int db,
+	   const char *path, const char *encoding, struct configd_error
+	   *error)
+       char * configd_tree_get_encoding_flags (struct configd_conn *conn, int
+	   db, const char *path, const char *encoding, unsigned int flags,
+	   struct configd_error *error)
+       char * configd_tree_get (struct configd_conn *, int, const char *,
+	   struct configd_error *)
+       char * configd_tree_get_xml (struct configd_conn *, int, const char *,
+	   struct configd_error *)
+       char * configd_tree_get_internal (struct configd_conn *, int, const
+	   char *, struct configd_error *)
+       char * configd_tree_get_full_encoding (struct configd_conn *conn, int
+	   db, const char *path, const char *encoding, struct configd_error
+	   *error)
+       char * configd_tree_get_full_encoding_flags (struct configd_conn *conn,
+	   int db, const char *path, const char *encoding, unsigned int flags,
+	   struct configd_error *error)
+       char * configd_tree_get_full (struct configd_conn *, int, const char *,
+	   struct configd_error *)
+       char * configd_tree_get_full_xml (struct configd_conn *, int, const
+	   char *, struct configd_error *)
+       char * configd_tree_get_full_internal (struct configd_conn *, int,
+	   const char *, struct configd_error *)
+       char * configd_node_get_complete_env (struct configd_conn *, const char
+	   *, struct configd_error *)
+
+Macro Definition Documentation
+   #define CONFIGD_TREEGET_DEFAULTS   (1 &lt;&lt; 0)
+   #define CONFIGD_TREEGET_SECRETS   (1 &lt;&lt; 1)
+   #define CONFIGD_TREEGET_ALL
+       (CONFIGD_TREEGET_DEFAULTS|CONFIGD_TREEGET_SECRETS)
+Function Documentation
+   int configd_node_exists (struct configd_conn *, int DB, const char * path,
+       struct configd_error *)
+       configd_node_exists takes a '/' separated path and a database. It
+       returns whether the node at the path is in the database. The return
+       values are 0: false, 1: true, -1: error. On error if the error struct
+       pointer is non NULL the error will be filled out.
+
+   int configd_node_is_default (struct configd_conn *, int DB, const char *
+       path, struct configd_error *)
+       configd_node_is_default takes a '/' separated path and a database. It
+       returns whether the node at the path in the database is marked as
+       default. The return values are 0: false, 1: true, -1: error. On error
+       if the error struct pointer is non NULL the error will be filled out.
+
+   struct vector* configd_node_get (struct configd_conn *, int DB, const char
+       * path, struct configd_error *)
+       configd_node_get takes a '/' separated path and a database. It returns
+       a vector consisting of the nodes value or values. Contrary to previous
+       versions of this API this function works on any node type. On error the
+       pointer to the vector will be NULL and if the error struct pointer is
+       non NULL the error will be filled out.
+
+   int configd_node_get_status (struct configd_conn *, int, const char *,
+       struct configd_error *)
+       configd_node_get_status takes a '/' separated path and a database. It
+       returns the whether the node was 'added', 'deleted', 'changed', or
+       'unchanged' in this database. The return values are one of the
+       NodeStatus type or -1 on error. On error if the error struct pointer is
+       non NULL the error will be filled out.
+
+   int configd_node_get_type (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_node_get_type takes a '/' separated path and a database. It
+       returns the node's type in the tree: 'leaf', 'multi', 'container', or
+       'tag'. The return values are one of the NodeType type or -1 on error.
+       On error if the error struct pointer is non NULL the error will be
+       filled out.
+
+   char* configd_node_get_comment (struct configd_conn *, int, const char *,
+       struct configd_error *)
+       configd_node_get_comment takes a '/' separated path and a database. It
+       returns whether the node's comment if one exists or '' otherwise. On
+       error the returned pointer is NULL and if the error struct pointer is
+       non NULL the error will be filled out.
+
+   char* configd_tree_get_encoding (struct configd_conn * conn, int db, const
+       char * path, const char * encoding, struct configd_error * error)
+       configd_tree_get_encoding takes a '/' separated path and a database. It
+       returns an 'encoding' encoded string representing the configuration
+       (sub)tree requested. On error the pointer returned will be NULL and if
+       the error struct pointer is non NULL the error will be filled out.
+
+   char* configd_tree_get_encoding_flags (struct configd_conn * conn, int db,
+       const char * path, const char * encoding, unsigned int flags, struct
+       configd_error * error)
+       configd_tree_get_encoding_flags takes a '/' separated path and a
+       database. It returns an 'encoding' encoded string representing the
+       configuration (sub)tree requested containing content based on the
+       specified flags. On error the pointer returned will be NULL and if the
+       error struct pointer is non NULL the error will be filled out.
+
+   char* configd_tree_get (struct configd_conn *, int, const char *, struct
+       configd_error *)
+       configd_tree_get takes a '/' separated path and a database. It returns
+       a JSON encoded string representing the configuration (sub)tree
+       requested. On error the pointer returned will be NULL and if the error
+       struct pointer is non NULL the error will be filled out.
+
+   char* configd_tree_get_xml (struct configd_conn *, int, const char *,
+       struct configd_error *)
+       configd_tree_get_xml takes a '/' separated path and a database. It
+       returns a XML encoded string representing the configuration (sub)tree
+       requested. On error the pointer returned will be NULL and if the error
+       struct pointer is non NULL the error will be filled out.
+
+   char* configd_tree_get_internal (struct configd_conn *, int, const char *,
+       struct configd_error *)
+       configd_tree_get_internal takes a '/' separated path and a database. It
+       returns a JSON encoded string representing the configuration (sub)tree
+       requested. This is encoded such that it will be easy to use from a
+       programmer's point of view. On error the pointer returned will be NULL
+       and if the error struct pointer is non NULL the error will be filled
+       out.
+
+   char* configd_tree_get_full_encoding (struct configd_conn * conn, int db,
+       const char * path, const char * encoding, struct configd_error * error)
+       configd_tree_get_full_encoding takes a '/' separated path and a
+       database. It returns an 'encoding' encoded string representing the
+       configuration (sub)tree requested. On error the pointer returned will
+       be NULL and if the error struct pointer is non NULL the error will be
+       filled out.
+
+   char* configd_tree_get_full_encoding_flags (struct configd_conn * conn, int
+       db, const char * path, const char * encoding, unsigned int flags,
+       struct configd_error * error)
+       configd_tree_get_full_encoding_flags takes a '/' separated path and a
+       database. It returns an 'encoding' encoded string representing the
+       configuration (sub)tree requested containing content based on the
+       specified flags. On error the pointer returned will be NULL and if the
+       error struct pointer is non NULL the error will be filled out.
+
+   char* configd_tree_get_full (struct configd_conn *, int, const char *,
+       struct configd_error *)
+       configd_tree_get_full takes a '/' separated path and a database. It
+       returns a JSON encoded string representing the (sub)tree requested. On
+       error the pointer returned will be NULL and if the error struct pointer
+       is non NULL the error will be filled out.
+
+   char* configd_tree_get_full_xml (struct configd_conn *, int, const char *,
+       struct configd_error *)
+       configd_tree_get_full_xml takes a '/' separated path and a database. It
+       returns a XML encoded string representing the (sub)tree requested. On
+       error the pointer returned will be NULL and if the error struct pointer
+       is non NULL the error will be filled out.
+
+   char* configd_tree_get_full_internal (struct configd_conn *, int, const
+       char *, struct configd_error *)
+       configd_tree_get_full_internal takes a '/' separated path and a
+       database. It returns a JSON encoded string representing the (sub)tree
+       requested. This is encoded such that it will be easy to use from a
+       programmer's point of view. On error the pointer returned will be NULL
+       and if the error struct pointer is non NULL the error will be filled
+       out.
+
+   char* configd_node_get_complete_env (struct configd_conn *, const char *,
+       struct configd_error *)
+       configd_node_get_complete_env returns environement variables used by
+       the completion scripts. The return values are 0:false, 1:true,
+       -1:error. On error if the error struct pointer is non NULL then the
+       error will be populated.
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020		  src/client/node.h(3)</pre>
+</div></div></td></tr></tbody></table></div><p><br/></p><h2 id="CConfigdClientLibrary-rpc.h">rpc.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="a9e2ff82-410b-4bc0-85c2-5b065d53133b" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/rpc.h(3)	  Vyatta Configuration System	   src/client/rpc.h(3)
+
+
+
+NAME
+       src/client/rpc.h
+
+SYNOPSIS
+   Enumerations
+       enum Db { AUTO = 0, RUNNING, CANDIDATE, EFFECTIVE }
+       enum NodeStatus { NODE_STATUS_UNCHANGED = 0, NODE_STATUS_CHANGED,
+	   NODE_STATUS_ADDED, NODE_STATUS_DELETED }
+       enum NodeType { NODE_TYPE_LEAF = 0, NODE_TYPE_MULTI,
+	   NODE_TYPE_CONTAINER, NODE_TYPE_TAG }
+       enum RespT { INIT = 0, STRING, INT, STATUS, VECTOR, MAP, ERROR }
+       enum ShowFlagT { SHOWF_DEFAULTS = 0x01, SHOWF_HIDE_SECRETS = 0x02,
+	   SHOWF_CONTEXT_DIFF = 0x04, SHOWF_COMMANDS = 0x08, SHOWF_IGNORE_EDIT
+	   = 0x10 }
+
+Enumeration Type Documentation
+   enum Db
+       Enumerator
+
+       AUTO
+
+       RUNNING
+
+       CANDIDATE
+
+       EFFECTIVE
+
+   enum NodeStatus
+       Enumerator
+
+       NODE_STATUS_UNCHANGED
+
+       NODE_STATUS_CHANGED
+
+       NODE_STATUS_ADDED
+
+       NODE_STATUS_DELETED
+
+   enum NodeType
+       Enumerator
+
+       NODE_TYPE_LEAF
+
+       NODE_TYPE_MULTI
+
+       NODE_TYPE_CONTAINER
+
+       NODE_TYPE_TAG
+
+   enum RespT
+       Enumerator
+
+       INIT
+
+       STRING
+
+       INT
+
+       STATUS
+
+       VECTOR
+
+       MAP
+
+       ERROR
+
+   enum ShowFlagT
+       Enumerator
+
+       SHOWF_DEFAULTS
+
+       SHOWF_HIDE_SECRETS
+
+       SHOWF_CONTEXT_DIFF
+
+       SHOWF_COMMANDS
+
+       SHOWF_IGNORE_EDIT
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020		   src/client/rpc.h(3)</pre>
+</div></div></td></tr></tbody></table></div><p><br/></p><h2 id="CConfigdClientLibrary-session.h">session.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="a901ef4d-9308-47a3-b90f-0f2b4b78b74b" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/session.h(3)   Vyatta Configuration System  src/client/session.h(3)
+
+
+
+NAME
+       src/client/session.h
+
+SYNOPSIS
+   Functions
+       int configd_sess_exists (struct configd_conn *, struct configd_error *)
+       int configd_sess_setup (struct configd_conn *, struct configd_error *)
+       int configd_sess_teardown (struct configd_conn *, struct configd_error
+	   *)
+       int configd_sess_lock (struct configd_conn *conn, struct configd_error
+	   *error)
+       int configd_sess_unlock (struct configd_conn *conn, struct
+	   configd_error *error)
+       int configd_sess_locked (struct configd_conn *conn, struct
+	   configd_error *error)
+       int configd_sess_changed (struct configd_conn *, struct configd_error
+	   *)
+       int configd_sess_saved (struct configd_conn *, struct configd_error *)
+       int configd_sess_mark_saved (struct configd_conn *, struct
+	   configd_error *)
+       int configd_sess_mark_unsaved (struct configd_conn *, struct
+	   configd_error *)
+       char * configd_sess_get_env (struct configd_conn *, struct
+	   configd_error *)
+       char * configd_edit_get_env (struct configd_conn *, const char *,
+	   struct configd_error *)
+       struct map * configd_get_help (struct configd_conn *conn, int
+	   from_schema, const char *cpath, struct configd_error *error)
+
+Function Documentation
+   int configd_sess_exists (struct configd_conn *, struct configd_error *)
+       configd_sess_exists returns whether the session id exists. The return
+       values are 0:false, 1:true, -1:error. On error if the error struct
+       pointer is non NULL then the error will be populated.
+
+   int configd_sess_setup (struct configd_conn *, struct configd_error *)
+       configd_sess_setup creates a new configuration session and
+       corresponding candidate database. The return values are 0:success,
+       -1:error. On error if the error struct pointer is non NULL then the
+       error will be populated.
+
+   int configd_sess_teardown (struct configd_conn *, struct configd_error *)
+       configd_sess_teardown destroys the configuration session and
+       corresponding candidate database. The return values are 0:success,
+       -1:error. On error if the error struct pointer is non NULL then the
+       error will be populated.
+
+   int configd_sess_lock (struct configd_conn * conn, struct configd_error *
+       error)
+       configd_sess_lock locks a shared candidate database. The return values
+       are 0:success, -1:error. On error if the error struct pointer is non
+       NULL then the error will be populated.
+
+   int configd_sess_unlock (struct configd_conn * conn, struct configd_error *
+       error)
+       configd_sess_unlock unlocks a shared candidate database. The return
+       values are 0:success, -1:error. On error if the error struct pointer is
+       non NULL then the error will be populated.
+
+   int configd_sess_locked (struct configd_conn * conn, struct configd_error *
+       error)
+       configd_sess_locked returns whether the session is currently locked The
+       return values are &gt;0:locked by pid 0:unlocked, -1:error. On error if
+       the error struct pointer is non NULL then the error will be populated.
+
+   int configd_sess_changed (struct configd_conn *, struct configd_error *)
+       configd_sess_changed returns whether the candidate database for this
+       session id has changes. The return values are 0:false, 1:true,
+       -1:error. On error if the error struct pointer is non NULL then the
+       error will be populated.
+
+   int configd_sess_saved (struct configd_conn *, struct configd_error *)
+       configd_sess_saved reports whether the candidate database for this
+       session id has been saved. The return values are 0:false, 1:true,
+       -1:error. On error if the error struct pointer is non NULL then the
+       error will be populated.
+
+   int configd_sess_mark_saved (struct configd_conn *, struct configd_error *)
+       configd_sess_mark_saved marks the database as saved. The return values
+       are 0:success, -1:error. On error if the error struct pointer is non
+       NULL then the error will be populated.
+
+   int configd_sess_mark_unsaved (struct configd_conn *, struct configd_error
+       *)
+       configd_sess_mark_unsaved marks the database as unsaved. The return
+       values are 0:success, -1:error. On error if the error struct pointer is
+       non NULL then the error will be populated.
+
+   char* configd_sess_get_env (struct configd_conn *, struct configd_error *)
+       configd_sess_get_env returns the session environment variables that the
+       shell needs in config mode. On error the returned pointer is NULL, and
+       if the error struct pointer is non NULL then the error will be
+       populated.
+
+   char* configd_edit_get_env (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_edit_get_env returns the environment variables for the new
+       'edit mode' that is used by the config mode shell. On error the
+       returned pointer is NULL, and if the error struct pointer is non NULL
+       then the error will be populated.
+
+   struct map* configd_get_help (struct configd_conn * conn, int from_schema,
+       const char * cpath, struct configd_error * error)
+       configd_get_help returns the a map consisting of the next possible
+       parts of a command and its help text. On error the returned pointer is
+       NULL, and if the error struct pointer is non NULL then the error will
+       be populated.
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020	       src/client/session.h(3)</pre>
+</div></div></td></tr></tbody></table></div><p><br/></p><h2 id="CConfigdClientLibrary-template.h">template.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="3a2149f2-4d52-467d-8791-8f507fed6a4d" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/template.h(3)  Vyatta Configuration System src/client/template.h(3)
+
+
+
+NAME
+       src/client/template.h
+
+SYNOPSIS
+   Functions
+       char * configd_schema_get (struct configd_conn *, const char *module,
+	   const char *fmt, struct configd_error *error)
+       char * configd_get_schemas (struct configd_conn *, struct configd_error
+	   *error)
+       struct map * configd_get_features (struct configd_conn *, struct
+	   configd_error *error)
+       struct map * configd_tmpl_get (struct configd_conn *, const char *,
+	   struct configd_error *error)
+       struct vector * configd_tmpl_get_children (struct configd_conn *, const
+	   char *, struct configd_error *error)
+       struct vector * configd_tmpl_get_allowed (struct configd_conn *, const
+	   char *, struct configd_error *error)
+       int configd_tmpl_validate_path (struct configd_conn *, const char *,
+	   struct configd_error *error)
+       int configd_tmpl_validate_values (struct configd_conn *, const char *,
+	   struct configd_error *error)
+
+Function Documentation
+   char* configd_schema_get (struct configd_conn *, const char * module, const
+       char * fmt, struct configd_error * error)
+   char* configd_get_schemas (struct configd_conn *, struct configd_error *
+       error)
+   struct map* configd_get_features (struct configd_conn *, struct
+       configd_error * error)
+       configd_get_features returns a map of schema ids and the corresponding
+       enabled features.
+
+       On error the returned pointer is NULL, and if the error struct pointer
+       is non NULL the error will be populated.
+
+   struct map* configd_tmpl_get (struct configd_conn *, const char *, struct
+       configd_error * error)
+       configd_tmpl_get takes a '/' separated path and returns a map
+       consisting of a subset of its template definition. The subset consists
+       of: is_value: whether the node is a value type: the type of the node
+       type2: the secondary type of the node help: the help text string multi:
+       whether the node is a multi tag: whether the node is a tag limit: the
+       limit of nodes for a tag node default: the default value for the node
+       allowed: the allowed field val_help: the val_help field comp_help: the
+       comp_help field secret: whether this node should be treated as
+       sensitive information On error the returned pointer is NULL, and if the
+       error struct pointer is non NULL the error will be populated.
+
+       NOTE: this api is considered to be unstable and may change as we
+       continue the resturcturing work.
+
+   struct vector* configd_tmpl_get_children (struct configd_conn *, const char
+       *, struct configd_error * error)
+       configd_tmpl_get_children takes a '/' spearated path and returns a
+       vector containing its children. On error the returned pointer is NULL,
+       and if the error struct pointer is non NULL the error will be
+       populated.
+
+       NOTE: these are the children of the template and not the values in the
+       database.
+
+   struct vector* configd_tmpl_get_allowed (struct configd_conn *, const char
+       *, struct configd_error * error)
+       configd_tmpl_get_allowed takes a '/' separated path and returns a
+       vector containing the allowed fields for that node. On error the
+       returned pointer is NULL, and if the error struct pointer is non NULL
+       the error will be populated.
+
+       NOTE: this evaluates the allowed script to generate the vector of
+       allowed values.
+
+   int configd_tmpl_validate_path (struct configd_conn *, const char *, struct
+       configd_error * error)
+       configd_tmpl_validate_path takes a '/' separated path and return
+       whether it has a valid template. The return values are 0:false, 1:true,
+       -1:error. On error if the error struct pointer is non NULL the error
+       will be populated.
+
+   int configd_tmpl_validate_values (struct configd_conn *, const char *,
+       struct configd_error * error)
+       configd_tmpl_validate_path takes a '/' separated path and return
+       whether it has a valid template and the values are valid according to
+       the schema. The return values are 0:false, 1:true, -1:error. On error
+       if the error struct pointer is non NULL the error will be populated.
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020	      src/client/template.h(3)</pre>
+</div></div></td></tr></tbody></table></div><p><br/></p><h2 id="CConfigdClientLibrary-transaction.h">transaction.h</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="f9d51544-40c9-4dc5-ab9f-5746c725da49" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">src/client/transaction.h(3Vyatta Configuration Systsrc/client/transaction.h(3)
+
+
+
+NAME
+       src/client/transaction.h
+
+SYNOPSIS
+   Functions
+       char * configd_show (struct configd_conn *, int, const char *, const
+	   char *, const char *, int, struct configd_error *)
+       char * configd_set (struct configd_conn *, const char *, struct
+	   configd_error *)
+       char * configd_validate_path (struct configd_conn *, const char *,
+	   struct configd_error *)
+       char * configd_delete (struct configd_conn *, const char *, struct
+	   configd_error *)
+       char * configd_rename (struct configd_conn *, const char *, struct
+	   configd_error *)
+       char * configd_copy (struct configd_conn *, const char *, struct
+	   configd_error *)
+       char * configd_comment (struct configd_conn *, const char *, struct
+	   configd_error *)
+       char * configd_commit (struct configd_conn *, const char *, struct
+	   configd_error *)
+       char * configd_confirmed_commit (struct configd_conn *, const char *,
+	   int, const char *, const char *, const char *, struct configd_error
+	   *)
+       char * configd_cancel_commit (struct configd_conn *, const char *,
+	   const char *, struct configd_error *)
+       char * configd_discard (struct configd_conn *, struct configd_error *)
+       char * configd_save (struct configd_conn *, const char *, struct
+	   configd_error *)
+       int configd_load (struct configd_conn *, const char *, struct
+	   configd_error *)
+       int configd_merge (struct configd_conn *, const char *, struct
+	   configd_error *)
+       int configd_load_report_warnings (struct configd_conn *, const char *,
+	   struct configd_error *)
+       char * configd_validate (struct configd_conn *, struct configd_error *)
+       char * configd_edit_config_xml (struct configd_conn *conn, const char
+	   *config_target, const char *default_operation, const char
+	   *test_option, const char *error_option, const char *config, struct
+	   configd_error *error)
+
+Function Documentation
+   char* configd_show (struct configd_conn *, int, const char *, const char *,
+       const char *, int, struct configd_error *)
+       configd_show is a mess, do not rely on it for API calls it is used only
+       in cli-shell-api.
+
+   char* configd_set (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_set takes a '/' separated path and attemptes to create it in
+       the candidate database. On error the pointer it returns is set to NULL
+       and if the configd_error struct is non NULL the error is populated.
+
+   char* configd_validate_path (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_validate_path takes a '/' separated path and verifies the
+       syntax of the path On error the pointer it returns is set to NULL and
+       if the configd_error struct is non NULL the error is populated.
+
+   char* configd_delete (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_delete takes a '/' separated path and attemptes to delete it
+       from the candidate database. On error the pointer it returns is set to
+       NULL and if the configd_error struct is non NULL the error is
+       populated.
+
+   char* configd_rename (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_rename takes 2 '/' separated paths and attemptes to rename the
+       first path to the second. On error the pointer it returns is set to
+       NULL and if the configd_error struct is non NULL the error is populated
+
+   char* configd_copy (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_copy takes 2 '/' separated paths and attemptes to copy the
+       first path to the second. On error the pointer it returns is set to
+       NULL and if the configd_error struct is non NULL the error is populated
+
+   char* configd_comment (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_comment takes a '/' separated path and attemptes to create the
+       comment in the candidate database. On error the pointer it returns is
+       set to NULL and if the configd_error struct is non NULL the error is
+       populated.
+
+   char* configd_commit (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_commit preforms the commit operation on the candidate database.
+       On error the pointer it returns is set to NULL and if the configd_error
+       struct is non NULL the error is populated.
+
+   char* configd_confirmed_commit (struct configd_conn *, const char *, int,
+       const char *, const char *, const char *, struct configd_error *)
+       configd_confirmed_commit preforms the commit operation on the candidate
+       database. On error the pointer it returns is set to NULL and if the
+       configd_error struct is non NULL the error is populated.
+
+   char* configd_cancel_commit (struct configd_conn *, const char *, const
+       char *, struct configd_error *)
+       configd_cancel_commit reverts a pending confirmed commit operation. On
+       error the pointer it returns is set to NULL and if the configd_error
+       struct is non NULL the error is populated.
+
+   char* configd_discard (struct configd_conn *, struct configd_error *)
+       configd_discard destroys all pending changes in the candidate database.
+       On error the pointer it returns is set to NULL and if the configd_error
+       struct is non NULL the error is populated.
+
+   char* configd_save (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_save takes a filesystem path and writes the configuration to a
+       file at that location. On error the pointer it returns is set to NULL
+       and if the configd_error struct is non NULL the error is populated.
+
+   int configd_load (struct configd_conn *, const char *, struct configd_error
+       *)
+       configd_load takes a filesystem path and attempts to read the
+       configuration at that path. On error the pointer it returns is set to
+       NULL and if the configd_error struct is non NULL the error is populated
+
+   int configd_merge (struct configd_conn *, const char *, struct
+       configd_error *)
+       configd_merge takes a filesystem path and attempts to read
+       configuration segments from that path and adds/replaces these segments
+       to the candidate configuration. On error the pointer it returns is set
+       to NULL and if the configd_error struct is non NULL the error is
+       populated
+
+   int configd_load_report_warnings (struct configd_conn *, const char *,
+       struct configd_error *)
+       configd_load_report_warnings takes a filesystem path and attempts to
+       read the configuration at that path. On error the pointer it returns is
+       set to NULL and if the configd_error struct is non NULL the error is
+       populated. Additionally, if some line(s) of configuration generate
+       warnings, but no error is reported, a valid pointer is returned along
+       with the error struct populated if provided.
+
+   char* configd_validate (struct configd_conn *, struct configd_error *)
+       configd_validate preforms the validate operation on the candidate
+       database. On error the pointer it returns is set to NULL and if the
+       configd_error struct is non NULL the error is populated.
+
+   char* configd_edit_config_xml (struct configd_conn * conn, const char *
+       config_target, const char * default_operation, const char *
+       test_option, const char * error_option, const char * config, struct
+       configd_error * error)
+       configd_edit_config_xml preforms a RFC-6241 edit-config operation. On
+       error the pointer it returns is set to NULL and if the configd_error
+       struct is non NULL the error is populated.
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020	   src/client/transaction.h(3)</pre>
+</div></div></td></tr></tbody></table></div>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>DANOS 2105 Release Notes - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details open><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item active'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>DANOS 2105 Release Notes</h1><p></p><style type="text/css">/*<![CDATA[*/
+div.rbtoc1790153967424 {padding: 0px;}
+div.rbtoc1790153967424 ul {list-style: disc;margin-left: 0px;}
+div.rbtoc1790153967424 li {margin-left: 0px;padding-left: 0px;}
+
+/*]]>*/</style><div class="toc-macro rbtoc1790153967424">
+<ul class="toc-indentation">
+<li><a href="#DANOS2105ReleaseNotes-Overview">Overview</a></li>
+<li><a href="#DANOS2105ReleaseNotes-showversion">show version</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Configurationandoperationalmodecommands">Configuration and operational mode commands</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Importantchanges">Important changes</a>
+<ul class="toc-indentation">
+<li><a href="#DANOS2105ReleaseNotes-Reminderaboutthedefaultusernameandpassword">Reminder about the default username and password</a></li>
+</ul>
+</li>
+<li><a href="#DANOS2105ReleaseNotes-NewFeatures">New Features</a>
+<ul class="toc-indentation">
+<li><a href="#DANOS2105ReleaseNotes-EnhancedSyslog">Enhanced Syslog</a></li>
+<li><a href="#DANOS2105ReleaseNotes-ARPConfigurationsupport">ARP Configuration support</a></li>
+<li><a href="#DANOS2105ReleaseNotes-NETCONFsupportforaddingcopy-configtothecandidateconfiguration">NETCONF support for adding copy-config to the candidate configuration</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Prohibitpasswordreuse">Prohibit password reuse</a></li>
+<li><a href="#DANOS2105ReleaseNotes-NewDPIapplicationsandprotocols">New DPI applications and protocols</a></li>
+<li><a href="#DANOS2105ReleaseNotes-DHCPenhancementsforswitchinterfaces">DHCP enhancements for switch interfaces</a></li>
+<li><a href="#DANOS2105ReleaseNotes-ISISenhancements">ISIS enhancements</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Supportfornon-dataplaneinterfaces">Support for non-dataplane interfaces</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Miscellaneouschanges">Miscellaneous changes</a></li>
+</ul>
+</li>
+<li><a href="#DANOS2105ReleaseNotes-Obsoletefeatures">Obsolete features</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Operationalcommandchanges">Operational command changes</a>
+<ul class="toc-indentation">
+<li><a href="#DANOS2105ReleaseNotes-tech-supportarchiveremoved">tech-support archive removed</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Querydataplanepipelinetofindoutwhichfeaturesareenabled">Query dataplane pipeline to find out which features are enabled</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Querythedataplane’sviewoftheMPLSroutes">Query the dataplane’s view of the MPLS routes</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Miscellaneouschanges.1">Miscellaneous changes</a></li>
+</ul>
+</li>
+<li><a href="#DANOS2105ReleaseNotes-ResolvedSecurityVulnerabilities">Resolved Security Vulnerabilities</a></li>
+<li><a href="#DANOS2105ReleaseNotes-Licenses">Licenses</a>
+<ul class="toc-indentation">
+<li><a href="#DANOS2105ReleaseNotes-MSTP/RSA">MSTP/RSA</a></li>
+</ul>
+</li>
+</ul>
+</div><h1 id="DANOS2105ReleaseNotes-Overview">Overview</h1><p>Welcome to the 2105 (May 2021) version of DANOS.</p><p>The DANOS 2105 release is based upon Debian 10, with the 5.4 version of the Linux Kernel, the 1911 version of DPDK, and the <a class="external-link" href="https://github.com/FRRouting/frr/releases/tag/frr-7.5.1" rel="nofollow">7.5.1 version of FRR</a>.</p><h1 id="DANOS2105ReleaseNotes-showversion">show version</h1><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 760.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@vm-d2105-1:~$ show version
+Version:      2105
+Description:  DANOS (Inverness) 2105 (DANOS:Shipping:2105:20210611)
+Built on:     Fri Jun 11 11:58:32 UTC 2021</pre>
+</div></div></td></tr></tbody></table></div><h1 id="DANOS2105ReleaseNotes-Configurationandoperationalmodecommands">Configuration and operational mode commands</h1><p>The full list of configuration commands and operational mode (e.g. “show”) commands are attached to this page.</p><h1 id="DANOS2105ReleaseNotes-Importantchanges">Important changes</h1><h2 id="DANOS2105ReleaseNotes-Reminderaboutthedefaultusernameandpassword">Reminder about the default username and password</h2><p>The default LiveCD and ONIE image username and password change in the 2005 release from vyatta/vyatta to tmpuser/tmppswd.</p><p>As part of the installation process, the user has to enter a username and password manually. It is no longer possible to press "enter" and accept the default vyatta/vyatta option.</p><h1 id="DANOS2105ReleaseNotes-NewFeatures">New Features</h1><h2 id="DANOS2105ReleaseNotes-EnhancedSyslog">Enhanced Syslog</h2><p>The Enhanced Syslog feature allows syslog to be configured using a rule-based approach, similar to firewall rules. This provides more flexibility such that more complex expressions can be used to select which messages to discard and select, to which files/hosts those messages are forwarded, as well as rate-limiting based support.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system syslog-enhanced
+system syslog-enhanced file &lt;entry&gt;
+system syslog-enhanced file &lt;entry&gt; archive files &lt;value&gt;
+system syslog-enhanced file &lt;entry&gt; archive size &lt;value&gt;
+system syslog-enhanced file &lt;entry&gt; filename &lt;value&gt;
+system syslog-enhanced host &lt;entry&gt;
+system syslog-enhanced host &lt;entry&gt; hostname &lt;value&gt;
+system syslog-enhanced host &lt;entry&gt; port &lt;value&gt;
+system syslog-enhanced host &lt;entry&gt; protocol tcp
+system syslog-enhanced host &lt;entry&gt; protocol udp
+system syslog-enhanced host &lt;entry&gt; source-interface &lt;value&gt;
+system syslog-enhanced host &lt;entry&gt; tls
+system syslog-enhanced host &lt;entry&gt; tls authentication mode x509/fingerprint
+system syslog-enhanced host &lt;entry&gt; tls authentication mode x509/name
+system syslog-enhanced host &lt;entry&gt; tls authentication peers &lt;peer&gt;
+system syslog-enhanced host &lt;entry&gt; tls authentication peers &lt;peer&gt; fingerprint &lt;value&gt;
+system syslog-enhanced host &lt;entry&gt; tls cipher-suite &lt;cipher&gt;
+system syslog-enhanced input journal rate-limit burst &lt;value&gt;
+system syslog-enhanced input journal rate-limit interval &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt;
+system syslog-enhanced rule &lt;rule-number&gt; description &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; disable
+system syslog-enhanced rule &lt;rule-number&gt; match facility all
+system syslog-enhanced rule &lt;rule-number&gt; match facility auth
+system syslog-enhanced rule &lt;rule-number&gt; match facility authpriv
+system syslog-enhanced rule &lt;rule-number&gt; match facility cron
+system syslog-enhanced rule &lt;rule-number&gt; match facility daemon
+system syslog-enhanced rule &lt;rule-number&gt; match facility dataplane
+system syslog-enhanced rule &lt;rule-number&gt; match facility kern
+system syslog-enhanced rule &lt;rule-number&gt; match facility local0
+system syslog-enhanced rule &lt;rule-number&gt; match facility local1
+system syslog-enhanced rule &lt;rule-number&gt; match facility local2
+system syslog-enhanced rule &lt;rule-number&gt; match facility local3
+system syslog-enhanced rule &lt;rule-number&gt; match facility local4
+system syslog-enhanced rule &lt;rule-number&gt; match facility local5
+system syslog-enhanced rule &lt;rule-number&gt; match facility local6
+system syslog-enhanced rule &lt;rule-number&gt; match facility local7
+system syslog-enhanced rule &lt;rule-number&gt; match facility lpr
+system syslog-enhanced rule &lt;rule-number&gt; match facility mail
+system syslog-enhanced rule &lt;rule-number&gt; match facility mark
+system syslog-enhanced rule &lt;rule-number&gt; match facility news
+system syslog-enhanced rule &lt;rule-number&gt; match facility protocols
+system syslog-enhanced rule &lt;rule-number&gt; match facility security
+system syslog-enhanced rule &lt;rule-number&gt; match facility sensors
+system syslog-enhanced rule &lt;rule-number&gt; match facility syslog
+system syslog-enhanced rule &lt;rule-number&gt; match facility user
+system syslog-enhanced rule &lt;rule-number&gt; match facility uucp
+system syslog-enhanced rule &lt;rule-number&gt; match msg posix-match &lt;regex&gt;
+system syslog-enhanced rule &lt;rule-number&gt; match msg posix-match &lt;regex&gt; unless &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-least alert
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-least crit
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-least debug
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-least emerg
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-least err
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-least info
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-least notice
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-least warning
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-most alert
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-most crit
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-most debug
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-most emerg
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-most err
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-most info
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-most notice
+system syslog-enhanced rule &lt;rule-number&gt; match severity at-most warning
+system syslog-enhanced rule &lt;rule-number&gt; match severity equals alert
+system syslog-enhanced rule &lt;rule-number&gt; match severity equals crit
+system syslog-enhanced rule &lt;rule-number&gt; match severity equals debug
+system syslog-enhanced rule &lt;rule-number&gt; match severity equals emerg
+system syslog-enhanced rule &lt;rule-number&gt; match severity equals err
+system syslog-enhanced rule &lt;rule-number&gt; match severity equals info
+system syslog-enhanced rule &lt;rule-number&gt; match severity equals notice
+system syslog-enhanced rule &lt;rule-number&gt; match severity equals warning
+system syslog-enhanced rule &lt;rule-number&gt; match with-flag &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; match without-flag &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; otherwise clear-flag &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; otherwise console
+system syslog-enhanced rule &lt;rule-number&gt; otherwise discard
+system syslog-enhanced rule &lt;rule-number&gt; otherwise file &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; otherwise host &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility all
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility auth
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility authpriv
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility cron
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility daemon
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility dataplane
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility kern
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility local0
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility local1
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility local2
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility local3
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility local4
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility local5
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility local6
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility local7
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility lpr
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility mail
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility mark
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility news
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility protocols
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility security
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility sensors
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility syslog
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility user
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-facility uucp
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-flag &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-indicator &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-severity alert
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-severity crit
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-severity debug
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-severity emerg
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-severity err
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-severity info
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-severity notice
+system syslog-enhanced rule &lt;rule-number&gt; otherwise set-severity warning
+system syslog-enhanced rule &lt;rule-number&gt; otherwise user &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; rate-limit &lt;flag&gt;
+system syslog-enhanced rule &lt;rule-number&gt; rate-limit &lt;flag&gt; burst &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; rate-limit &lt;flag&gt; interval &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; rate-limit &lt;flag&gt; select-every-nth &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; then clear-flag &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; then console
+system syslog-enhanced rule &lt;rule-number&gt; then discard
+system syslog-enhanced rule &lt;rule-number&gt; then file &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; then host &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility all
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility auth
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility authpriv
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility cron
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility daemon
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility dataplane
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility kern
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility local0
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility local1
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility local2
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility local3
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility local4
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility local5
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility local6
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility local7
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility lpr
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility mail
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility mark
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility news
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility protocols
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility security
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility sensors
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility syslog
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility user
+system syslog-enhanced rule &lt;rule-number&gt; then set-facility uucp
+system syslog-enhanced rule &lt;rule-number&gt; then set-flag &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; then set-indicator &lt;value&gt;
+system syslog-enhanced rule &lt;rule-number&gt; then set-severity alert
+system syslog-enhanced rule &lt;rule-number&gt; then set-severity crit
+system syslog-enhanced rule &lt;rule-number&gt; then set-severity debug
+system syslog-enhanced rule &lt;rule-number&gt; then set-severity emerg
+system syslog-enhanced rule &lt;rule-number&gt; then set-severity err
+system syslog-enhanced rule &lt;rule-number&gt; then set-severity info
+system syslog-enhanced rule &lt;rule-number&gt; then set-severity notice
+system syslog-enhanced rule &lt;rule-number&gt; then set-severity warning
+system syslog-enhanced rule &lt;rule-number&gt; then user &lt;value&gt;
+system syslog-enhanced tls
+system syslog-enhanced tls certificate-authority &lt;CA&gt;
+system syslog-enhanced tls certificate-authority &lt;CA&gt; file &lt;value&gt;
+system syslog-enhanced tls local-certificate certificate &lt;value&gt;
+system syslog-enhanced tls local-certificate key &lt;value&gt;
+system syslog-enhanced host &lt;entry&gt; routing-instance &lt;value&gt;</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-ARPConfigurationsupport">ARP Configuration support</h2><p>This feature adds support to allow the ARP cache timeout (ARP timeout or ARP ageing timeout) and the ARP cache size to be configured.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system ip arp stale-time &lt;value&gt;
+system ip arp table-size 1024
+system ip arp table-size 2048
+system ip arp table-size 4096
+system ip arp table-size 8192
+system ip arp table-size 16384
+system ip arp table-size 32768
+system ip arp table-size 65536
+system ip arp table-size 131072
+system ipv6 neighbor table-size 131072</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-NETCONFsupportforaddingcopy-configtothecandidateconfiguration">NETCONF support for adding copy-config to the candidate configuration</h2><p>This feature adds the ability for a pre-generated configuration to be pushed to the router and have it applied to the candidate datastore via the NETCONF RPC.</p><h2 id="DANOS2105ReleaseNotes-Prohibitpasswordreuse">Prohibit password reuse</h2><p>This feature adds the ability to prohibit the use of old passwords for the same system account. It only affects local system accounts and not those such as GRUB passwords or TACACS+ accounts. It also enforces password expiry based on a configurable time, thereby forcing users to update their passwords after a given time.</p><p>Password history and expiration operate on a system-wide level i.e. this policy cannot be enforced on a per user basis.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">system password requirements expiration maximum-days &lt;value&gt;
+system password requirements history forbid-previous &lt;value&gt;</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-NewDPIapplicationsandprotocols">New DPI applications and protocols</h2><p>Upgrade to use nDPI 3.4, which will introduce support for: anydesk, blookbert, capwap, discord, doh_dot, iec60870, microsoft365, nats, s7comm, soap, teams, websocket, zabbix.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name anydesk
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name bloomberg
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name capwap
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name discord
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name doh_dot
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name iec60870
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name microsoft365
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name nats
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name s7comm
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name soap
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name teams
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name websocket
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi name zabbix
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol anydesk
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol bloomberg
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol capwap
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol discord
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol doh_dot
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol iec60870
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol microsoft365
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol nats
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol s7comm
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol soap
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol teams
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol websocket
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi protocol zabbix
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi type connectivitycheck
+security application firewall name &lt;ruleset-name&gt; rule &lt;rule-number&gt; engine ndpi type iot_scada</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-DHCPenhancementsforswitchinterfaces">DHCP enhancements for switch interfaces</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces switch &lt;name&gt; vif &lt;tagnode&gt; dhcp-options no-rfc3442
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; dhcpv6-options parameters-only
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; dhcpv6-options prefix-delegation
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; dhcpv6-options temporary</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-ISISenhancements">ISIS enhancements</h2><p>IS-IS routing protocol now supports topology and MPLS-TE configuration options, and IS-IS can be applied to a VIF interface.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces dataplane &lt;tagnode&gt; isis topology ipv4-mgmt
+interfaces dataplane &lt;tagnode&gt; isis topology ipv4-multicast
+interfaces dataplane &lt;tagnode&gt; isis topology ipv4-unicast
+interfaces dataplane &lt;tagnode&gt; isis topology ipv6-dstsrc
+interfaces dataplane &lt;tagnode&gt; isis topology ipv6-mgmt
+interfaces dataplane &lt;tagnode&gt; isis topology ipv6-multicast
+interfaces dataplane &lt;tagnode&gt; isis topology ipv6-unicast
+interfaces loopback &lt;tagnode&gt; isis topology ipv4-mgmt
+interfaces loopback &lt;tagnode&gt; isis topology ipv4-multicast
+interfaces loopback &lt;tagnode&gt; isis topology ipv4-unicast
+interfaces loopback &lt;tagnode&gt; isis topology ipv6-dstsrc
+interfaces loopback &lt;tagnode&gt; isis topology ipv6-mgmt
+interfaces loopback &lt;tagnode&gt; isis topology ipv6-multicast
+interfaces loopback &lt;tagnode&gt; isis topology ipv6-unicast
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; ip isis instance &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; ipv6 isis instance &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis circuit-type level-1
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis circuit-type level-1-2
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis circuit-type level-2-only
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis hello-interval level-1 &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis hello-interval level-2 &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis metric level-1 &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis metric level-2 &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis network point-to-point
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis passive
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis password
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis password clear &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis password md5 &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis priority level-1 &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis priority level-2 &lt;value&gt;
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis topology ipv4-mgmt
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis topology ipv4-multicast
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis topology ipv4-unicast
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis topology ipv6-dstsrc
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis topology ipv6-mgmt
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis topology ipv6-multicast
+interfaces switch &lt;name&gt; vif &lt;tagnode&gt; isis topology ipv6-unicast
+protocols isis &lt;area-tag&gt; mpls-te
+protocols isis &lt;area-tag&gt; mpls-te router-address &lt;value&gt;
+protocols isis &lt;area-tag&gt; topology ipv4-mgmt
+protocols isis &lt;area-tag&gt; topology ipv4-mgmt overload
+protocols isis &lt;area-tag&gt; topology ipv4-multicast
+protocols isis &lt;area-tag&gt; topology ipv4-multicast overload
+protocols isis &lt;area-tag&gt; topology ipv4-unicast
+protocols isis &lt;area-tag&gt; topology ipv4-unicast overload
+protocols isis &lt;area-tag&gt; topology ipv6-dstsrc
+protocols isis &lt;area-tag&gt; topology ipv6-dstsrc overload
+protocols isis &lt;area-tag&gt; topology ipv6-mgmt
+protocols isis &lt;area-tag&gt; topology ipv6-mgmt overload
+protocols isis &lt;area-tag&gt; topology ipv6-multicast
+protocols isis &lt;area-tag&gt; topology ipv6-multicast overload
+protocols isis &lt;area-tag&gt; topology ipv6-unicast
+protocols isis &lt;area-tag&gt; topology ipv6-unicast overload</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-Supportfornon-dataplaneinterfaces">Support for non-dataplane interfaces</h2><p>Some interfaces do not (yet) have support in DPDK and will be owned by the kernel. They are likely to be used for the management of the system and not for the main packet forwarding functions. The ‘interfaces system’ configuration model provides a method of configuring such interfaces in a manner consistent with the rest of the system. All packet forwarding on such interfaces will occur in the kernel. The configuration available on these interfaces is a significantly smaller subset of the configuration available on interfaces owned by the dataplane.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">interfaces system &lt;ifname&gt;
+interfaces system &lt;ifname&gt; address dhcp
+interfaces system &lt;ifname&gt; address dhcpv6
+interfaces system &lt;ifname&gt; description &lt;value&gt;
+interfaces system &lt;ifname&gt; disable
+interfaces system &lt;ifname&gt; disable-link-detect
+interfaces system &lt;ifname&gt; ip enable-proxy-arp
+interfaces system &lt;ifname&gt; ip gratuitous-arp reply drop
+interfaces system &lt;ifname&gt; ip gratuitous-arp reply update
+interfaces system &lt;ifname&gt; ip gratuitous-arp request drop
+interfaces system &lt;ifname&gt; ip gratuitous-arp request update
+interfaces system &lt;ifname&gt; ip gratuitous-arp-count &lt;value&gt;
+interfaces system &lt;ifname&gt; ip rpf-check disable
+interfaces system &lt;ifname&gt; ip rpf-check loose
+interfaces system &lt;ifname&gt; ip rpf-check strict
+interfaces system &lt;ifname&gt; ipv6 address
+interfaces system &lt;ifname&gt; ipv6 address autoconf
+interfaces system &lt;ifname&gt; ipv6 address eui64 &lt;value&gt;
+interfaces system &lt;ifname&gt; ipv6 address link-local &lt;value&gt;
+interfaces system &lt;ifname&gt; ipv6 disable
+interfaces system &lt;ifname&gt; ipv6 dup-addr-detect-transmits &lt;value&gt;
+interfaces system &lt;ifname&gt; log_martians
+interfaces system &lt;ifname&gt; mac &lt;value&gt;
+interfaces system &lt;ifname&gt; mtu &lt;value&gt;
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt;
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; address dhcp
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; address dhcpv6
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; description &lt;value&gt;
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; disable
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; inner-vlan &lt;value&gt;
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ip enable-proxy-arp
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ip gratuitous-arp reply drop
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ip gratuitous-arp reply update
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ip gratuitous-arp request drop
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ip gratuitous-arp request update
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ip rpf-check disable
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ip rpf-check loose
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ip rpf-check strict
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ipv6 address
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ipv6 address autoconf
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ipv6 address eui64 &lt;value&gt;
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ipv6 address link-local &lt;value&gt;
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ipv6 disable
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; ipv6 dup-addr-detect-transmits &lt;value&gt;
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; log_martians
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; mtu &lt;value&gt;
+interfaces system &lt;ifname&gt; vif &lt;tagnode&gt; vlan &lt;value&gt;</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-Miscellaneouschanges">Miscellaneous changes</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">protocols next-hop resolve-via-default disabled
+protocols next-hop resolve-via-default enabled
+routing routing-instance &lt;instance-name&gt; protocols next-hop resolve-via-default disabled
+routing routing-instance &lt;instance-name&gt; protocols next-hop resolve-via-default enabled
+service ssh client-alive-attempts &lt;value&gt;
+service ssh client-alive-interval &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; service ssh client-alive-attempts &lt;value&gt;
+routing routing-instance &lt;instance-name&gt; service ssh client-alive-interval &lt;value&gt;</pre>
+</div></div><h1 id="DANOS2105ReleaseNotes-Obsoletefeatures">Obsolete features</h1><p>None</p><h1 id="DANOS2105ReleaseNotes-Operationalcommandchanges">Operational command changes</h1><h2 id="DANOS2105ReleaseNotes-tech-supportarchiveremoved">tech-support archive removed</h2><p>To prevent DANOS users from accidentally uploading “tech-support” archives that have sensitive information, we have removed this feature.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">generate tech-support archive
+generate tech-support archive &lt;destination&gt;
+generate tech-support archive &lt;destination&gt; authentication username &lt;value&gt; password &lt;value&gt;
+generate tech-support archive &lt;destination&gt; authentication username &lt;value&gt; password &lt;value&gt; file-password &lt;value&gt;
+generate tech-support archive &lt;destination&gt; password &lt;value&gt;
+generate tech-support archive option exclude-command-history
+generate tech-support archive password &lt;value&gt;
+show tech-support
+show tech-support brief
+show tech-support option exclude-command-history
+show tech-support save
+show tech-support save &lt;destination&gt;
+show tech-support save &lt;destination&gt; authentication username &lt;value&gt; password &lt;value&gt;
+show tech-support save &lt;destination&gt; authentication username &lt;value&gt; password &lt;value&gt; file-password &lt;value&gt;
+show tech-support save &lt;destination&gt; password &lt;value&gt;
+show tech-support save password &lt;value&gt;
+show tech-support save-uncompressed
+show tech-support save-uncompressed &lt;destination&gt;
+show tech-support save-uncompressed &lt;destination&gt; authentication username &lt;value&gt; password &lt;value&gt;
+show tech-support save-uncompressed &lt;destination&gt; authentication username &lt;value&gt; password &lt;value&gt; file-password &lt;value&gt;
+show tech-support save-uncompressed &lt;destination&gt; password &lt;value&gt;
+show tech-support save-uncompressed password &lt;value&gt;</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-Querydataplanepipelinetofindoutwhichfeaturesareenabled">Query dataplane pipeline to find out which features are enabled</h2><p>If you are working with different pipeline nodes, it can be useful to check which pipeline nodes are actually enabled.</p><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">show dataplane feature
+show dataplane feature filter &lt;value&gt;
+show dataplane feature global
+show dataplane feature interface &lt;value&gt;
+show dataplane feature ip
+show dataplane feature ip6
+show dataplane feature l2
+show dataplane feature sparse
+show dataplane feature vrf &lt;value&gt;</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-Querythedataplane’sviewoftheMPLSroutes">Query the dataplane’s view of the MPLS routes</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">show platform dataplane mpls-route
+show platform dataplane mpls-route error
+show platform dataplane mpls-route no-resource
+show platform dataplane mpls-route no-support
+show platform dataplane mpls-route not-needed
+show platform dataplane mpls-route partial</pre>
+</div></div><h2 id="DANOS2105ReleaseNotes-Miscellaneouschanges.1">Miscellaneous changes</h2><div class="code panel pdl" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">add system image routing-instance &lt;value&gt; &lt;image-url&gt; username &lt;value&gt; password &lt;value&gt;
+show policy qos &lt;interface-name&gt; filter-classification
+show policy qos filter-classification
+show queuing &lt;interface-name&gt; filter-classification</pre>
+</div></div><h1 id="DANOS2105ReleaseNotes-ResolvedSecurityVulnerabilities">Resolved Security Vulnerabilities</h1><p>The following security issues are resolved in this release:</p><ul><li><p>CVE-2020-10730, CVE-2020-27840, CVE-2021-20277: Debian DSA-4884-1 : ldb - security update</p></li><li><p>CVE-2020-35523, CVE-2020-35524: Debian DSA-4869-1 : tiff - security update</p></li><li><p>CVE-2015-9542: [DLA 2116-1] libpam-radius-auth security update</p></li></ul><h1 id="DANOS2105ReleaseNotes-Licenses">Licenses</h1><h2 id="DANOS2105ReleaseNotes-MSTP/RSA">MSTP/RSA</h2><p>/* Copyright (C) 1991-2, RSA Data Security, Inc. Created 1991. All rights reserved.<br/>License to copy and use this software is granted provided that it is identified as the "RSA Data Security, Inc. MD5 Message-Digest Algorithm" in all material mentioning or referencing this software or this function.<br/>License is also granted to make and use derivative works provided that such works are identified as "derived from the RSA Data Security, Inc. MD5 Message-Digest Algorithm" in all material mentioning or referencing the derived work.<br/>RSA Data Security, Inc. makes no representations concerning either the merchantability of this software or the suitability of this software for any particular purpose. It is provided "as is" without express or implied warranty of any kind.<br/>These notices must be retained in any copies of any part of this documentation and/or software. */</p>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

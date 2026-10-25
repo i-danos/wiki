@@ -1,0 +1,270 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>Representational State Transfer (REST) - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details open><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item active'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>Representational State Transfer (REST)</h1><div class="toc-macro client-side-toc-macro conf-macro output-block" data-hasbody="false" data-headerelements="H1,H2,H3,H4,H5,H6,H7" data-layout="default" data-macro-id="fa624450-613a-4e56-b93a-03ebd3390b90" data-macro-name="toc"> </div><h1 id="RepresentationalStateTransfer(REST)-Overview">Overview</h1><h2 id="RepresentationalStateTransfer(REST)-RemoteaccessAPIstatements">Remote access API statements</h2><p><br/>REST statements are submitted through <strong>HTTP GET</strong>, <strong>DELETE</strong>, <strong>PUT</strong>, and <strong>POST </strong>commands by using the format of HTTP-command REST-statement, as in the following example:<br/><code>GET /rest/conf</code><br/>The specific result of any REST statement depends on the <strong>HTTP </strong>command that is used to submit the statement to the remote DANOS vRouter.</p><div class="confluence-information-macro confluence-information-macro-information conf-macro output-block" data-hasbody="true" data-macro-id="b5744f05-ff6b-4d47-b277-24a7a40f7fa9" data-macro-name="info"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"> </span><div class="confluence-information-macro-body"><p>The command reference material for REST statements in this guide includes the <strong>HTTP </strong>commands that are used to submit them; that is, the description uses the complete combination of HTTP-command REST-statement to describe how to interact with the remote DANOS vRouter.</p></div></div><h2 id="RepresentationalStateTransfer(REST)-APIprerequisites">API prerequisites</h2><p>Using the DANOS vRouter Remote Access API 2.0 requires the following:</p><ul><li><p>DANOS vRouter has HTTPS enabled <br/><code>set service https</code></p></li><li><p>Valid username and password on the DANOS vRouter</p></li><li><p>System to generate the HTTPS requests to the DANOS vRouter</p></li></ul><h2 id="RepresentationalStateTransfer(REST)-InteractingwiththeAPI">Interacting with the API</h2><p>In general, interaction with the DANOS vRouter consists of an HTTPS request to the system that is followed by a response from the system. Each request includes in its HTTP header a command, the address of the remote system, the format of the response body that is expected, the specification version number, and a base64 encoding of a valid username-and-password pair (conforming to the basic access authorization originally defined in RFC 1945); these credentials are validated on the remote system's authorization system.</p><p>The following sample interaction shows a simple request and response.</p><p>Clear the counters on dp0p1p1 on 10.0.0.232. The dnlhdHRhOnZ5YXR0YQ== character string is the base64 encoding of the vyatta:vyatta username-and-password pair.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="255060bc-1a7c-49e3-ab9c-547a58f84750" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">POST /rest/op/clear/interfaces/dataplane/dp0p1p1/counters
+Host: 10.0.0.232
+Accept: application/json
+Vyatta-Specification-Version: 0.1
+Authorization: Basic dnlhdHRhOnZ5YXR0YQ==</pre>
+</div></div><p>System response:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="a9499b37-dfca-4c8b-9491-cec9e4c9b507" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">HTTP/1.1 201 Created
+Transfer-Encoding: chunked
+Content-Type: application/json
+Location: rest/op/3479DEF17C6AF4D1
+Date: Fri, 19 Feb 2019 21:27:57 GMT
+Server: lighttpd/1.4.19</pre>
+</div></div><p>For testing purposes, a simple way to create a request is to use a command such as curl, although any tool that allows you to construct an HTTPS request (such as wget, a browser, python, and so on) suffices.</p><p>For example, to generate the request that is shown in the previous example by using the curl command, you enter the command that is shown in the following example.</p><p>Use curl to generate an operational mode request, clear interfaces dataplane dp0p1p1 counters, by using the<br/>vyatta:vyatta username and password pair on the DANOS vRouter at 10.0.0.232.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="8b029068-060a-4e3c-aa32-36cbbcd99a2e" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1:~$ curl -k -s -i -u vyatta:vyatta -H “content-length:0” -H “Accept: application/json” -X POST https://10.0.0.232/rest/op/clear/interfaces/dataplane/dp0p1p1/counters</pre>
+</div></div><p>System response:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="ae14e23d-35e9-4727-a7b7-0db9971b24b0" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">HTTP/1.1 201 Created
+Transfer-Encoding: chunked
+Content-Type: application/json
+Location: rest/op/D462E45FCEFBB5A5
+Date: Fri, 19 Feb 2019 21:28:39 GMT
+Server: lighttpd/1.4.19</pre>
+</div></div><h2 id="RepresentationalStateTransfer(REST)-Special-characterhandling">Special-character handling</h2><p>Special characters that must be included within the command line of the request header must be formatted to be URL safe. For example, to set the address of dp0p1p1 to 10.0.0.231/24 by using the CLI, enter the following command in configuration mode:</p><p><code>set interfaces dataplane dp0p1p1 address 10.0.0.231/24</code></p><p>Within the API, however, the last slash character (/) is improperly parsed by the HTTP protocol, so it must be replaced by a sequence of escape characters to represent it. The escape encoding for the slash character is %2F; therefore, the URL-safe character string must be represented as follows:</p><p><code>rest/conf/set/interfaces/dataplane/dp0p1p1/address/10.0.0.231%2F24</code></p><p>See <a class="external-link" href="https://tools.ietf.org/html/rfc1738#section-2.2" rel="nofollow">https://tools.ietf.org/html/rfc1738#section-2.2</a> for details on URL character encoding.</p><h2 id="RepresentationalStateTransfer(REST)-Responseprocessing">Response processing</h2><p>The response header contains the HTTP status code.</p><p>Before processing the response body, you should check that the request is successful by ensuring that the HTTP status code is a 200-level (that is, 2xxOK) response code. The Content-Type information returned in the response header should also be checked to verify that it is correct.</p><p>Response bodies of three types can be returned in response to a request:</p><ul><li><p>Empty body</p></li><li><p>JSON-formatted body</p></li><li><p>Plain text body</p></li></ul><p>The body of the response is returned and its format depends on the requested HTTP Content-Type and the command that is issued through the API.</p><ul><li><p>Responses to requests that initiate actions (for example, to initiate the show version command) typically have empty bodies.</p></li><li><p>Responses to requests that retrieve data (for example, a list of active operational processes) have JSON-formatted bodies.</p></li><li><p>Responses to requests that contain operational mode command output (for example, the output from the show version command) have plain-text bodies.</p></li></ul><p>JSON responses vary with the command that is issued. Additional command status codes can also be returned in the body of the response. The following example shows a JSON-formatted response body—in this case, the currently active operational mode processes.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="fb96764f-c998-4d70-9cd4-8da15f442928" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">{
+    "process": [
+        {
+            "username": "vyatta",
+            "started": "1273252231",
+            "updated": "8",
+            "id": "02B3479CA1522F2A",
+            "command": "ping 10.3.0.1"
+        },
+        {
+            "username": "vyatta",
+            "started": "1273262318",
+            "updated": "8",
+            "id": "A86BFCB1BC5E353E",
+            "command": "show version"
+        }
+    ]
+}</pre>
+</div></div><p>JSON responses follow standard JavaScript object construction where elements are hash entries, arrays, or nested combinations of entries and arrays. The response body that is shown previously has the following characteristics.</p><ul><li><p>There is a single hash: “process.” It points to an array of hashes.</p></li><li><p>Each element of the array represents a distinct operational mode process (in this example, there are two of them) and contains information about that process.</p></li><li><p>For each process, the response shows the user who initiated the command, time the command was initiated, number of updates that have been retrieved, ID of the process, and command that was executed (or is currently executing).</p></li></ul><p>Processing of JSON-formatted responses is well supported by using support libraries that are available in most programming languages. Further information is located at <a class="external-link" href="http://www.json.org." rel="nofollow">http://www.json.org.</a></p><h1 id="RepresentationalStateTransfer(REST)-Configurationmode">Configuration mode</h1><p>The configuration mode of the DANOS vRouter Remote Access API allows you to update the system configuration of the remote DANOS vRouter. The workflow for configuration by using the API is the same as that for using the system directly: begin a configuration session, make configuration changes, commit changes, optionally view them, and save them. Configuration mode is accessed by using the <strong>rest/conf </strong>URI prefix.</p><p>In configuration mode within the API, each configuration session creates a unique session ID that is used to reference the session as the URI <strong>rest/conf</strong>/conf-id. This ID must be explicitly removed when the session is completed to release the resources that are associated with the session.</p><div class="confluence-information-macro confluence-information-macro-information conf-macro output-block" data-hasbody="true" data-macro-id="fc482abf-7de2-44ae-9452-b0ef9517f81f" data-macro-name="info"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"> </span><div class="confluence-information-macro-body"><p>Restarting the HTTPS service invalidates operational session IDs, but does not invalidate configuration session IDs.</p></div></div><p>You can perform the following tasks:</p><ul><li><p><code>POST /rest/conf</code></p><ul><li><p>Start a configuration session and enter configuration mode.</p></li></ul></li><li><p><code>PUT /rest/conf/&lt;conf-id&gt;/set/&lt;path&gt;</code></p><ul><li><p>Create or modify configuration information</p></li></ul></li><li><p><code>PUT /rest/conf/&lt;conf-id&gt;/delete/&lt;path&gt;</code></p><ul><li><p>Delete configuration information</p></li></ul></li><li><p><code>POST /rest/conf/&lt;conf-id&gt;/&lt;cmd&gt;</code></p><ul><li><p>Enter a configuration action command, such as <strong>commit, save, load, merge</strong> or <strong>show</strong>.</p></li></ul></li><li><p><code>GET /rest/conf/&lt;conf-id&gt;/&lt;path&gt;</code></p><ul><li><p>Display configuration information</p></li></ul></li><li><p><code>GET /rest/conf</code></p><ul><li><p>List active configuration mode sessions</p></li></ul></li><li><p><code>DELETE /rest/conf/&lt;conf-id&gt;</code></p><ul><li><p>Exit the specified configuration session</p></li></ul></li></ul><h2 id="RepresentationalStateTransfer(REST)-Sessionexample">Session example</h2><p>The following example of a Remote Access API request to a DANOS vRouter at 10.0.0.232 shows how to initiate a configuration mode session.</p><p>Request a new configuration mode session. This request is equivalent to the configure command in the CLI.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="cea8ae96-4ecb-410d-bcf0-0bd19f248975" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">POST /rest/conf
+Host: 10.0.0.232
+Accept: application/json
+Vyatta-Specification-Version: 0.1
+Authorization: Basic dnlhdHRhOnZ5YXR0YQ==</pre>
+</div></div><p>The HTTPS server that is located on port 443 receives this request and identifies it as a REST request to the configuration tree (<strong>/rest/conf</strong> ). The MIME base64-encoded username:password (in this case, dnlhdHRhOnZ5YXR0YQ== is the base64 encoding of vyatta:vyatta) is then validated. After it is validated, the request runs using the credentials of the specified user (in this case, vyatta).</p><p>At this point, the action and the remaining elements in the header determine the specific processing required for this request. For this request, the action is to <strong>POST </strong>to the root of the <strong>rest/conf </strong>tree. The path and action instruct the remote DANOS vRouter to create a new configuration session for this request and return a unique ID for this configuration session.</p><p>The response that is generated by the remote system follows.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="b25b1df2-e244-4ddb-826f-1291caf07de1" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">HTTP/1.1 201 Created
+Transfer-Encoding: chunked
+Content-Type: application/json
+Location: rest/conf/2957FC9CA1FE3B3C
+Date: Wed, 05 May 2019 18:52:48 GMT
+Server: lighttpd/1.4.19</pre>
+</div></div><p>The 201 response code indicates that the request was successful and that the remote system was able to create a new configuration tree that is associated with the ID of 2957FCA1FE3B3C. This ID is used for any further interaction with this configuration session.</p><div class="confluence-information-macro confluence-information-macro-information conf-macro output-block" data-hasbody="true" data-macro-id="03ed7ee5-128d-4303-a1cc-d6514afc5283" data-macro-name="info"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"> </span><div class="confluence-information-macro-body"><p>The API does not place any limits on the number of configuration sessions or background processes that can be created. Clients are responsible for process management and should release resources that are not in use.</p></div></div><p>The example configuration mode session that is shown here includes the following events.</p><ul><li><p>A request is made to view information about active configuration sessions to see that the new session is opened.</p></li><li><p>Configuration information is then modified, committed, and saved.</p></li><li><p>The session is ended.</p></li><li><p>Active configuration is viewed again to ensure that the session was removed.</p></li></ul><p>Display the active configuration sessions. The only difference between this example and the previous example is that the <strong>POST</strong> command is replaced with the GET command.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="2131ab35-558f-4d7d-8b0c-1d621415f527" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">GET /rest/conf
+Host: 10.0.0.232
+Accept: application/json
+Vyatta-Specification-Version: 0.1
+Authorization: Basic dnlhdHRhOnZ5YXR0YQ==</pre>
+</div></div><p>System response. The 200 response code indicates that the request succeeded. In this case, the output (in JSON format) shows that two active configuration sessions are associated with the user that initiated the command (user “vyatta”) and each session has a unique ID. Note that the “started” and “updated” fields display the time the session started and the time it was last updated in UNIX epoch time (the number of seconds since January 1, 1970). The “modified” field indicates whether uncommitted changes exist in the configuration session.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="302abda4-053f-4589-9ce7-76492f06eb50" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 412
+Date: Thu, 06 May 2019 03:15:18 GMT
+Server: lighttpd/1.4.19
+{
+    "session": [
+        {
+            "id": "2957FC9CA1FE3B3C",
+            "username": "vyatta",
+            "description": "",
+            "started": "1273085568",
+            "modified": "false",
+            "updated": "1273085568"
+        },
+        {
+            "id": "F84307222F469A8A",
+            "username": "vyatta",
+            "description": "",
+            "started": "1273085337",
+            "modified": "false",
+            "updated": "1273085337"
+        }
+    ],
+    "message": " "
+}</pre>
+</div></div><p>Change the SSH port to 1011. The request is equivalent to the <code>set service ssh port 1011 </code>command in the CLI configuration mode. Note that the URI uses the configuration session ID that was created previously.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="72d5ce4d-18a8-486d-8a05-4e8a135dc881" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">PUT /rest/conf/2957FC9CA1FE3B3C/set/
+service/ssh/port/1011
+Host: 10.0.0.232
+Accept: application/json
+Vyatta-Specification-Version: 0.1
+Authorization: Basic dnlhdHRhOnZ5YXR0YQ==</pre>
+</div></div><p>System response. The 200 response code indicates that the request succeeded.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="36426e13-1261-4c59-b27e-f377a7cd2853" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">HTTP/1.1 200 OK
+Transfer-Encoding: chunked
+Content-Type: application/json
+Date: Thu, 06 May 2019 03:48:46 GMT
+Server: lighttpd/1.4.19</pre>
+</div></div><p>Commit the configuration change. This request is equivalent to the <code>commit</code> command in the CLI configuration mode.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="4a455a49-cb33-493d-9898-0b3230737fd8" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">POST /rest/conf/2957FC9CA1FE3B3C/commit
+Host: 10.0.0.232
+Accept: application/json
+Vyatta-Specification-Version: 0.1
+Authorization: Basic dnlhdHRhOnZ5YXR0YQ==</pre>
+</div></div><p></p><p>System response. The 200 response code indicates that the request succeeded. Note that the SSH daemon (sshd) was restarted because of the configuration change.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="8f9ce2c4-904a-4ebb-9497-1fbd9ac6ad1e" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 69
+Date: Thu, 06 May 2019 03:51:13 GMT
+Server: lighttpd/1.4.19
+{
+    "message": " Restarting OpenBSD Secure Shell server: sshd.\n "
+}</pre>
+</div></div><p>Save the active configuration. This request is equivalent to the <code>save</code> command in CLI configuration mode.</p><p></p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="f501b211-b9a8-4993-b694-4f8efd7d5ab2" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">POST /rest/conf/2957FC9CA1FE3B3C/save
+Host: 10.0.0.232
+Accept: application/json
+Vyatta-Specification-Version: 0.1
+Authorization: Basic dnlhdHRhOnZ5YXR0YQ==</pre>
+</div></div><p>System response. The 200 response code indicates that the request succeeded. The message shows where the file was saved.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="df592e74-7684-4b0f-8228-4094229724c2" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 94
+Date: Thu, 06 May 2019 03:55:24 GMT
+Server: lighttpd/1.4.19
+{
+    "message": " Saving configuration to '/config/config.boot'...\n Done\n "
+}</pre>
+</div></div><p>Terminate the configuration session. This request is equivalent to the <code>exit</code> command in CLI configuration mode.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="65e08def-4a47-4a8d-964e-16e1319db199" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">DELETE /rest/conf/2957FC9CA1FE3B3C
+Host: 10.0.0.232
+Accept: application/json
+Vyatta-Specification-Version: 0.1
+Authorization: Basic dnlhdHRhOnZ5YXR0YQ==</pre>
+</div></div><p>System response. The 200 response code indicates that the request succeeded.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="259076da-f8fe-4280-8dda-9d160be1aaa8" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 21
+Date: Thu, 06 May 2019 03:59:12 GMT
+Server: lighttpd/1.4.19
+{
+    "message": " "
+}</pre>
+</div></div><p>Display the active configuration sessions. GET /rest/conf</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="a53fa718-5b2b-45d9-92e6-043ce00a710e" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">GET /rest/conf
+Host: 10.0.0.232
+Accept: application/json
+Vyatta-Specification-Version: 0.1
+Authorization: Basic dnlhdHRhOnZ5YXR0YQ==</pre>
+</div></div><p>System response. The 200 response code indicates that the request succeeded. In this case, the session that is terminated no longer appears in the list of active configuration sessions. A single active configuration session remains.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="461b8364-26ae-4eb5-800f-a1717beedf46" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 226
+Date: Thu, 06 May 2019 03:59:30 GMT
+Server: lighttpd/1.4.19
+{
+    "session": [
+        {
+            "id": "F84307222F469A8A",
+            "username": "vyatta",
+            "description": "",
+            "started": "1273085337",
+            "modified": "false",
+            "updated": "1273085337"
+        }
+    ],
+    "message": " "
+}</pre>
+</div></div><h1 id="RepresentationalStateTransfer(REST)-Operationalmode">Operational mode</h1><p>Operational mode provides the ability to run operational mode commands remotely and display their output. Each command initiates a process that may have a finite life span (for example, <strong>show version</strong>) or may run indefinitely until explicitly stopped (for example, <strong>ping </strong>address ).</p><p>Commands with finite life spans continue to consume system resources until the client either request that the resources are released (using <strong>DELETE </strong>) or it finishes reading the output that is generated by the command. Receiving a response code of 410 (GONE) indicates that the output has been consumed. The output that is not read remains on the system until the next reboot or until the HTTPS service is restarted.</p><p>Commands with infinite life spans must be stopped explicitly (using <strong>DELETE </strong>). The output is removed when the process is deleted or the output has been completely read.</p><div class="confluence-information-macro confluence-information-macro-information conf-macro output-block" data-hasbody="true" data-macro-id="8d127539-dce0-4a8b-8b65-78fddb6f3990" data-macro-name="info"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"> </span><div class="confluence-information-macro-body"><p>Operational mode commands that are interactive in nature (for example, add system image) are not supported in the API.</p></div></div><p>Operational mode requests use <strong>rest/op </strong>or <strong>rest/op</strong>/op-id as part of the URI (as opposed to <strong>rest/conf </strong>or <strong>rest/conf</strong>/session-id used in configuration mode).</p><div class="confluence-information-macro confluence-information-macro-information conf-macro output-block" data-hasbody="true" data-macro-id="d794803d-8a7e-4d25-b018-e69b1ca575f4" data-macro-name="info"><span class="aui-icon aui-icon-small aui-iconfont-info confluence-information-macro-icon"> </span><div class="confluence-information-macro-body"><p>Restarting the HTTPS service invalidates operational session IDs, but does not invalidate configuration session IDs.</p></div></div><p>You can perform the following tasks:</p><ul><li><p><code>POST /rest/op/&lt;path&gt;</code></p><ul><li><p>Execute an operational mode command.</p></li></ul></li><li><p><code>GET /rest/op/&lt;path&gt;</code></p><ul><li><p>Retrieve operational mode parameter definitions.</p></li></ul></li><li><p><code>GET /rest/op</code></p><ul><li><p>Display a list of operational mode processes.</p></li></ul></li><li><p><code>GET /rest/op/&lt;process-id&gt;</code></p><ul><li><p>Retrieve output.</p></li></ul></li><li><p><code>DELETE /rest/op/&lt;process-id&gt;</code></p><ul><li><p>Terminate an operational mode process.</p></li></ul></li></ul>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

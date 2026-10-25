@@ -1,0 +1,265 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>NETCONF - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details open><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item active'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>NETCONF</h1><div class="toc-macro client-side-toc-macro conf-macro output-block" data-hasbody="false" data-headerelements="H1,H2,H3,H4,H5,H6,H7" data-layout="default" data-macro-id="fa624450-613a-4e56-b93a-03ebd3390b90" data-macro-name="toc"> </div><h1 id="NETCONF-NETCONF">NETCONF</h1><h2 id="NETCONF-NETCONFoverview">NETCONF overview</h2><p>NETCONF is a protocol that provides mechanisms for installing, manipulating, and deleting the configuration of network devices. It uses Extensible Markup Language (XML)-based data encoding for configuration data and protocol messages. The NETCONF operations are realized as remote procedure calls (RPCs).</p><p>Refer to RFC 6241, Network Configuration Protocol (NETCONF), at <a class="external-link" href="https://tools.ietf.org/html/rfc6241" rel="nofollow">https://tools.ietf.org/html/rfc6241</a> for more information.</p><p>On the DANOS vRouter, NETCONF is used within an SSH session through the SSH connection protocol. This mapping allows NETCONF to be run from a secure shell session by a user or an application. This mapping also makes sure that NETCONF complies with SSH IPv6.</p><p>On the DANOS vRouter, NETCONF is intended as a machine interface for management software and not intended as a user interface.</p><p>Refer to RFC 6242, Using the NETCONF Protocol over Secure Shell (SSH), at <a class="external-link" href="https://tools.ietf.org/html/rfc6242" rel="nofollow">https://tools.ietf.org/html/rfc6242</a> for more information on using the NETCONF configuration protocol over SSH.</p><h2 id="NETCONF-NETCONFcapabilitiessupportedontheDANOSvRouter">NETCONF capabilities supported on the DANOS vRouter</h2><p>A NETCONF capability is a set of functions that supplements the base NETCONF specification. The capability is identified by a uniform resource identifier (URI). Capabilities augment the base operations of the device, describing both additional operations and the content that is allowed inside the operations. The client discovers the capabilities of the server and uses any additional operations, parameters, and content that are defined by those capabilities.</p><p>Following are the NETCONF capabilities that are supported on the DANOS vRouter:</p><ul><li><p>capability:candidate 1.0</p></li><li><p>capability:startup 1.0</p></li><li><p>capability:rollback-on-error 1.0</p></li><li><p>capability:validate 1.1</p></li></ul><p>Refer to RFC 6241, Network Configuration Protocol (NETCONF), at <a class="external-link" href="https://tools.ietf.org/html/rfc6241" rel="nofollow">https://tools.ietf.org/html/rfc6241</a> for more information on these capabilities.</p><h2 id="NETCONF-InitiatingaNETCONFsession">Initiating a NETCONF session</h2><p>To allow an inbound NETCONF session request from a remote system to be accepted, use the commands that are shown in the following table.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="853dd57a-9e10-42e9-9c8a-4bc9005fdc1a" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">vyatta@R1# set service netconf
+vyatta@R1# set service ssh port 830
+vyatta@R1# commit</pre>
+</div></div><h2 id="NETCONF-YANGmodelforNETCONFmonitoring">YANG model for NETCONF monitoring</h2><p>The <code>&lt;get‐schema&gt;</code> operation is supported on the DANOS vRouter to query and retrieve schema information and NETCONF state information from a NETCONF server.</p><p>Refer to RFC 6022, YANG Module for NETCONF Monitoring, at <a class="external-link" href="https://tools.ietf.org/html/rfc6022" rel="nofollow">https://tools.ietf.org/html/rfc6022</a> for more information on using <code>&lt;get-schema&gt;</code>.</p><h2 id="NETCONF-VerifyingConnectionsandRetrievingOperationalDataUsingNETCONF">Verifying Connections and Retrieving Operational Data Using NETCONF</h2><h3 id="NETCONF-ping">ping</h3><p>The <code>ping</code> command displays whether a destination responded and how long the destination took to receive a reply. If an error occurs in the delivery to the destination, the command displays an error message.</p><p>Sample XML request:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="a25869c4-7cf2-45b7-8e04-237571c71129" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">&lt;ping xmlns="urn:vyatta.com:mgmt:vyatta‐op"&gt;
+    &lt;host&gt;127.0.0.1&lt;/host&gt;
+    &lt;count&gt;5&lt;/count&gt;
+    &lt;ttl&gt;3&lt;/ttl&gt;
+&lt;/ping&gt;</pre>
+</div></div><ul><li><p><strong>host</strong>: IP address you want to ping.</p></li><li><p><strong>count</strong>: Number of packets with which you are pinging.</p></li><li><p><strong>ttl</strong>: Time to live (ttl) in an IP packet in seconds that tells a network router whether the packet has been in the network too long and should be discarded. By default, the TTL value is 255.</p></li></ul><p>Sample rpc-reply:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="84c1a7f2-5e48-4f9d-bf04-6be1e91df106" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">&lt;tx-packet-count&gt;5&lt;/tx-packet-count&gt;
+&lt;rx-packet-count&gt;5&lt;/rx-packet-count&gt;
+&lt;min-delay&gt;54&lt;/min-delay&gt;
+&lt;average-delay&gt;62&lt;/average-delay&gt;
+&lt;max-delay&gt;74&lt;/max-delay&gt;</pre>
+</div></div><h3 id="NETCONF-interface">interface</h3><p>The <code>interface</code> command displays information about an interface name. The command output displays all the IP addresses that are associated with the interface, administrator status, operational status, and description of the interface.</p><p>Sample XML request:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="0221b107-359f-4e9c-aa4a-4951cb0e1329" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;interface xmlns="urn:vyatta.com:mgmt:vyatta-op"&gt;
+    &lt;name&gt;br0&lt;/name&gt;
+&lt;/interface&gt;</pre>
+</div></div><ul><li><p><strong>name</strong>: Name of interface.</p></li></ul><p>Sample rpc-reply:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="60da89ff-2315-41f1-bcce-57d56a7ac6af" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;address&gt;
+    &lt;ip&gt;15.15.15.15/24&lt;/ip&gt;
+&lt;/address&gt;
+&lt;address&gt;
+    &lt;ip&gt;2020::/64&lt;/ip&gt;
+&lt;/address&gt;
+&lt;address&gt;
+    &lt;ip&gt;2001::15/64&lt;/ip&gt;
+&lt;/address&gt;
+&lt;address&gt;
+    &lt;ip&gt;3001::211:22ff:fe33:4455/64&lt;/ip&gt;
+&lt;/address&gt;
+&lt;admin-status&gt;up&lt;/admin-status&gt;
+&lt;oper-status&gt;up&lt;/oper-status&gt;
+&lt;description&gt;sample bridge&lt;/description&gt;</pre>
+</div></div><h3 id="NETCONF-route">route</h3><p>The <code>route</code> command displays information about the path taken to a particular destination address.</p><p>Sample XML request:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="b26dcf1f-a7b4-4574-b0b7-a2b75e9c3373" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;route xmlns="urn:vyatta.com:mgmt:vyatta-op"&gt;
+&lt;destination&gt;192.168.14.0/24&lt;/destination&gt;
+&lt;/route&gt;</pre>
+</div></div><ul><li><p><strong>destination (optional)</strong>: IP address or IP prefix</p></li><li><p><strong>family</strong>: ipv4 (default) or ipv6</p></li></ul><p>NOTE: When the destination is not present, the entire route table for the specified family<br/>is returned as the output.</p><p>Sample rpc-reply:</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="352dcab5-9538-49cd-bdb6-b5d19b3794b4" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;route&gt;
+    &lt;destination&gt;192.168.14.0&lt;/destination&gt;
+    &lt;path&gt;
+        &lt;entry&gt;1&lt;/entry&gt;
+        &lt;nexthop&gt;31.31.31.32&lt;/nexthop&gt;
+        &lt;device&gt;dp0p256p1&lt;/device&gt;
+    &lt;/path&gt;
+&lt;/route&gt;</pre>
+</div></div><h2 id="NETCONF-RetrievingstatisticsusingNETCONF">Retrieving statistics using NETCONF</h2><h3 id="NETCONF-Overview">Overview</h3><p>You can retrieve DANOS vRouter statistics of all types by using NETCONF. Some of the statistics are also available from the CLI. The configuration model is a subtree of the overall YANG tree, which is included in the ISO distribution for the DANOS vRouter.</p><p>Use <strong>ssh</strong> to obtain NETCONF information in XML format from the vRouter as follows.</p><p>Configure <code>set service ssh</code> and <code>set service netconf</code> on the DANOS vRouter.</p><p>From a remote system, use SSH as follows to access and sign in the DANOS vRouter, when prompted.<br/><code>ssh vyatta@&lt;ip-address&gt; -s netconf</code></p><p>Send a capabilities list enclosed within a <strong>&lt;hello&gt;...&lt;hello/&gt;</strong> element.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="11bbecb4-4a11-4d1c-8e4e-42482d2a1529" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: text; gutter: false; theme: Confluence" data-theme="Confluence">&lt;hello xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"&gt;
+&lt;capabilities&gt;
+&lt;capability&gt;urn:ietf:params:netconf:base:1.0&lt;/capability&gt;
+&lt;capability&gt;urn:ietf:params:netconf:capability:writable-running:1.0&lt;/capability&gt;
+&lt;capability&gt;urn:ietf:params:netconf:capability:candidate:1.0&lt;/capability&gt;
+&lt;capability&gt;urn:ietf:params:netconf:capability:startup:1.0&lt;/capability&gt;
+&lt;capability&gt;urn:ietf:params:netconf:capability:rollback-on-error:1.0&lt;/capability&gt;
+&lt;/capabilities&gt;
+&lt;/hello&gt;
+]]&gt;]]&gt;</pre>
+</div></div><p>Respond to the DANOS vRouter hello element with a hello message and capabilities list. End the list with <strong>]]&gt;]]&gt;</strong> to inform SSH that the XML element is completed and should be sent.</p><p>The following sections provide XML examples for different categories of statistics and other information.</p><h3 id="NETCONF-CPUinformation">CPU information</h3><p>The XML examples in this section provide CPU information.</p><p>The following example shows an RPC request for CPU information.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="c4c70763-59ac-4ef5-8fad-18479ff3b917" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1"&gt;
+    &lt;get xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"&gt;
+        &lt;filter type="subtree"&gt;
+            &lt;system&gt;
+                &lt;state&gt;
+                    &lt;processor xmlns="urn:vyatta.com:mgmt:vyatta-system:1"&gt;
+                    &lt;/processor&gt;
+                &lt;/state&gt;
+            &lt;/system&gt;
+        &lt;/filter&gt;
+    &lt;/get&gt;
+&lt;/rpc&gt;]]&gt;]]&gt;</pre>
+</div></div><p>The following example shows the RPC reply.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="71e4e7bb-2b32-48ce-9b44-c8101cd924c3" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;?xml version="1.0" encoding="UTF-8"?&gt;
+    &lt;rpc-reply xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1"&gt;
+        &lt;data&gt;
+            &lt;system xmlns="urn:vyatta.com:mgmt:vyatta-system:1"&gt;
+                &lt;state&gt;
+                    &lt;processor&gt;
+                        &lt;utilization&gt;
+                            &lt;cpu&gt;0&lt;/cpu&gt;
+                            &lt;guest&gt;0.00&lt;/guest&gt;
+                            &lt;idle&gt;98.41&lt;/idle&gt;
+                            &lt;iowait&gt;0.11&lt;/iowait&gt;
+                            &lt;irq&gt;0.00&lt;/irq&gt;
+                            &lt;nice&gt;0.00&lt;/nice&gt;
+                            &lt;niced-guest&gt;0.00&lt;/niced-guest&gt;
+                            &lt;soft&gt;0.00&lt;/soft&gt;
+                            &lt;steal&gt;0.07&lt;/steal&gt;
+                            &lt;sys&gt;1.39&lt;/sys&gt;
+                            &lt;user&gt;0.01&lt;/user&gt;
+                        &lt;/utilization&gt;
+                        &lt;utilization&gt;
+                            &lt;cpu&gt;1&lt;/cpu&gt;
+                            &lt;guest&gt;0.00&lt;/guest&gt;
+                            &lt;idle&gt;97.27&lt;/idle&gt;
+                            &lt;iowait&gt;0.06&lt;/iowait&gt;
+                            &lt;irq&gt;0.00&lt;/irq&gt;
+                            &lt;nice&gt;0.00&lt;/nice&gt;
+                            &lt;niced-guest&gt;0.00&lt;/niced-guest&gt;
+                            &lt;soft&gt;0.00&lt;/soft&gt;
+                            &lt;steal&gt;0.35&lt;/steal&gt;
+                            &lt;sys&gt;1.87&lt;/sys&gt;
+                            &lt;user&gt;0.44&lt;/user&gt;
+                        &lt;/utilization&gt;
+                        &lt;utilization&gt;
+                            &lt;cpu&gt;all&lt;/cpu&gt;
+                            &lt;guest&gt;0.00&lt;/guest&gt;
+                            &lt;idle&gt;97.85&lt;/idle&gt;
+                            &lt;iowait&gt;0.09&lt;/iowait&gt;
+                            &lt;irq&gt;0.00&lt;/irq&gt;
+                            &lt;nice&gt;0.00&lt;/nice&gt;
+                            &lt;niced-guest&gt;0.00&lt;/niced-guest&gt;
+                            &lt;soft&gt;0.00&lt;/soft&gt;
+                            &lt;steal&gt;0.21&lt;/steal&gt;
+                            &lt;sys&gt;1.63&lt;/sys&gt;
+                            &lt;user&gt;0.23&lt;/user&gt;
+                    &lt;/utilization&gt;
+                &lt;/processor&gt;
+            &lt;/state&gt;
+        &lt;/system&gt;
+    &lt;/data&gt;
+&lt;/rpc-reply&gt;
+]]&gt;]]&gt;</pre>
+</div></div><h3 id="NETCONF-Memoryinformation">Memory information</h3><p>The XML examples in this section provide memory information.</p><p>The following example shows an RPC request for memory information.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="3a87b383-a988-47dc-8eef-e14889f860cf" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1"&gt;
+    &lt;get xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"&gt;
+        &lt;filter type="subtree"&gt;
+            &lt;system&gt;
+                &lt;state&gt;
+                    &lt;memory xmlns="urn:vyatta.com:mgmt:vyatta-system:1"&gt;
+                    &lt;/memory&gt;
+                &lt;/state&gt;
+            &lt;/system&gt;
+        &lt;/filter&gt;
+    &lt;/get&gt;
+&lt;/rpc&gt;]]&gt;]]&gt;</pre>
+</div></div><h3 id="NETCONF-Uptimeinformation">Uptime information</h3><p>The XML examples in this section provide memory information.</p><p>The following example shows an RPC request for uptime information.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="c8a84b33-5863-4b28-9e97-27fe5738536b" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1"&gt;
+    &lt;get xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"&gt;
+        &lt;filter type="subtree"&gt;
+            &lt;system&gt;
+                &lt;state&gt;
+                    &lt;times xmlns="urn:vyatta.com:mgmt:vyatta-system:1"&gt;
+                    &lt;/times&gt;
+                &lt;/state&gt;
+            &lt;/system&gt;
+        &lt;/filter&gt;
+    &lt;/get&gt;
+&lt;/rpc&gt;]]&gt;]]&gt;</pre>
+</div></div><h3 id="NETCONF-Versioninformation">Version information</h3><p>The XML examples in this section provide memory information.</p><p>The following example shows an RPC request for version information.</p><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="3008e663-fdb0-47d7-ab54-202662c4cfcf" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">&lt;rpc xmlns="urn:ietf:params:xml:ns:netconf:base:1.0" message-id="1"&gt;
+    &lt;get xmlns="urn:ietf:params:xml:ns:netconf:base:1.0"&gt;
+        &lt;filter type="subtree"&gt;
+            &lt;system&gt;
+                &lt;state&gt;
+                    &lt;platform&gt;
+                        &lt;os-version xmlns="urn:vyatta.com:mgmt:vyatta-system:1"&gt;&lt;/os-version&gt;
+                    &lt;/platform&gt;
+                &lt;/state&gt;
+            &lt;/system&gt;
+        &lt;/filter&gt;
+    &lt;/get&gt;
+&lt;/rpc&gt;]]&gt;]]&gt;</pre>
+</div></div>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

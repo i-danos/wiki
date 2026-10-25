@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>C++ VCI API - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details open><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item active'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>C++ VCI API</h1><div class="toc-macro client-side-toc-macro conf-macro output-block" data-hasbody="false" data-headerelements="H1,H2,H3,H4,H5,H6,H7" data-layout="default" data-macro-id="7bd2fa52-2827-4a67-9d2f-f2b654b959e4" data-macro-name="toc"> </div><h1 id="C++VCIAPI-Introduction">Introduction</h1><p>This document covers the specifics of writing a VCI component in the C++ programming language. For general VCI concepts please refer to the <a href="684654694-vci-api.html" rel="nofollow">VCI API</a> overview documentation.</p><p>When creating a brand new implementation one gets to choose a language to build it in based on the needs of the feature and what you are comfortable with. VCI supports Go, C++ and Python 3 for implementing feature components. Like anything there are tradeoffs with each of language for the purposes of implementing a component below are the tradeoffs to consider when choosing C++.</p><h3 id="C++VCIAPI-Pros">Pros</h3><ul><li><p>Fast compiled code</p></li><li><p>Fast interface to VCI bus</p></li><li><p>Decent concurrency support</p></li><li><p>Good for string handling</p></li></ul><h3 id="C++VCIAPI-Cons">Cons</h3><ul><li><p>No standard library support for RFC7951 data (JSON libraries are available to bridge the gap, such as <a class="external-link" href="https://github.com/nlohmann/json" rel="nofollow">this one.</a>)</p></li><li><p>No standard library support for generating config files (libraries like <a class="external-link" href="https://mustache.github.io/" rel="nofollow">'{{mustache}}'</a> exist)</p></li><li><p>No existing library to interface with the dataplane or vplaned</p></li></ul><h1 id="C++VCIAPI-DebianPackaging">Debian Packaging</h1><p>DANOS uses the Debian packaging system for packages and we have created helpers to aid in creating VCI components. To use these, we have to setup the debian build environment to use the right helpers and create the component descriptor file (.component file) in the directory.</p><h2 id="C++VCIAPI-VCIHelpers">VCI Helpers</h2><p>To enable the VCI helper one needs to pass "–with=vci" to the "dh" command in debian/rules. An example is included below.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="348036f5-d5c4-4378-acf9-e9479df8b1a6" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#!/usr/bin/make -f
+#
+# This debian/rules uses debhelper.
+#
+  
+export DEB_BUILD_HARDENING=1
+# Uncomment this for verbose logging
+#export DH_VERBOSE=1
+ 
+%:
+     dh $@ --with=vci,yang</pre>
+</div></div></td></tr></tbody></table></div><h2 id="C++VCIAPI-ComponentDescriptor">Component Descriptor</h2><p>dh-vci uses a component descriptor file in the debian directory to generate system specific configurations. One must also supply this component descriptor file for dh-vci to work properly. A sample is included below.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="40b43165-f200-4010-90dd-6045d61f00ac" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">[Vyatta Component]
+Name=com.example.myfeature
+Description=VCI component for My Feature
+ExecName=/lib/myfeature/vci-myfeature
+ConfigFile=/etc/myfeature.conf
+ 
+[Model com.example.myfeature.v1]
+Modules=myfeature-v1,myfeature-interfaces-dataplane-v1,my-feature-interfaces-vhost-v1
+ModelSets=vyatta-v1</pre>
+</div></div></td></tr></tbody></table></div><h1 id="C++VCIAPI-ComponentStructure">Component Structure</h1><p>VCI components implement the logic for a given set of YANG modules. A component owns the data for the modules defined in the ".component" file. In the VCI API there are 6 important concepts, the component, the models the component implements, the features that a model supports (Configuration, Operational State and RPCs) and the client. Components are simply containers for models. Models are containers for the Config, State and RPC objects. The Config object implements the logic to validate and apply configuration data for the YANG modules that a component manages. The State object retrieves and formats operational state data for the YANG modules that a component manages. The RPC object implements RPC handlers for any RPC defined in the managed YANG modules.</p><p>The C++ VCI API is defined in the "libvci" library. For the Config and State objects, virtual base classes are defined for the required objects. One implements one of these base classes and passes the object to libvci so that the appropriate calls are made when the operation is requested on the bus. In C++ RPCs are implemented as a virtual Method class that may be implemented or any std::function of the form "std::function&lt;std::string(const std::string&amp;)&gt;". In all cases in the C++ VCI API strings are encoded rfc7951 objects. One may use most standard JSON decoders to read this format. All method invocations can happen concurrently so one must be careful to use proper techniques for concurrent access of managed data.</p><h1 id="C++VCIAPI-APIDocumentation">API Documentation</h1><h2 id="C++VCIAPI-Component">Component</h2><p>Creating a component is a relatively straightforward process. One needs to create the objects for the desired functionality, attach them to a model and attach the model to a component object. Finally, one starts the component bus process, and waits for it to exit.</p><h3 id="C++VCIAPI-ConfigObject">Config Object</h3><p>The Config Object is as follows:</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="3e40a17f-d19b-4a35-90e7-7828bd3032b4" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">class Config {
+public:
+	virtual void set(const std::string&amp; input)  = 0;
+	virtual void check(const std::string&amp; input)  = 0;
+	virtual std::string get() { return "{}"; }
+	virtual ~Config() {};
+};</pre>
+</div></div></td></tr></tbody></table></div><p>One must implement both "set" and "check" methods with ones own class that inherits from this class definition. One may override the "get" function  but this API is no longer used and is only provided for compatibility with existing components.</p><h3 id="C++VCIAPI-StateObject">State Object</h3><p>The state object is defined as follows.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="8802fcb1-619e-4dc1-a3e2-389ec63ff389" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">class State {
+public:
+	virtual std::string get() = 0;
+	virtual ~State() {};
+};</pre>
+</div></div></td></tr></tbody></table></div><h3 id="C++VCIAPI-RPCs">RPCs</h3><p>RPCs are implemented by a class implementing the following virtual base class, or by implementing a "std::function&lt;std::string(const std::string&amp;)&gt;". These are associated with the YANG module name and RPC name when creating the Model object.</p><p><br/></p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="91fc348e-b4d8-46c9-8111-fd065559afb7" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">class Method {
+public:
+	virtual EncodedOutput operator()(const EncodedInput&amp; input) = 0;
+	virtual ~Method() {};
+};</pre>
+</div></div></td></tr></tbody></table></div><h3 id="C++VCIAPI-Model">Model</h3><p>A Model is created by associating Config, State and RPC objects with the model name as defined in the ".component" file. When one defines a model, one may chain together the method invocations to implement the full thing declaratively as in the example below. Config and state object lifetimes are managed by the VCI library.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="05305353-03ab-4c26-9e5f-8a1b47a8d832" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">vci::Model("net.vyatta.eng.vci.template-cpp.v1")
+	.config(new Config())
+	.state(new State())
+	.rpc("vci-template-cpp-v1", "rpc1", new RPC1()) //As vci::Method
+	.rpc("vci-template-cpp-v1", "rpc2", RPC1()) //As std::function
+	.rpc("vci-template-cpp-v1", "rpc3",
+		[](const std::string &amp;in)-&gt;std::string {
+			// implement the RPC.
+			return in;
+		});</pre>
+</div></div></td></tr></tbody></table></div><h3 id="C++VCIAPI-Component.1">Component</h3><p>The Component is the mechanism that starts the process that listens on the VCI Bus for messages and dispatches to the appropriate object in the program. One defines a component by creating the component and attaching the model to it. An example is included below.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="2f1dc11f-aec7-4065-9c7b-d6abcf469470" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">auto comp = vci::Component("net.vyatta.eng.vci.template-cpp")
+	.model(vci::Model("net.vyatta.eng.vci.template-cpp.v1")
+		.config(new Config())
+		.state(new State())
+		.rpc("vci-template-cpp-v1", "rpc1", new RPC1()) //As vci::Method
+		.rpc("vci-template-cpp-v1", "rpc2", RPC1()) //As std::function
+		.rpc("vci-template-cpp-v1", "rpc3",
+			[](const std::string &amp;in)-&gt;std::string {
+				// implement the RPC.
+				return in;
+			}));</pre>
+</div></div></td></tr></tbody></table></div><p>Once defined one can start the component process using the "run" method.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="ec6d65a5-9290-4509-9943-4abbeb2ea284" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">comp.run();</pre>
+</div></div></td></tr></tbody></table></div><p>The "run" method starts the bus process and returns immediately. One may block until component to exit using the "wait" method.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="8fb551f2-eefb-4b9e-a155-45bc10af124b" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">comp.wait();</pre>
+</div></div></td></tr></tbody></table></div><p>One may tell the component to cleanup gracefully if required using the "stop" method. If the process exits without calling stop the VCI bus will cleanup automatically.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="55e3c503-7b1b-47c4-aa76-afa79027794c" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">comp.stop();</pre>
+</div></div></td></tr></tbody></table></div><h2 id="C++VCIAPI-Client">Client</h2><p>When one creates a component, one may use the same connection to the VCI Bus as a VCI client to talk to other components. One uses the "client" method of the component to access this part of the connection.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="b73cd385-c1ba-4089-b84a-a3ae06b4ebe2" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">auto client = comp.client();</pre>
+</div></div></td></tr></tbody></table></div><p>The client can subscribe to notifications, request configuration and state data for a given model, and call RPCs via the VCI bus directly. </p><p>One may also create a new client connection to the VCI Bus if one doesn't need a full component.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="57c247f1-f01d-4711-82d4-d39408f7ccf2" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">vci::Client client;</pre>
+</div></div></td></tr></tbody></table></div><h3 id="C++VCIAPI-Notifications">Notifications</h3><p>One of the most useful operations for the client is to subscribe to and emit notifications on the VCI bus.</p><h4 id="C++VCIAPI-Emit">Emit</h4><p>Emitting notifications is easy. One simply uses the "client.Emit" method providing the module name the notification is modeled in, the name of the notification and the body as a RFC7951 encoded string.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="b42ce4b4-44c4-42a5-82aa-4874e0a6a9c2" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">client.emit("vyatta-routing-v1", "instance-added", "{ \"vyatta-routing-v1:name\": \"blue\" }");</pre>
+</div></div></td></tr></tbody></table></div><p>The body of the notification will be validated against the data-model before emission on the bus occurs. This means that an invalid notification will be discarded. Any bus client may emit any notification and no access control is provided to ensure notifications come from a given source. This is a tradeoff was chosen to allow flexibility for integrating with existing open-source projects in the most efficient way possible (e.g. a script that is called when a given event occurs).</p><h4 id="C++VCIAPI-Subscribe">Subscribe</h4><p>One may also subscribe to notifications via the VCI client object. Subscriptions have several buffering mechanisms which may be chosen for a given notification based on the desired semantics. By default all notifications are "infinitely buffered". One may choose to coalesce notifications such that only the last received notification is delivered dropping all previous messages, this can be useful when subscribing to notifications that act like state updates. One may choose to drop or block after some limit. One may also remove any previously instantiated limit.</p><p>Subscriptions are not active until one calls "run" on the subscription object and one may stop delivery of a subscription via the "cancel" operation. Subscriptions are delivered via registered functions of the type "std::function&lt;void(constEncodedInput&amp;)&gt;" or implementing the vci::Subscriber interface.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="b7f160fd-f601-4149-99f9-5e048580d7de" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">auto sub = client.subscribe("vyatta-routing-v1", "instance-added",
+	[](const std::string &amp;body) {
+		std::cout &lt;&lt; "got notification vyatta-routing-v1:instance-added: " &lt;&lt; body &lt;&lt; std::endl;
+	})
+sub.run();
+// ...
+sub.cancel();</pre>
+</div></div></td></tr></tbody></table></div><h3 id="C++VCIAPI-RPC">RPC</h3><p>The client can call RPCs directly on the bus. This is only for use when calling RPCs between components. On should use CallRPC in the configd API for management interface applications.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="e918c187-c4f9-4c93-9b54-048cd85367e9" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">auto call = client.call("vyatta-op-v1", "ping", "{\"host\":\"1.1.1.1\"}");
+std::cout &lt;&lt; "output: " &lt;&lt; call.output() &lt;&lt; std::endl;</pre>
+</div></div></td></tr></tbody></table></div><h3 id="C++VCIAPI-State">State</h3><p>The client can request the state of a given model via the bus directly. This is mostly for the interface from configd to the components.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="bc9b4699-394b-4c30-ab29-1bb5bebe2c36" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">auto state = client.state_by_model("com.example.myfeature.v1");
+std::cout &lt;&lt; "state: " &lt;&lt; state &lt;&lt; std::endl;</pre>
+</div></div></td></tr></tbody></table></div><h3 id="C++VCIAPI-Config">Config</h3><p>The client can request the configuration for a given model via the bus directly. This generally shouldn't be used as one component shouldn't depend on the configuration of another. This is mostly for the interface from configd to the components.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="37ac48f9-9fd2-4ae0-9973-b9b7570da515" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">auto config = client.config_by_model("com.example.myfeature.v1");
+std::cout &lt;&lt; "config: " &lt;&lt; config &lt;&lt; std::endl;</pre>
+</div></div></td></tr></tbody></table></div><p></p>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>

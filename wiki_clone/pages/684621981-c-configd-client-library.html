@@ -1,0 +1,901 @@
+<!doctype html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>C++ Configd Client Library - DANOS Wiki Mirror</title>
+  <style>
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 17px; margin: 0; background: #f8f9fb; color: #1f2937; }
+    .layout { --sidebar-width: clamp(220px, 25vw, 520px); display: flex; min-height: 100vh; }
+    .sidebar { width: var(--sidebar-width); flex: 0 0 var(--sidebar-width); min-width: 220px; max-width: 520px; background: #111827; color: #f9fafb; padding: 1rem; overflow: auto; position: sticky; top: 0; height: 100vh; box-sizing: border-box; }
+    .sidebar-resizer { flex: 0 0 6px; cursor: col-resize; background: transparent; position: sticky; top: 0; height: 100vh; z-index: 2; }
+    .sidebar-resizer:hover, .sidebar-resizer.dragging { background: #93c5fd; }
+    .sidebar h2 { font-size: 1.1rem; margin: 0 0 1rem; }
+    .sidebar ul { list-style: none; margin: 0; padding: 0; }
+    .sidebar li { margin: 0; }
+    .sidebar a { color: #dbeafe; text-decoration: none; }
+    .sidebar a:hover { text-decoration: underline; }
+    .sidebar .active, .sidebar summary:hover, .sidebar .nav-overview:hover { background: rgba(255,255,255,0.08); border-radius: 6px; }
+    .sidebar .active a { font-weight: 700; }
+    .sidebar .nav-overview, .sidebar summary, .sidebar .nav-item { padding: 0.35rem 0.5rem; }
+    .sidebar details > ul { padding-left: 1rem; }
+    .sidebar summary { cursor: pointer; color: #dbeafe; list-style-position: outside; }
+    .sidebar summary::marker { color: #94a3b8; }
+    .content { flex: 1 1 auto; min-width: 0; max-width: 1100px; padding: 2rem 2.5rem 4rem; overflow: hidden; }
+    .content article { background: white; border-radius: 12px; padding: 2rem 2.5rem; box-shadow: 0 2px 10px rgba(0,0,0,0.04); min-width: 0; overflow: hidden; overflow-wrap: anywhere; }
+    .contentLayout2, .columnLayout, .cell, .innerCell { max-width: 100%; box-sizing: border-box; }
+    .columnLayout { width: auto !important; }
+    h1, h2, h3 { color: #111827; }
+    p, li { line-height: 1.7; }
+    code { font-size: 1rem; background: #f3f4f6; padding: 0.15rem 0.3rem; border-radius: 4px; }
+    pre { font-size: 1rem; background: #111827; color: #f9fafb; padding: 1rem; border-radius: 8px; overflow-x: auto; line-height: 1.5; }
+    pre code { background: transparent; padding: 0; color: inherit; }
+    img, video, iframe { max-width: 100%; height: auto; }
+    .content article img { display: block; object-fit: contain; }
+    .table-wrap { max-width: 100%; overflow-x: auto; margin: 1rem 0; }
+    table { border-collapse: collapse; width: 100%; max-width: 100%; margin: 1rem 0; }
+    th, td { border: 1px solid #d1d5db; padding: 0.5rem 0.75rem; text-align: left; }
+    pre { max-width: 100%; box-sizing: border-box; white-space: pre-wrap; overflow-wrap: anywhere; }
+    .official-comments { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .official-comment { border-bottom: 1px solid #e5e7eb; padding: 0.75rem 0; }
+    .comment-meta { color: #6b7280; font-size: 0.9rem; margin: 0 0 0.5rem; }
+    .related-content { border-top: 1px solid #d1d5db; margin-top: 2rem; padding-top: 1rem; }
+    .related-content ul { columns: 2; }
+    a { color: #0f172a; }
+    @media (max-width: 900px) { .layout { display: block; } .sidebar { width: auto; max-width: none; height: auto; position: static; } .sidebar-resizer { display: none; } .content { padding: 1rem; } article { padding: 1rem; } }
+  </style>
+</head>
+<body>
+  <div class='layout'>
+    <aside class='sidebar'>
+      <ul>
+        <li class='nav-overview'><a href='../index.html'>Overview</a></li><li class='nav-group'><details open><summary><a href='393488-danos.html'>DANOS</a></summary><ul><li class='nav-item'><a href='1488650241-community.html'>Community</a></li><li class='nav-item'><a href='425995-installing-danos.html'>Installing DANOS</a></li><li class='nav-group'><details><summary><a href='393573-how-to-articles.html'>How-to articles</a></summary><ul><li class='nav-group'><details><summary><a href='786516-building-a-package-from-source.html'>Building a package from source</a></summary><ul><li class='nav-item'><a href='344031233-building-a-package-from-source-1908.html'>Building a package from source -- 1908</a></li></ul></details></li><li class='nav-item'><a href='2883615-example-setting-up-site-to-site-vpn-using-ipsec.html'>Example setting up site-to-site VPN using IPsec</a></li><li class='nav-item'><a href='3276830-contributing-to-the-danos-source-code.html'>Contributing to the DANOS source code</a></li><li class='nav-item'><a href='4980753-how-to-write-a-how-to.html'>How-to write a How-to</a></li><li class='nav-item'><a href='4980737-example-setting-up-pppoe.html'>Example setting up PPPoE</a></li><li class='nav-item'><a href='79560705-creating-a-danos-virtual-router-vnf-in-openstack.html'>Creating a DANOS Virtual Router VNF in Openstack</a></li><li class='nav-item'><a href='130842625-installing-danos-on-virtual-box.html'>Installing DANOS on Virtual Box</a></li><li class='nav-item'><a href='370409495-example-setting-up-mpls-ldp.html'>Example setting up MPLS-LDP</a></li><li class='nav-item'><a href='918945793-install-frr-7-5-on-danos-2012.html'>Install FRR 7.5 on DANOS 2012</a></li><li class='nav-item'><a href='1567686658-ipsec-ikev2-remote-access-vpn-server-guide.html'>IPsec/IKEv2 Remote-Access VPN server guide</a></li><li class='nav-item'><a href='1567588383-ipsec-ike-manual.html'>IPsec/IKE manual</a></li></ul></details></li><li class='nav-group'><details><summary><a href='491554-creating-a-danos-iso-using-binary-packages.html'>Creating a DANOS ISO using binary packages</a></summary><ul><li class='nav-item'><a href='342065178-creating-a-danos-1908-iso-using-binary-packages.html'>Creating a DANOS 1908 ISO using binary packages</a></li></ul></details></li><li class='nav-item'><a href='458881-building-a-danos-iso-from-source.html'>Building a DANOS ISO from source</a></li><li class='nav-item'><a href='458945-danos-debian-package-repositories.html'>DANOS Debian Package Repositories</a></li><li class='nav-group'><details><summary><a href='819201-releases.html'>Releases</a></summary><ul><li class='nav-group'><details><summary><a href='753667-danos-1908.html'>DANOS 1908</a></summary><ul><li class='nav-item'><a href='1310721-features-supported-in-danos-1908.html'>Features supported in DANOS-1908</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634908-danos-2005.html'>DANOS 2005</a></summary><ul><li class='nav-item'><a href='320634926-danos-2005-release-notes.html'>DANOS 2005 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='552960041-danos-2009.html'>DANOS 2009</a></summary><ul><li class='nav-item'><a href='603750414-danos-2009-release-notes.html'>DANOS 2009 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='892141595-danos-2012.html'>DANOS 2012</a></summary><ul><li class='nav-item'><a href='894894119-danos-2012-release-notes.html'>DANOS 2012 Release Notes</a></li></ul></details></li><li class='nav-group'><details><summary><a href='1347649542-danos-2105.html'>DANOS 2105</a></summary><ul><li class='nav-item'><a href='1347780612-danos-2105-release-notes.html'>DANOS 2105 Release Notes</a></li></ul></details></li></ul></details></li><li class='nav-group'><details><summary><a href='1540100-configuration-guide.html'>Configuration Guide</a></summary><ul><li class='nav-group'><details><summary><a href='1638401-getting-started.html'>Getting Started</a></summary><ul><li class='nav-item'><a href='1998899-working-with-configuration.html'>Working with configuration</a></li><li class='nav-item'><a href='1998936-configuration-commands.html'>Configuration commands</a></li><li class='nav-item'><a href='2064490-basic-system-configuration.html'>Basic system configuration</a></li><li class='nav-item'><a href='2064580-configuring-cpu-affinity.html'>Configuring CPU affinity</a></li><li class='nav-item'><a href='2031909-system-management-commands.html'>System management commands</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2031647-features.html'>Features</a></summary><ul><li class='nav-item'><a href='1835114-firewall.html'>Firewall</a></li><li class='nav-group'><details><summary><a href='2621441-qos-configuration-and-resources.html'>QoS Configuration and Resources</a></summary><ul><li class='nav-item'><a href='2621467-basic-qos-configuration.html'>Basic QoS Configuration</a></li><li class='nav-item'><a href='2687030-qos-frequently-asked-questions.html'>QoS Frequently Asked Questions</a></li><li class='nav-item'><a href='2621481-troubleshooting-qos.html'>Troubleshooting QoS</a></li></ul></details></li><li class='nav-group'><details><summary><a href='416153601-carrier-grade-nat-cgnat.html'>Carrier Grade NAT (CGNAT)</a></summary><ul><li class='nav-item'><a href='421101573-cgnat-and-pcp.html'>CGNAT and PCP</a></li><li class='nav-item'><a href='940834817-cgnat-and-kafka-logging.html'>CGNAT and Kafka logging</a></li></ul></details></li><li class='nav-item'><a href='544243713-deep-packet-inspection.html'>Deep Packet Inspection</a></li></ul></details></li><li class='nav-group'><details><summary><a href='2293761-services.html'>Services</a></summary><ul><li class='nav-item'><a href='2293768-netconf.html'>NETCONF</a></li><li class='nav-item'><a href='62816258-representational-state-transfer-rest.html'>Representational State Transfer (REST)</a></li><li class='nav-item'><a href='190447629-twamp.html'>TWAMP</a></li><li class='nav-item'><a href='1132134402-snmp.html'>SNMP</a></li></ul></details></li><li class='nav-group'><details><summary><a href='190414865-system.html'>System</a></summary><ul><li class='nav-item'><a href='190414872-tacacs.html'>TACACS+</a></li><li class='nav-item'><a href='601489455-access-control-management-acm-and-role-based-access-control-rbac.html'>Access Control Management (ACM) and Role-Based Access Control (RBAC)</a></li></ul></details></li><li class='nav-group'><details><summary><a href='662863873-interfaces.html'>Interfaces</a></summary><ul><li class='nav-group'><details><summary><a href='662896641-dataplane-interfaces.html'>Dataplane Interfaces</a></summary><ul><li class='nav-item'><a href='662962177-vlan-interfaces.html'>VLAN Interfaces</a></li><li class='nav-item'><a href='664371208-ip-unnumbered-interfaces.html'>IP Unnumbered Interfaces</a></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='2556033-about-danos.html'>About DANOS</a></li><li class='nav-item'><a href='3244065-creating-a-new-account.html'>Creating a new account</a></li><li class='nav-item'><a href='121143308-frequently-asked-questions.html'>Frequently Asked Questions</a></li><li class='nav-group'><details><summary><a href='162791432-test-plans.html'>Test Plans</a></summary><ul><li class='nav-item'><a href='650379265-ipsec-site-to-site-vpn-test-plan.html'>IPSec Site-to-Site VPN Test Plan</a></li><li class='nav-item'><a href='669384710-mpls-ldp-test-plan.html'>MPLS-LDP Test Plan</a></li></ul></details></li><li class='nav-group'><details><summary><a href='320634881-high-level-design-documents.html'>High Level Design Documents</a></summary><ul><li class='nav-item'><a href='669384750-hardware-mpls-support-on-broadcom-qumran-ax.html'>Hardware MPLS support on Broadcom Qumran-AX</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='684425217-development-documentation.html'>Development Documentation</a></summary><ul><li class='nav-item'><a href='684457996-architectural-overview.html'>Architectural Overview</a></li><li class='nav-group'><details><summary><a href='684621833-architectural-overview-of-core-components.html'>Architectural Overview of Core Components</a></summary><ul><li class='nav-item'><a href='684458011-configd.html'>Configd</a></li><li class='nav-item'><a href='684425279-dataplane.html'>Dataplane</a></li><li class='nav-item'><a href='684556320-opd.html'>Opd</a></li><li class='nav-item'><a href='684589074-provisiond.html'>Provisiond</a></li><li class='nav-item'><a href='684425301-route-broker.html'>Route Broker</a></li><li class='nav-item'><a href='684589086-shell-user-sandbox-and-aaa.html'>Shell, User Sandbox and AAA</a></li><li class='nav-item'><a href='684425314-vci-bus.html'>VCI Bus</a></li><li class='nav-item'><a href='684458112-vplaned.html'>Vplaned</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='684621919-extension-apis.html'>Extension APIs</a></summary><ul><li class='nav-item'><a href='684621926-configd-yang-extensions.html'>Configd YANG extensions</a></li><li class='nav-group'><details><summary><a href='684654694-vci-api.html'>VCI API</a></summary><ul><li class='nav-item'><a href='684621933-go-vci-api.html'>Go VCI API</a></li><li class='nav-item'><a href='684490803-c-vci-api.html'>C++ VCI API</a></li><li class='nav-item'><a href='684490815-python-vci-api.html'>Python VCI API</a></li><li class='nav-item'><a href='684654723-vci-shell-helpers.html'>VCI Shell Helpers</a></li><li class='nav-item'><a href='685441025-perl-vci-api.html'>Perl VCI API</a></li></ul></details></li><li class='nav-group'><details open><summary><a href='684490822-management-api.html'>Management API</a></summary><ul><li class='nav-group'><details open><summary><a href='684621974-configd-client-library.html'>Configd Client Library</a></summary><ul><li class='nav-item active'><a href='684621981-c-configd-client-library.html'>C++ Configd Client Library</a></li><li class='nav-item'><a href='684621997-c-configd-client-library.html'>C Configd Client Library</a></li><li class='nav-item'><a href='684654742-go-configd-client-library.html'>Go Configd Client Library</a></li><li class='nav-item'><a href='684556380-perl-configd-client-library.html'>Perl Configd Client Library</a></li><li class='nav-item'><a href='684556387-python-configd-client-library.html'>Python Configd Client Library</a></li><li class='nav-item'><a href='684589192-ruby-configd-client-library.html'>Ruby Configd Client Library</a></li><li class='nav-item'><a href='684654766-vcli-bash-configd-client-library.html'>VCLI -- Bash Configd Client Library</a></li></ul></details></li></ul></details></li></ul></details></li></ul></details></li><li class='nav-item'><a href='760840197-upcoming-danos-2012-release.html'>Upcoming DANOS 2012 release</a></li><li class='nav-item'><a href='1251147777-licensing-of-danos-contributions.html'>Licensing of DANOS Contributions</a></li><li class='nav-item'><a href='1569783809-test-automation.html'>Test Automation</a></li></ul></details></li>
+      </ul>
+    </aside>
+        <div class='sidebar-resizer' role='separator' aria-label='Resize navigation' aria-orientation='vertical' tabindex='0'></div>
+    <main class='content'>
+      <article>
+        <h1>C++ Configd Client Library</h1><div class="toc-macro client-side-toc-macro conf-macro output-block" data-hasbody="false" data-headerelements="H1,H2,H3,H4,H5,H6,H7" data-layout="default" data-macro-id="7458b8e5-5609-43f8-9ad6-d1d21e9a21fe" data-macro-name="toc"> </div><h1 id="C++ConfigdClientLibrary-Introduction">Introduction</h1><p>Please refer to <a href="684621974-configd-client-library.html" rel="nofollow">Configd Client Library</a> for the general concepts behind the API. This document will cover only C++ specifics.</p><h1 id="C++ConfigdClientLibrary-Mechanics">Mechanics</h1><p>Before we can use the configd API we need to establish a connection to the daemon, instantiating the CfgClient object will do this. The destructor for the client object will close the connection.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="bfed41d1-86c2-448d-ad2f-19a5ca84cac6" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#include &lt;vyatta-cfg/client/CfgClient.hpp&gt;
+int main() {
+	CfgClient client;
+}</pre>
+</div></div></td></tr></tbody></table></div><p>Once connected we can do a variety of actions on the system, one can configure the device, request the operational state of the device, or perform feature specific RPCs. When configuring the device via the Configd APIs one follows much the same procedure as with the CLI. One creates a configuration session, makes changes, commits those changes, then tears down the session. One may view the RUNNING datastore without a session being created. Sessions persist process exit and must be explicitly removed with SessionTeardown. The minimal configuration application looks like the following.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="ea446906-01ce-4a7b-90f1-4953dd71a000" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#include &lt;string&gt;
+#include &lt;sstream&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;vyatta-cfg/client/CfgClient.hpp&gt;
+int main() {
+	CfgClient client;
+	stringstream ss;
+	ss &lt;&lt; getpid();
+	client.SessionSetup(ss.str());
+	// do something to the configuration
+	client.SessionTeardown();
+}</pre>
+</div></div></td></tr></tbody></table></div><p>From here, one may perform actions similar to what one does on the CLI. Since the interface here is meant for programatic interaction, one may also introspect on the data-model and the current state of the candidate tree to determine available actions, this is similar to using "tab-completion" to inspect the CLI.</p><h1 id="C++ConfigdClientLibrary-Examples">Examples</h1><h2 id="C++ConfigdClientLibrary-Configuration">Configuration</h2><p>The following example uses the C++ configd API to set all dataplane interfaces to listen for DHCP addresses if no other address is assigned to that interface. While this is a silly thing to do, it demonstrates the basic mechanics of the this API.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="84097268-200e-44c0-b283-68130efbd369" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#include &lt;string&gt;
+#include &lt;vector&gt;
+#include &lt;iterator&gt;
+#include &lt;iostream&gt;
+#include &lt;unistd.h&gt;
+#include &lt;sys/types.h&gt;
+#include &lt;vyatta-cfg/client/CfgClient.hpp&gt;
+
+using namespace std;
+
+void setup_interface_address(CfgClient&amp; client, string intf_name) {
+	cout &lt;&lt; intf_name &lt;&lt; ":";
+	vector&lt;string&gt; path { "interfaces", "dataplane", intf_name, "address" };
+	auto addrs = client.NodeGet(CfgClient::AUTO, path);
+	copy(addrs.begin(), addrs.end(), ostream_iterator&lt;string&gt;(cout, ", "));
+	cout &lt;&lt; endl;
+	if (addrs.size() == 0) {
+		path.push_back("dhcp");
+		client.Set(path);
+	}
+}
+
+int main() {
+	CfgClient client;
+	stringstream ss;
+	ss &lt;&lt; getpid();
+	client.SessionSetup(ss.str());
+	try {
+		for (auto interface : client.NodeGet(CfgClient::AUTO,
+			{ "interfaces", "dataplane" })) {
+			setup_interface_address(client, interface);
+		}
+		client.Commit("setup interface addresses");
+	} catch (CfgClientException e) {
+		cerr &lt;&lt; e.what();
+	}
+	client.SessionTeardown();
+	return 0;
+}</pre>
+</div></div></td></tr></tbody></table></div><p>Below is a sample run of the above application.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="44bbd41d-9f38-4ca7-8325-411c36eeb335" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ g++ -std=c++11 -lvyatta-config -o configdapi configdapi.cpp
+$ ./configdapi
+dp0s3:10.156.58.201/23,
+dp0s10:
+dp0s11:</pre>
+</div></div></td></tr></tbody></table></div><h2 id="C++ConfigdClientLibrary-RPC">RPC</h2><p>One can also call an RPC via this interface.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="c2bf5b74-65f3-4059-9c5a-0e667a9d3b08" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#include &lt;string&gt;
+#include &lt;iostream&gt;
+#include &lt;json/json.h&gt;
+#include &lt;vyatta-cfg/client/CfgClient.hpp&gt;
+
+using namespace std;
+
+int main() {
+        CfgClient client;
+        Json::Value input;
+        Json::Value output;
+        Json::Reader reader;
+
+        input["host"] = "1.1.1.1";
+        auto outputs = client.CallRPC("vyatta-op-v1", "ping", input.toStyledString());
+        reader.parse(outputs, output);
+
+        cout &lt;&lt; "rx-packet-count " &lt;&lt; output["rx-packet-count"] &lt;&lt; endl;
+}</pre>
+</div></div></td></tr></tbody></table></div><p>Below is an example run of the RPC application.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="4eb298a4-fdd1-4c47-a63d-3b27faeb00d2" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ g++ -std=c++11 -lvyatta-config $(pkg-config --cflags --libs jsoncpp) -o configdapi configdapi.cpp
+$ ./configdapi
+rx-packet-count 3</pre>
+</div></div></td></tr></tbody></table></div><h2 id="C++ConfigdClientLibrary-OperationalStateData">Operational State Data</h2><p>Finally one may query for operational data information.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="6203a65a-7376-4c7e-a097-4c123f6b9d4c" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">#include &lt;string&gt;
+#include &lt;iostream&gt;
+#include &lt;json/json.h&gt;
+#include &lt;vyatta-cfg/client/CfgClient.hpp&gt;
+
+using namespace std;
+
+int main() {
+        CfgClient client;
+        Json::Value tree;
+        Json::Reader reader;
+
+        auto trees = client.TreeGetFullEncoding(
+                CfgClient::AUTO,
+                {"system", "state", "platform"},
+                "rfc7951"
+        );
+        reader.parse(trees, tree);
+        cout &lt;&lt; "OS Release:" &lt;&lt; tree["vyatta-system-v1:platform"]["os-release"] &lt;&lt; endl;
+}</pre>
+</div></div></td></tr></tbody></table></div><p>Below is an example execution of this program.</p><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="42a49522-4b78-4242-8fb4-e0ffed69cbf1" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">$ g++ -std=c++11 -lvyatta-config $(pkg-config --cflags --libs jsoncpp) -o configdapi configdapi.cpp
+$ ./configdapi
+OS Release:"Vyatta:Master"</pre>
+</div></div></td></tr></tbody></table></div><p><br/></p><h1 id="C++ConfigdClientLibrary-ManPage">Man Page</h1><p>The following documentation was generated automatically using Doxygen.</p><h2 id="C++ConfigdClientLibrary-CfgClient">CfgClient</h2><div class="table-wrap"><table class="confluenceTable" data-layout="default"><colgroup><col style="width: 680.0px;"/></colgroup><tbody><tr><td class="confluenceTd"><div class="code panel pdl conf-macro output-block" data-hasbody="true" data-macro-id="4c102a0d-889e-4795-90b7-278f24eae69e" data-macro-name="code" style="border-width: 1px;"><div class="codeContent panelContent pdl">
+<pre class="syntaxhighlighter-pre" data-syntaxhighlighter-params="brush: java; gutter: false; theme: Confluence" data-theme="Confluence">CfgClient(3)		  Vyatta Configuration System		  CfgClient(3)
+
+
+
+NAME
+       CfgClient
+
+SYNOPSIS
+       #include &lt;CfgClient.hpp&gt;
+
+   Public Types
+       enum Database { AUTO, RUNNING, CANDIDATE, EFFECTIVE }
+       enum NodeStatus { UNCHANGED, CHANGED, ADDED, DELETED }
+       enum NodeType { LEAF, MULTI, CONTAINER, TAG }
+
+   Public Member Functions
+       CfgClient ()  throw (CfgClientFatalException)
+       ~CfgClient ()
+       void SessionAttach (const std::string &amp;sessid)  throw
+	   (CfgClientException)
+       void SessionSetup (const std::string &amp;sessid)  throw
+	   (CfgClientException)
+       void SessionTeardown ()	throw (CfgClientException)
+       bool SessionChanged ()  throw (CfgClientException)
+       bool SessionSaved ()  throw (CfgClientException)
+       void SessionMarkSaved ()  throw (CfgClientException)
+       void SessionMarkUnsaved ()  throw (CfgClientException)
+       bool SessionLocked ()  throw (CfgClientException)
+       void SessionLock ()  throw (CfgClientException)
+       void SessionUnlock ()  throw (CfgClientException)
+       bool SessionExists ()  throw (CfgClientException)
+       std::string Set (const std::vector&lt; std::string &gt; &amp;path)  throw
+	   (CfgClientException)
+       std::string Delete (const std::vector&lt; std::string &gt; &amp;path)  throw
+	   (CfgClientException)
+       std::string ValidatePath (const std::vector&lt; std::string &gt; &amp;path)
+	   throw (CfgClientException)
+       std::string Commit (const std::string &amp;comment)	throw
+	   (CfgClientException)
+       std::string Discard ()  throw (CfgClientException)
+       std::string Validate ()	throw (CfgClientException)
+       std::string Save ()  throw (CfgClientException)
+       bool Load (const std::string &amp;file)  throw (CfgClientException)
+       bool Merge (const std::string &amp;file)  throw (CfgClientException)
+       std::map&lt; std::string, std::string &gt; TemplateGet (const std::vector&lt;
+	   std::string &gt; &amp;path)  throw (CfgClientException)
+       std::vector&lt; std::string &gt; TemplateGetChildren (const std::vector&lt;
+	   std::string &gt; &amp;path)  throw (CfgClientException)
+       std::vector&lt; std::string &gt; TemplateGetAllowed (const std::vector&lt;
+	   std::string &gt; &amp;path)  throw (CfgClientException)
+       bool TemplateValidatePath (const std::vector&lt; std::string &gt; &amp;path)
+	   throw (CfgClientException)
+       bool TemplateValidateValues (const std::vector&lt; std::string &gt; &amp;path)
+	   throw (CfgClientException)
+       std::map&lt; std::string, std::vector&lt; std::string &gt; &gt; GetFeatures (void)
+	   throw (CfgClientException)
+       std::map&lt; std::string, std::string &gt; GetHelp (const std::vector&lt;
+	   std::string &gt; &amp;path, bool FromSchema)  throw (CfgClientException)
+       bool NodeExists (Database db, const std::vector&lt; std::string &gt; &amp;path)
+	   throw (CfgClientException)
+       bool NodeIsDefault (Database db, const std::vector&lt; std::string &gt;
+	   &amp;path)  throw (CfgClientException)
+       std::vector&lt; std::string &gt; NodeGet (Database db, const std::vector&lt;
+	   std::string &gt; &amp;path)  throw (CfgClientException)
+       NodeStatus NodeGetStatus (Database db, const std::vector&lt; std::string &gt;
+	   &amp;path)  throw (CfgClientException)
+       NodeType NodeGetType (const std::vector&lt; std::string &gt; &amp;path)  throw
+	   (CfgClientException)
+       std::string TreeGetEncoding (Database db, const std::vector&lt;
+	   std::string &gt; &amp;path, const std::string &amp;encoding)  throw
+	   (CfgClientException)
+       std::string TreeGetFullEncoding (Database db, const std::vector&lt;
+	   std::string &gt; &amp;path, const std::string &amp;encoding)  throw
+	   (CfgClientException)
+       std::string TreeGet (Database db, const std::vector&lt; std::string &gt;
+	   &amp;path)  throw (CfgClientException)
+       std::string TreeGetXML (Database db, const std::vector&lt; std::string &gt;
+	   &amp;path)  throw (CfgClientException)
+       std::string TreeGetInternal (Database db, const std::vector&lt;
+	   std::string &gt; &amp;path)  throw (CfgClientException)
+       std::string TreeGetFull (Database db, const std::vector&lt; std::string &gt;
+	   &amp;path)  throw (CfgClientException)
+       std::string TreeGetFullXML (Database db, const std::vector&lt; std::string
+	   &gt; &amp;path)  throw (CfgClientException)
+       std::string TreeGetFullInternal (Database db, const std::vector&lt;
+	   std::string &gt; &amp;path)  throw (CfgClientException)
+       std::string CallRPC (const std::string ns, const std::string name,
+	   const std::string input)  throw (CfgClientException)
+       std::string CallRPCXML (const std::string ns, const std::string name,
+	   const std::string input)  throw (CfgClientException)
+       std::string EditConfigXML (const std::string target, const std::string
+	   default_operation, const std::string test_option, const std::string
+	   error_option, const std::string config)  throw (CfgClientException)
+
+Member Enumeration Documentation
+   enum CfgClient::Database
+       Database defines what database to use for the query.
+
+       Enumerator
+
+       AUTO   AUTO will select CANDIDATE when the client is attached to a
+	      session, RUNNING otherwise.
+
+       RUNNING
+	      RUNNING is the current running configuration.
+
+       CANDIDATE
+	      CANDIDATE is the current session's temporary database. RUNNING
+	      if there is no session. In other words this tries to do the
+	      right thing.
+
+       EFFECTIVE
+	      EFFECTIVE is DEPRECATED, do not use unless you know why you are
+	      using it.
+
+       Deprecated
+	   This is treated as CANDIDATE but left for compatibility with older
+	   uses.
+
+
+
+   enum CfgClient::NodeStatus
+       NodeStatus() represents the current change status of the node. When
+       querying the RUNNING tree this will always be UNCHANGED. When querying
+       the CANDIDATE tree this will be the change state when compared to the
+       RUNNING tree.
+
+       Enumerator
+
+       UNCHANGED
+	      UNCHANGED the values are the same in RUNNING and CANDIDATE
+
+       CHANGED
+	      CHANGED the values are different in RUNNING and CANDIDATE
+
+       ADDED  ADDED the value is new in the CANDIDATE tree
+
+       DELETED
+	      DELETED the value has been removed from the CANDIDATE tree.
+
+   enum CfgClient::NodeType
+       NodeType is DEPRECATED
+
+       Deprecated
+	   The documenation here is for understanding old users of this
+	   method. NodeType represents the older Vyatta specific names for
+	   node types. These map roughly to the YANG types as follows. Lists
+	   in the Vyatta system are represented by the key being part of the
+	   path. These 'list entries' are also represented as containers.
+
+
+       Note: There is not currently a direct replacement for this API instead
+       we encourage the use of the TreeGet with JSON_ENCODING so that the
+       structure of the data returned reflects the schema information.
+
+       Enumerator
+
+       LEAF   YANG leaf
+
+       MULTI  YANG leaf-list
+
+       CONTAINER
+	      YANG container
+
+       TAG    YANG list
+
+Constructor &amp; Destructor Documentation
+   CfgClient::CfgClient ()CfgClientFatalException
+       CfgClient() creates a new connection to configd. This will create a
+       connection to configd and will inherit a configuration session from the
+       environment if one exists. The CfgClientFatalException will be thrown
+       if a connection cannot be established.
+
+   CfgClient::~CfgClient ()
+       ~CfgClient() disconnects from configd. This doesn't teardown
+       configuration sessions automatically since this object may be used in a
+       non-configuration or in a shared configuration context. Use
+       SessionTeardown() to destroy sessions.
+
+Member Function Documentation
+   void CfgClient::SessionAttach (const std::string &amp;
+       sessid)CfgClientException
+       SessionAttach() attaches to the provided session id. If the session
+       does not exist then an exception is raised.
+
+   void CfgClient::SessionSetup (const std::string &amp; sessid)CfgClientException
+       SessionSetup() creates a new configuration session and makes that
+       session the context for this instance object. Commonly the pid of the
+       process is used as the session id, but this may be any arbitrary
+       string.
+
+   void CfgClient::SessionTeardown ()CfgClientException
+       SessionTeardown() destroys a configuration session. Care should be
+       taken that you really want to teardown the session, in some contexts it
+       may not be appropriate for this client to destroy a session. All
+       sessions should be destroyed as soon as they are no longer needed as
+       configd maintains the state indefinitiely unless told to destroy it.
+
+   bool CfgClient::SessionChanged ()CfgClientException
+       SessionChanged() reports whether the current session has any
+       configuration changes.
+
+   bool CfgClient::SessionSaved ()CfgClientException
+       SessionSaved() reports whether the current configuration session has
+       been saved to the running configuration.
+
+   void CfgClient::SessionMarkSaved ()CfgClientException
+       SessionMarkSaved() allows one to effect the saved state of the session.
+
+       Deprecated
+	   SessionMarkSaved is DEPRECATED.
+
+
+
+   void CfgClient::SessionMarkUnsaved ()CfgClientException
+       SessionMarkUnsaved() allows one to effect the saved state of the
+       session.
+
+       Deprecated
+	   SessionMarkUnsaved is DEPRECATED.
+
+
+
+   bool CfgClient::SessionLocked ()CfgClientException
+       SessionLocked() reports whether or not the current session is locked.
+       Locks can be taken to prevent multiple writers to a shared session.
+       Locks also prevent changes during commit. A session's lock is released
+       if the client that took the lock disconnects.
+
+   void CfgClient::SessionLock ()CfgClientException
+       SessionLock() will attempt to lock the current session. If the session
+       is currently locked then the exception will be raised.
+
+   void CfgClient::SessionUnlock ()CfgClientException
+       SessionUnlock() will attempt to unlock the current session. If the
+       session is currently not locked by this process, then the exception
+       will be raised.
+
+   bool CfgClient::SessionExists ()CfgClientException
+       SessionExists() reports whether the current session still exists. This
+       allows for testing if a shared session has been torn down by another
+       instance.
+
+   std::string CfgClient::Set (const std::vector&lt; std::string &gt; &amp;
+       path)CfgClientException
+       Set() creates a new path in the configuration datastore. The client
+       needs to be attached to a configuration session for this call to work.
+       If any error occurs that error is thrown as an exception. Creating a
+       path that already exists is considered an error.
+
+       Parameters
+	   path The path to the configuration represented as a vector
+
+       Returns
+	   Any informational messages that occurred during set
+
+
+
+   std::string CfgClient::Delete (const std::vector&lt; std::string &gt; &amp;
+       path)CfgClientException
+       Delete() removes a path in the configuration datastore. The client
+       needs to be attached to a configuration session for this call to work.
+       If any error occurs that error is thrown as an exception. Deleting a
+       path that does not exist is considered an error.
+
+       Parameters
+	   path The path to the configuration represented as a vector
+
+       Returns
+	   Any informational messages that occurred during delete
+
+
+
+   std::string CfgClient::ValidatePath (const std::vector&lt; std::string &gt; &amp;
+       path)CfgClientException
+       ValidatePath() checks that the path can be set
+
+       Parameters
+	   path The path to the configuration represented as a vector
+
+       Returns
+	   Any informational messages that occurred during the validation
+	   Invalid paths will throw an exception.
+
+
+
+   std::string CfgClient::Commit (const std::string &amp;
+       comment)CfgClientException
+       Commit() validates and applies the candidate configuration. The
+       candidate configuration is applied to the running system resulting in
+       the running configuration being updated if the transaction is
+       successful.
+
+       Parameters
+	   comment A comment that describes the changes during this commit. An
+	   empty string is allowed for no description.
+
+       Returns
+	   Any informational messages reported during the commit.
+
+
+
+   std::string CfgClient::Discard ()CfgClientException
+       Discard() throws away all pending (uncommitted) changes for this
+       session.
+
+   std::string CfgClient::Validate ()CfgClientException
+       Validate() checks that the candidate configuration meets all the
+       constraints modeled in the schema.
+
+   std::string CfgClient::Save ()CfgClientException
+       Save() Saves the current running configuration to the 'saved'
+       configuration.
+
+   bool CfgClient::Load (const std::string &amp; file)CfgClientException
+       Load() Replaces the configuration with the config in the supplied file
+       in the candidate database.
+
+   bool CfgClient::Merge (const std::string &amp; file)CfgClientException
+       Merge() Merges the configuration with the config in the supplied file
+       in the candidate database.
+
+   std::map&lt;std::string, std::string&gt; CfgClient::TemplateGet (const
+       std::vector&lt; std::string &gt; &amp; path)CfgClientException
+       TemplateGet() is DEPRECATED.
+
+       Deprecated
+	   The documenation here is for understanding old users of this
+	   method. This returns a map consisting of a template of the
+	   configuration data that is compatible with older internal Vyatta
+	   software. The names of the fields of this map are using old
+	   terminology and the types represented are not valid according to
+	   the YANG spec.
+
+       Parameters
+	   path The path to the configuration represented as a vector
+
+       Returns
+	   A map representing the values in the template. No more
+	   documentation will be provided for this, if you don't know what
+	   these values mean you shouldn't be using them.
+
+
+
+   std::vector&lt;std::string&gt; CfgClient::TemplateGetChildren (const std::vector&lt;
+       std::string &gt; &amp; path)CfgClientException
+       TemplateGetChildren() access the children of the schema node at a given
+       path Template is an old name kept for historical reasons; this accesses
+       the YANG schema tree.
+
+       Parameters
+	   path The path in the schema tree.
+
+       Returns
+	   The children at the requested path.
+
+
+
+   std::vector&lt;std::string&gt; CfgClient::TemplateGetAllowed (const std::vector&lt;
+       std::string &gt; &amp; path)CfgClientException
+       TemplateGetAllowed() runs the configd:allowed extension to get the help
+       values for a value node in the schema tree. Template is an old name
+       kept for historical reasons; this accesses the YANG schema tree.
+
+       Parameters
+	   path The path in the schema tree.
+
+       Returns
+	   The allowed values for the requested path.
+
+
+
+   bool CfgClient::TemplateValidatePath (const std::vector&lt; std::string &gt; &amp;
+       path)CfgClientException
+       TemplateValidatePath() determine if the path is valid according to the
+       schema. Template is an old name kept for historical reasons; this
+       accesses the YANG schema tree.
+
+       Parameters
+	   path The path in the schema tree.
+
+       Returns
+	   Whether the path is valid according to the schema.
+
+
+
+   bool CfgClient::TemplateValidateValues (const std::vector&lt; std::string &gt; &amp;
+       path)CfgClientException
+       TemplateValidatePathValues() determines if the path is valid according
+       to the schema and validates all values according to the schema syntax.
+       For historical reasons this is not the same as TemplateValidatePath,
+       which does not evaluate syntax. Chances are this is the method one
+       wants to use. Template is an old name kept for historical reasons; this
+       accesses the YANG schema tree.
+
+       Parameters
+	   path The path in the schema tree.
+
+       Returns
+	   Whether the path is valid according to the schema.
+
+
+
+   std::map&lt;std::string, std::vector&lt;std::string&gt; &gt; CfgClient::GetFeatures
+       (void)CfgClientException
+       GetFeatures() Get map of schema ids and the corresponding enabled
+       features.
+
+       Returns
+	   A map of schema features.
+
+
+
+   std::map&lt;std::string, std::string&gt; CfgClient::GetHelp (const std::vector&lt;
+       std::string &gt; &amp; path, bool FromSchema)CfgClientException
+       GetHelp() returns a map containing the children and their help strings
+
+       Parameters
+	   path The path of the parent for which one wants help as a vector
+	   FromSchema informs configd to generate help from the schema
+	   definition as well as from the data tree. If false help is from
+	   data existing in the tree only.
+
+
+
+   bool CfgClient::NodeExists (Database db, const std::vector&lt; std::string &gt; &amp;
+       path)CfgClientException
+       NodeExists() reports whether the path exists in the requested database.
+
+       Parameters
+	   db The database one wishes to query.
+	   path The path to the configuration represented as a vector.
+
+       Returns
+	   Whether the path exists in the requested database
+
+
+
+   bool CfgClient::NodeIsDefault (Database db, const std::vector&lt; std::string
+       &gt; &amp; path)CfgClientException
+       NodeIsDefault() reports whether the path is a default in the requested
+       database.
+
+       Parameters
+	   db The database one wishes to query.
+	   path The path to the configuration represented as a vector.
+
+       Returns
+	   Whether the path is a default in the requested database
+
+
+
+   std::vector&lt;std::string&gt; CfgClient::NodeGet (Database db, const
+       std::vector&lt; std::string &gt; &amp; path)CfgClientException
+       NodeGet() queries the database for the values at a given path.
+
+       Parameters
+	   db The database one wishes to query.
+	   path The path to the configuration represented as a vector.
+
+       Returns
+	   The children values of the given path.
+
+
+
+   NodeStatus CfgClient::NodeGetStatus (Database db, const std::vector&lt;
+       std::string &gt; &amp; path)CfgClientException
+       NodeGetStatus() reports the status of a node in the tree.
+
+       Parameters
+	   db The database one wishes to query.
+	   path The path to the configuration represented as a vector.
+
+       Returns
+	   The status of the node see NodeStatus for descriptions.
+
+
+
+   NodeType CfgClient::NodeGetType (const std::vector&lt; std::string &gt; &amp;
+       path)CfgClientException
+       NodeGetType() is DEPRECATED
+
+       Deprecated
+	   The documenation here is for understanding old users of this
+	   method.
+
+       Parameters
+	   path The path to the configuration represented as a vector.
+
+       Returns
+	   NodeType represents the older Vyatta specific names for node types.
+	   See NodeType for information.
+
+
+
+   std::string CfgClient::TreeGetEncoding (Database db, const std::vector&lt;
+       std::string &gt; &amp; path, const std::string &amp; encoding)CfgClientException
+       The below APIs support the following strings as encodings:
+
+
+
+
+       Parameters
+	   db The database to get the tree From.
+	   path The configuration path at which to root the sub-tree.
+	   encoding The desired encoding.
+
+       Returns
+	   A string in the desired encoding representing the tree at the given
+	   location.
+
+
+
+   std::string CfgClient::TreeGetFullEncoding (Database db, const std::vector&lt;
+       std::string &gt; &amp; path, const std::string &amp; encoding)CfgClientException
+       TreeGetFullEncoding() provides access to sub-trees of the operational
+       datastore. The operational datastore consists of the configuration
+       database and any modeled operational state data. These trees are
+       encoded in the desired encoding and returned as a string.
+
+       Parameters
+	   db The database to get the tree From.
+	   path The configuration path at which to root the sub-tree.
+	   encoding The desired encoding.
+
+       Returns
+	   A string in the desired encoding representing the tree at the given
+	   location.
+
+
+
+   std::string CfgClient::TreeGet (Database db, const std::vector&lt; std::string
+       &gt; &amp; path)CfgClientException
+       TreeGet() provides access to sub-trees of the configuration database.
+       This call is equivalent to TreeGetEncoding with JSON_ENCODING.
+
+       Parameters
+	   db The database to get the tree From.
+	   path The configuration path at which to root the sub-tree.
+
+       Returns
+	   A string in the desired encoding representing the tree at the given
+	   location.
+
+
+
+   std::string CfgClient::TreeGetXML (Database db, const std::vector&lt;
+       std::string &gt; &amp; path)CfgClientException
+       TreeGetXML() provides access to sub-trees of the configuration
+       database. This call is equivalent to TreeGetEncoding with XML_ENCODING.
+
+       Parameters
+	   db The database to get the tree From.
+	   path The configuration path at which to root the sub-tree.
+
+       Returns
+	   A string in the desired encoding representing the tree at the given
+	   location.
+
+
+
+   std::string CfgClient::TreeGetInternal (Database db, const std::vector&lt;
+       std::string &gt; &amp; path)CfgClientException
+       TreeGetInternal() provides access to sub-trees of the configuration
+       database. This call is equivalent to TreeGetEncoding with
+       INTERNAL_ENCODING.
+
+       Parameters
+	   db The database to get the tree From.
+	   path The configuration path at which to root the sub-tree.
+
+       Returns
+	   A string in the desired encoding representing the tree at the given
+	   location.
+
+
+
+   std::string CfgClient::TreeGetFull (Database db, const std::vector&lt;
+       std::string &gt; &amp; path)CfgClientException
+       TreeGetFull() provides access to sub-trees of the operational
+       datastore. The operational datastore consists of the configuration
+       database and any modeled operational state data. This call is
+       equivalent to TreeGetFullEncoding with JSON_ENCODING.
+
+       Parameters
+	   db The database to get the tree From.
+	   path The configuration path at which to root the sub-tree.
+
+       Returns
+	   A string in the desired encoding representing the tree at the given
+	   location.
+
+
+
+   std::string CfgClient::TreeGetFullXML (Database db, const std::vector&lt;
+       std::string &gt; &amp; path)CfgClientException
+       TreeGetFullXML() provides access to sub-trees of the operational
+       datastore. The operational datastore consists of the configuration
+       database and any modeled operational state data. This call is
+       equivalent to TreeGetFullEncoding with XML_ENCODING.
+
+       Parameters
+	   db The database to get the tree From.
+	   path The configuration path at which to root the sub-tree.
+
+       Returns
+	   A string in the desired encoding representing the tree at the given
+	   location.
+
+
+
+   std::string CfgClient::TreeGetFullInternal (Database db, const std::vector&lt;
+       std::string &gt; &amp; path)CfgClientException
+       TreeGetFullInternal() provides access to sub-trees of the operational
+       datastore. The operational datastore consists of the configuration
+       database and any modeled operational state data. This call is
+       equivalent to TreeGetFullEncoding with INTERNAL_ENCODING.
+
+       Parameters
+	   db The database to get the tree From.
+	   path The configuration path at which to root the sub-tree.
+
+       Returns
+	   A string in the desired encoding representing the tree at the given
+	   location.
+
+
+
+   std::string CfgClient::CallRPC (const std::string ns, const std::string
+       name, const std::string input)CfgClientException
+       CallRPC() Will call RPCs defined in yang data-models.
+
+       Parameters
+	   ns The XML namespace for the model in which the RPC is defined.
+	   name The name of the RPC to call
+	   input The input definition of the schema defined in JSON_ENCODING.
+
+       Returns
+	   The output schema defined in the RPC in JSON_ENCODING.
+
+
+
+   std::string CfgClient::CallRPCXML (const std::string ns, const std::string
+       name, const std::string input)CfgClientException
+       CallRPCXML() Will call RPCs defined in yang data-models.
+
+       Parameters
+	   ns The XML namespace for the model in which the RPC is defined.
+	   name The name of the RPC to call
+	   input The input definition of the schema defined in XML_ENCODING.
+
+       Returns
+	   The output schema defined in the RPC in XML_ENCODING.
+
+
+
+   std::string CfgClient::EditConfigXML (const std::string target, const
+       std::string default_operation, const std::string test_option, const
+       std::string error_option, const std::string config)CfgClientException
+       EditConfigXML will perform a RFC-6241 edit-config operation, see
+       RFC-6241 for more information.
+
+       Parameters
+	   target The target datastore, can be 'candidate', 'running'.
+	   default_operation The operation to perform on any node that doesn't
+	   specify the operation, may be 'merge', 'replace', or 'none'.
+	   test_option The testing option, may be 'test-then-set', 'set', or
+	   'test-only'.
+	   error_option The operation to perform when an error is encountered,
+	   may be 'stop-on-error', 'continue-on-error', or 'rollback-on-
+	   error'.
+	   config The XML data for an edit-config operation rooted at
+	   '&lt;config&gt;'.
+
+
+
+
+Author
+       Generated automatically by Doxygen for Vyatta Configuration System from
+       the source code.
+
+
+
+Version Version 0.104		Tue Jun 2 2020			  CfgClient(3)
+
+</pre>
+</div></div></td></tr></tbody></table></div>
+      </article>
+    </main>
+  </div>
+    <script>
+        (() => {
+            const layout = document.querySelector('.layout');
+            const resizer = document.querySelector('.sidebar-resizer');
+            const storageKey = 'danos-wiki-sidebar-width';
+            const minWidth = 220;
+            const maxWidth = 520;
+            const savedWidth = Number(localStorage.getItem(storageKey));
+            if (savedWidth >= minWidth && savedWidth <= maxWidth) {
+                layout.style.setProperty('--sidebar-width', `${savedWidth}px`);
+            }
+            let dragging = false;
+            const setWidth = (clientX) => {
+                const width = Math.max(minWidth, Math.min(maxWidth, clientX - layout.getBoundingClientRect().left));
+                layout.style.setProperty('--sidebar-width', `${width}px`);
+                localStorage.setItem(storageKey, String(Math.round(width)));
+            };
+            resizer.addEventListener('pointerdown', (event) => {
+                dragging = true;
+                resizer.classList.add('dragging');
+                resizer.setPointerCapture(event.pointerId);
+                setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointermove', (event) => {
+                if (dragging) setWidth(event.clientX);
+            });
+            resizer.addEventListener('pointerup', () => {
+                dragging = false;
+                resizer.classList.remove('dragging');
+            });
+            resizer.addEventListener('keydown', (event) => {
+                if (event.key !== 'ArrowLeft' && event.key !== 'ArrowRight') return;
+                event.preventDefault();
+                const current = parseFloat(getComputedStyle(layout).getPropertyValue('--sidebar-width')) || 300;
+                setWidth(layout.getBoundingClientRect().left + current + (event.key === 'ArrowRight' ? 16 : -16));
+            });
+        })();
+    </script>
+</body>
+</html>
